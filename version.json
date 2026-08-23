@@ -1,6 +1,6 @@
 {
-  "version": "18",
-  "app_version": "v1.0.18",
+  "version": "19",
+  "app_version": "v1.0.19",
   "released": "2026-08-23",
-  "notes": "Continuous Items: vật phẩm thường được sinh trực tiếp trong khung hình theo cụm ngẫu nhiên 2–6 món; hệ thống tự bổ sung khi số vật phẩm nhìn thấy xuống dưới 2, đồng thời ưu tiên hành lang an toàn và trì hoãn vật cản để tránh dụ người chơi vào bẫy."
+  "notes": "Smooth Pace: tốc độ tăng liên tục theo đường cong mượt và không bao giờ giảm; chai thuốc xanh đổi thành nam châm hút vật phẩm 8 giây; vật cản đầu tiên xuất hiện sớm trong 10 giây đầu và mật độ/tỷ lệ vật cản tăng dần liên tục, không nhảy bậc tại mốc vật phẩm."
 }
