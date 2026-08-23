@@ -1,14 +1,11 @@
-DOCTOR RUSH v1.0.18 — CONTINUOUS ITEMS VALIDATION
+Doctor Rush v1.0.24 – GPP Special Refinement
 
-PASS — JavaScript syntax checked with Node.
-PASS — manifest.webmanifest and version.json are valid JSON.
-PASS — Version/build synchronized at v1.0.18 / build 18.
-PASS — Common item groups use random quantity 2–6.
-PASS — Initial run immediately creates an in-frame item cluster.
-PASS — Continuous refill triggers when visible item count drops below 2.
-PASS — Common item rows spawn inside the visible frame instead of outside the right edge.
-PASS — Monte Carlo geometry: 60,000 generated rows across PC/mobile widths remained visible and within reachable vertical limits.
-PASS — Item corridor uses directional obstacle safety margins and delays the next obstacle encounter.
-PASS — Normal extra item rows are capped to avoid excessive clutter.
-
-Design target: the playfield should almost always show collectible activity; if an active hazard temporarily occupies every safe corridor, safety takes priority and refill retries rapidly rather than baiting the player into a collision.
+PASS
+- Chỉ cho phép tối đa 1 logo GPP trên màn hình tại một thời điểm.
+- GPP giữ nguyên sức mạnh tổng hợp: +4 sinh tồn, +100 điểm, khiên 10 giây, nam châm 8 giây.
+- Tần suất GPP đổi sang nhịp hiếm hơn: lần đầu 20–25 giây; sau đó 35–50 giây hoặc 40–60 vật phẩm; tối thiểu 30 giây giữa hai lần.
+- GPP chỉ sinh ở vùng an toàn và đẩy lùi spawn vật cản phía sau để tránh bẫy người chơi.
+- Vật phẩm GPP có aura/halo xanh-vàng, trail và thông báo riêng khi vào màn hình.
+- Khi nhặt GPP có flash nhẹ, rung ngắn, logo phóng to giữa màn hình khoảng 0.47s và hiển thị “★ GPP ĐẶC BIỆT”, sau đó mới bung thông tin quyền lợi.
+- Logo GPP nền bệnh viện vẫn mờ, cố định và khác rõ với GPP vật phẩm.
+- Kiểm tra cú pháp JavaScript PASS (node --check).

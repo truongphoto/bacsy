@@ -1,6 +1,6 @@
 {
-  "version": "22",
-  "app_version": "v1.0.22",
+  "version": "24",
+  "app_version": "v1.0.24",
   "released": "2026-08-23",
-  "notes": "Large GPP Hospital Background: thêm logo GPP thật lớn cố định ở trung tâm hậu cảnh, nằm sau chữ BỆNH VIỆN; hòa trộn multiply + opacity thấp + sương nhẹ để nhận diện thương hiệu nhưng không nhầm với vật phẩm GPP đặc biệt."
+  "notes": "Tinh chỉnh GPP jackpot: chỉ một logo trên màn hình mỗi lúc, hiếm hơn (35-50 giây hoặc 40-60 vật phẩm, tối thiểu 30 giây giữa hai lần), xuất hiện trên đường an toàn, vật phẩm có aura/halo xanh-vàng, trail và hiệu ứng nhận thưởng riêng ở giữa màn hình."
 }
