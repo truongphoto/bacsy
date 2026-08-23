@@ -1,6 +1,6 @@
 {
-  "version": "16",
-  "app_version": "v1.0.16",
+  "version": "17",
+  "app_version": "v1.0.17",
   "released": "2026-08-23",
-  "notes": "Bản thư giãn v16: giảm tốc độ và mật độ cả 3 cấp; vật phẩm có hành lang an toàn, ưu tiên phần thưởng trước vật cản; giảm tốc vật cản bay ngược và chuyển động lên xuống mượt hơn."
+  "notes": "Ổn định HUD PC/mobile: khóa kích thước số và chip, giảm DOM cập nhật dư thừa, loại bỏ backdrop blur gây cảm giác rung; di chuyển thông tin liên hệ khỏi thanh sinh tồn trên PC và hiển thị rõ thông tin Ngô Quang Trường / 0829076979 / Zalo trên mobile."
 }

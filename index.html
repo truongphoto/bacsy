@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Doctor Rush" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=16" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=17" />
   <title>Doctor Rush • Trường GPP</title>
-  <link rel="manifest" href="manifest.webmanifest?v=16" />
+  <link rel="manifest" href="manifest.webmanifest?v=17" />
   <style>
     :root{
       --glass:rgba(255,255,255,.60);
@@ -34,16 +34,19 @@
     #wrap{position:fixed;inset:0;display:grid;place-items:center;padding:14px}
     #stage{position:relative;width:min(1180px,calc(100vw - 28px),calc((100vh - 28px)*16/9));aspect-ratio:16/9;height:auto;border:1px solid rgba(255,255,255,.65);border-radius:28px;overflow:hidden;box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.25);background:linear-gradient(180deg,#ecfeff,#c8f3f6)}
     canvas{width:100%;height:100%;display:block}
-    .hud{position:absolute;left:18px;right:18px;top:16px;display:flex;justify-content:space-between;gap:12px;pointer-events:none}
-    .hud-left,.hud-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .chip{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid var(--line);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.06);font-weight:800;font-size:13px;letter-spacing:.02em;color:#0c4b53}
-    .chip b{font-size:15px}
+    .hud{position:absolute;left:18px;right:18px;top:16px;z-index:12;display:flex;justify-content:space-between;gap:12px;pointer-events:none;contain:layout paint style;transform:translateZ(0)}
+    .hud-left,.hud-right{display:flex;gap:10px;align-items:center;flex-wrap:nowrap;min-width:0}.hud-right{flex-direction:row-reverse}
+    .chip{display:flex;align-items:center;justify-content:flex-start;gap:8px;height:38px;padding:0 13px;border-radius:999px;background:rgba(250,255,255,.94);border:1px solid rgba(18,108,118,.14);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 22px rgba(0,0,0,.055);font-weight:800;font-size:13px;letter-spacing:.02em;color:#0c4b53;font-variant-numeric:tabular-nums;white-space:nowrap;contain:layout paint;transform:translateZ(0)}
+    .chip b{font-size:15px;font-variant-numeric:tabular-nums;display:inline-block;text-align:right}
+    #score{min-width:58px}#coins{min-width:42px}#difficultyChip{min-width:92px;text-align:left}#best{min-width:58px}#shieldTime,#slowTime{min-width:28px}
+    .hud-left .chip:nth-child(1){width:128px}.hud-left .chip:nth-child(2){width:158px}.hud-left .chip:nth-child(3){width:182px}.hud-right .chip:first-child{width:138px}
     .dot{width:8px;height:8px;border-radius:50%;background:#3ed3a1;box-shadow:0 0 12px #3ed3a1}
     .coin{color:#ee5872}.shield{color:#0b7db9}.gpp-chip{color:#0d7f6f}
-    .brand{position:absolute;left:22px;bottom:18px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(13,61,70,.58);font-weight:900;pointer-events:none;max-width:52%}
+    .brand{position:absolute;right:22px;left:auto;bottom:18px;z-index:11;max-width:48%;padding:7px 10px;border-radius:12px;background:rgba(250,255,255,.86);border:1px solid rgba(18,108,118,.11);box-shadow:0 7px 20px rgba(0,0,0,.045);font-size:10.5px;line-height:1.35;letter-spacing:.025em;text-transform:none;text-align:right;color:rgba(13,61,70,.72);font-weight:800;pointer-events:none;opacity:0;transform:translateZ(0)}
+    #stage.game-active .brand{opacity:1}
 
-    .health-wrap{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:flex-start;pointer-events:none}
-    .health-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.70);border:1px solid var(--line);backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    .health-wrap{position:absolute;left:18px;right:18px;bottom:16px;z-index:12;display:flex;justify-content:flex-start;pointer-events:none;contain:layout paint;transform:translateZ(0)}
+    .health-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(250,255,255,.94);border:1px solid rgba(18,108,118,.14);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 22px rgba(0,0,0,.055);contain:layout paint;transform:translateZ(0)}
     .heart{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ff9cab,#ff617a);color:white;font-size:18px;box-shadow:0 8px 18px rgba(255,99,122,.22)}
     .health-bar{width:min(320px,40vw);height:16px;border-radius:999px;background:rgba(13,61,70,.10);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(18,108,118,.12)}
     .health-fill{height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,#1cd089,#63da5d);transition:width .18s ease, background .18s ease}
@@ -85,8 +88,9 @@
     @media (pointer:coarse) and (orientation:landscape){
       #wrap{padding:0;width:100vw;height:100dvh}
       #stage{width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;border:0}
-      .hud{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));top:max(8px,env(safe-area-inset-top))}.hud-left,.hud-right{gap:6px}.chip{padding:6px 8px;font-size:9px;gap:5px}.chip b{font-size:11px}
-      .brand{display:none}#mobileJump{display:block;right:12px;bottom:12px;width:62px;height:62px}#mobilePause{display:block}
+      .hud{left:max(7px,env(safe-area-inset-left));right:max(7px,env(safe-area-inset-right));top:max(7px,env(safe-area-inset-top));gap:7px}.hud-left,.hud-right{gap:5px;flex-wrap:nowrap}.chip{height:30px;padding:0 7px;font-size:8.5px;gap:4px}.chip b{font-size:10px}
+      .hud-left .chip:nth-child(1){width:96px}.hud-left .chip:nth-child(2){width:118px}.hud-left .chip:nth-child(3){width:132px}.hud-right .chip:first-child{width:102px}#score{min-width:34px}#coins{min-width:28px}#difficultyChip{min-width:65px}#best{min-width:34px}
+      #mobileJump{display:block;right:12px;bottom:12px;width:62px;height:62px}#mobilePause{display:block}
       .health-wrap{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom))}.health-card{padding:7px 10px;gap:7px}.heart{width:28px;height:28px;font-size:15px}.health-bar{width:min(210px,38vw);height:13px}
       .card{width:min(690px,96%);max-height:96%;overflow:auto;padding:12px 14px;border-radius:20px}
       .card-top{gap:10px;margin-bottom:3px}.hero-logo{width:56px;height:56px}.eyebrow{font-size:8px}.title{font-size:30px;margin:3px 0 5px}.sub{font-size:10px;line-height:1.35;margin-bottom:6px}
@@ -98,7 +102,7 @@
       #rotateOverlay{display:flex}
     }
 
-    /* ===== Doctor Rush v1.0.16 relaxed gameplay UI ===== */
+    /* ===== Doctor Rush v1.0.17 relaxed gameplay UI ===== */
     .version-label{position:absolute;right:18px;bottom:16px;font-size:10px;font-weight:900;letter-spacing:.08em;color:rgba(13,61,70,.46);z-index:7;pointer-events:none}
     .menu-card{width:min(920px,95vw);padding:24px}
     .menu-shell{display:grid;grid-template-columns:minmax(0,.95fr) minmax(360px,1.05fr);gap:24px;align-items:stretch;text-align:left}
@@ -126,14 +130,24 @@
       .menu-actions .btns{margin-top:6px;gap:5px}.btn{padding:8px 10px;font-size:10px;border-radius:11px}.primary-play{min-width:118px}.menu-actions .hint{font-size:7.5px;line-height:1.25;margin:5px 0 0}.loading-status{font-size:8px;margin-top:4px;min-height:10px}
       #installBtn{display:block!important;position:absolute;top:max(7px,env(safe-area-inset-top));right:max(7px,env(safe-area-inset-right));z-index:35;padding:8px 10px;font-size:9px;max-width:130px;white-space:nowrap}
       #installTip{position:absolute;right:max(7px,env(safe-area-inset-right));top:44px;z-index:35;width:min(260px,42vw);margin:0;font-size:8px;padding:7px 8px;background:rgba(255,255,255,.96)}
-      #soundBtn,#vibrationBtn{padding-left:9px;padding-right:9px}.hud{backdrop-filter:none}.chip,.health-card{backdrop-filter:none}.brand{display:none}.version-label{right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));font-size:7px}
+      #soundBtn,#vibrationBtn{padding-left:9px;padding-right:9px}.hud{backdrop-filter:none}.chip,.health-card{backdrop-filter:none}
+      .brand{display:block;left:max(322px,calc(env(safe-area-inset-left) + 322px));right:max(86px,calc(env(safe-area-inset-right) + 76px));bottom:max(9px,env(safe-area-inset-bottom));max-width:none;padding:5px 7px;border-radius:9px;background:rgba(250,255,255,.91);font-size:8.2px;line-height:1.25;letter-spacing:0;text-align:center;color:rgba(13,61,70,.78);white-space:normal}
+      .version-label{right:max(8px,env(safe-area-inset-right));bottom:84px;font-size:7px}
       #mobileJump{z-index:15;width:68px;height:68px;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));background:rgba(255,255,255,.78);backdrop-filter:none}
       #mobilePause{z-index:15;top:max(54px,calc(env(safe-area-inset-top) + 50px));right:max(13px,env(safe-area-inset-right));background:rgba(255,255,255,.78);backdrop-filter:none}
       .stat-grid{grid-template-columns:repeat(4,1fr);gap:5px;margin:7px 0}.stat{padding:6px 4px;border-radius:10px}.stat small{font-size:6.5px}.stat b{font-size:12px;margin-top:1px}
       #gameOverPanel .card{width:min(650px,94%);padding:10px 12px;overflow:hidden}.tutorial-card{width:min(650px,94%);padding:12px}.tutorial-steps{gap:6px;margin:8px 0}.tutorial-step{padding:8px 5px}.tutorial-step .ico{font-size:20px}.tutorial-step b{font-size:10px}.tutorial-step span{font-size:8px}#debugPanel{top:58px;font-size:8px}
     }
-    @media (max-height:390px) and (pointer:coarse) and (orientation:landscape){.menu-brand .sub{display:none}.contact-compact{font-size:7.8px}.service-line{font-size:7.2px}.difficulty-option{min-height:47px;padding:5px}.menu-actions .hint{display:none}.btn{padding:7px 9px}.menu-actions{padding-right:52px}}
+    @media (max-height:390px) and (pointer:coarse) and (orientation:landscape){.menu-brand .sub{display:none}.contact-compact{font-size:9px;line-height:1.35}.service-line{display:none}.difficulty-option{min-height:47px;padding:5px}.menu-actions .hint{display:none}.btn{padding:7px 9px}.menu-actions{padding-right:52px}.brand{font-size:7.8px;left:max(322px,calc(env(safe-area-inset-left) + 322px));right:max(84px,calc(env(safe-area-inset-right) + 74px))}}
     @media (pointer:coarse) and (orientation:landscape){#mobileJump,#mobilePause{display:none}#stage.game-active #mobileJump,#stage.game-active #mobilePause{display:block}}
+
+    @media (pointer:coarse) and (orientation:landscape) and (max-width:720px){
+      .hud{gap:4px}.hud-left,.hud-right{gap:3px}.chip{height:28px;padding:0 6px;font-size:7.6px;gap:3px}.chip b{font-size:9px}
+      .hud-left .chip:nth-child(1){width:83px}.hud-left .chip:nth-child(2){width:100px}.hud-left .chip:nth-child(3){width:112px}.hud-right .chip:first-child{width:89px}
+      #score{min-width:28px}#coins{min-width:22px}#difficultyChip{min-width:54px}#best{min-width:28px}
+      .brand{left:max(292px,calc(env(safe-area-inset-left) + 292px));right:max(80px,calc(env(safe-area-inset-right) + 70px));font-size:7.2px;padding:4px 6px}
+      .health-bar{width:min(180px,32vw)}
+    }
 
   </style>
 </head>
@@ -162,7 +176,7 @@
       </div>
     </div>
 
-    <div class="brand">Ngô Quang Trường • TRƯỜNG GPP 0829076979 • Zalo: truongphotoart</div>
+    <div class="brand">Ngô Quang Trường • Liên hệ tư vấn: 0829076979 • Zalo: truongphotoart</div>
     <button id="mobileJump" aria-label="Nhảy">↑</button>
     <button id="mobilePause" aria-label="Tạm dừng">⏸</button>
     <div class="flash" id="flash"></div>
@@ -170,9 +184,9 @@
     <div class="panel" id="startPanel">
       <div class="card menu-card"><div class="menu-shell">
         <section class="menu-brand">
-          <div class="card-top"><img src="logo-gpp.png?v=16" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
+          <div class="card-top"><img src="logo-gpp.png?v=17" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
           <p class="sub">Bác sĩ vượt virus và các mối nguy y tế, thu thập vật phẩm. Logo GPP là vật phẩm hiếm: +4 sinh tồn, +80 điểm và khiên 10 giây. Chai thuốc xanh làm chậm trò chơi 10 giây.</p>
-          <div class="contact-compact"><b>Ngô Quang Trường • TRƯỜNG GPP 0829076979</b><br>Zalo: <b>truongphotoart</b><span class="service-line">Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</span></div>
+          <div class="contact-compact"><b>Ngô Quang Trường</b><br>Liên hệ tư vấn: <b>0829076979</b> • Zalo: <b>truongphotoart</b><span class="service-line">Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</span></div>
         </section>
         <section class="menu-actions">
           <div class="difficulty-title">Chọn cấp độ</div>
@@ -189,16 +203,16 @@
     </div>
 
     <div class="panel hidden" id="gameOverPanel"><div class="card">
-      <div class="card-top"><img src="logo-gpp.png?v=16" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
+      <div class="card-top"><img src="logo-gpp.png?v=17" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
       <div class="stat-grid"><div class="stat"><small>Điểm</small><b id="finalScore">0</b></div><div class="stat"><small>Vật phẩm</small><b id="finalCoins">0</b></div><div class="stat"><small>Thời gian</small><b id="finalTime">0s</b></div><div class="stat"><small>GPP hiếm</small><b id="finalGpp">0</b></div></div>
       <p class="sub">Cấp độ: <b id="finalDifficulty" style="color:#0b7f89">TRUNG BÌNH</b> • Kỷ lục cấp này: <b id="finalBest" style="color:#0d3d46">0</b><br><span id="newBest" style="color:#11a3b2;font-weight:900"></span></p>
-      <div class="info-box"><b>Ngô Quang Trường • TRƯỜNG GPP 0829076979</b> • Zalo: truongphotoart<br>Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</div>
+      <div class="info-box"><b>Ngô Quang Trường</b> • Liên hệ tư vấn: <b>0829076979</b> • Zalo: truongphotoart<br>Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</div>
       <div class="btns"><button class="btn primary-play" id="restartBtn">↻ Chơi lại cùng cấp</button><button class="btn secondary" id="homeBtn">⌂ Màn hình chính</button></div>
     </div></div>
     <div class="panel hidden" id="tutorialPanel"><div class="card tutorial-card"><div class="eyebrow">Hướng dẫn nhanh • chỉ hiện lần đầu</div><div class="title" style="font-size:clamp(30px,5vw,46px)">SẴN SÀNG?</div><div class="tutorial-steps">
       <div class="tutorial-step"><div class="ico">⬆️</div><b>NHẢY</b><span>Space/↑/W trên PC hoặc chạm sân chơi trên điện thoại.</span></div><div class="tutorial-step"><div class="ico">⚠️</div><b>NÉ VẬT CẢN</b><span>Đọc nhịp, tránh virus và nguy hiểm. Game luôn chừa đường thoát.</span></div><div class="tutorial-step"><div class="ico">🛡️</div><b>SĂN GPP</b><span>Logo GPP hiếm: hồi sinh tồn, cộng điểm và bật khiên 10 giây.</span></div>
     </div><div class="tutorial-progress"><i id="tutorialProgress"></i></div><div class="loading-status" id="tutorialCountdown">Tự bắt đầu sau 7 giây</div><div class="btns"><button class="btn" id="tutorialStartBtn">▶ Bắt đầu ngay</button><button class="btn secondary" id="tutorialSkipBtn">Bỏ qua hướng dẫn</button></div></div></div>
-    <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.16</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
+    <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.17</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
   </div></div>
 <div id="rotateOverlay">
   <div class="rotate-card">
@@ -210,10 +224,10 @@
 <script>
 
 (() => {
-  const APP_VERSION='v1.0.16',BUILD_ID='16';
+  const APP_VERSION='v1.0.17',BUILD_ID='17';
   const canvas=document.getElementById('game'),ctx=canvas.getContext('2d',{alpha:false}),stage=document.getElementById('stage'),$=id=>document.getElementById(id);
   const DEBUG=new URLSearchParams(location.search).get('debug')==='1'; if(DEBUG)document.body.classList.add('debug-on');
-  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=16';
+  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=17';
   let W=0,H=0,DPR=1,groundY=0; const GAME_H=720,BASE_GAME_W=1280,FIXED_MS=1000/60,PHYSICS={jump:-17.5,gravity:.82};
   let state='menu',score=0,coinCount=0,speed=5.25,time=0,shake=0;
   let muted=localStorage.getItem('doctor-rush-muted')==='1',vibrationEnabled=localStorage.getItem('doctor-rush-vibration')!=='0',difficulty=localStorage.getItem('doctor-rush-difficulty')||'medium';
@@ -227,8 +241,15 @@
   const deptLabels=['KHOA NHI','KHOA SẢN','KHOA DƯỢC','KHOA CẤP CỨU','KHOA NGOẠI','KHOA NỘI','KHOA XÉT NGHIỆM','KHOA TIM MẠCH'];
   const hero={x:150,y:0,w:62,h:74,vy:0,onGround:true,rot:0,run:0,crashTimer:0,crashVX:0};
   let audioCtx=null,lastBeepAt=0,assetsReady=false,quality='high',fps=60,fpsAccumMs=0,fpsFrames=0,goodFpsWindows=0,lastFrameTs=performance.now(),simAccumulator=0,simSteps=0,pendingVersionUpdate=false,pendingControllerReload=false,autoPausedReason='';
-  const bestKey=d=>`doctor-rush-best-${d}`,getBest=d=>Number(localStorage.getItem(bestKey(d))||0);
+  const bestKey=d=>`doctor-rush-best-${d}`;
+  const bestScores={easy:Number(localStorage.getItem(bestKey('easy'))||0),medium:Number(localStorage.getItem(bestKey('medium'))||0),hard:Number(localStorage.getItem(bestKey('hard'))||0)};
+  const getBest=d=>bestScores[d]||0;
+  function saveBest(d,value){bestScores[d]=value;localStorage.setItem(bestKey(d),String(value))}
   const totalStats={plays:Number(localStorage.getItem('doctor-rush-total-plays')||0),items:Number(localStorage.getItem('doctor-rush-total-items')||0)};
+  const hudCache=Object.create(null);
+  function hudText(id,value){const v=String(value);if(hudCache[id]!==v){$(id).textContent=v;hudCache[id]=v}}
+  function hudDisplay(id,value){if(hudCache[id+'-display']!==value){$(id).style.display=value;hudCache[id+'-display']=value}}
+  function hudStyle(id,prop,value){const key=id+'-'+prop;if(hudCache[key]!==value){$(id).style[prop]=value;hudCache[key]=value}}
   function beep(freq=440,dur=.06,type='sine',vol=.04){if(muted)return;const now=performance.now();if(now-lastBeepAt<22)return;lastBeepAt=now;try{audioCtx||=new(window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(audioCtx.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.stop(audioCtx.currentTime+dur)}catch(e){}}
   function vibrate(pattern){if(vibrationEnabled&&navigator.vibrate)try{navigator.vibrate(pattern)}catch(e){}}
   function fxBlur(v){return quality==='low'?0:v}
@@ -335,10 +356,16 @@
   function heroHitbox(){return{x:hero.x+10,y:hero.y+8,w:hero.w-19,h:hero.h-13}}
   function obstacleHitbox(o){const ix=o.lane==='air'?8:7,iy=o.lane==='air'?7:6;return{x:o.x+ix,y:o.y+iy,w:Math.max(8,o.w-ix*2),h:Math.max(8,o.h-iy*2)}}
   function boxesOverlap(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
-  function finishGameOver(){state='over';const s=Math.floor(score),oldBest=getBest(difficulty),isNew=s>oldBest,newBestValue=Math.max(oldBest,s);if(isNew)localStorage.setItem(bestKey(difficulty),String(s));totalStats.items+=coinCount;localStorage.setItem('doctor-rush-total-items',totalStats.items);$('finalScore').textContent=s;$('finalCoins').textContent=coinCount;$('finalTime').textContent=`${Math.floor(time/60)}s`;$('finalGpp').textContent=gppCollected;$('finalDifficulty').textContent=difficultyConfigs[difficulty].label;$('finalBest').textContent=newBestValue;$('newBest').textContent=isNew?'★ Kỷ lục mới của cấp độ này!':'';updateHUD();showPanel('gameOverPanel');if(pendingVersionUpdate)showUpdateToast('Bản mới đã sẵn sàng • về Màn hình chính để cập nhật')}
+  function finishGameOver(){state='over';const s=Math.floor(score),oldBest=getBest(difficulty),isNew=s>oldBest,newBestValue=Math.max(oldBest,s);if(isNew)saveBest(difficulty,s);totalStats.items+=coinCount;localStorage.setItem('doctor-rush-total-items',totalStats.items);$('finalScore').textContent=s;$('finalCoins').textContent=coinCount;$('finalTime').textContent=`${Math.floor(time/60)}s`;$('finalGpp').textContent=gppCollected;$('finalDifficulty').textContent=difficultyConfigs[difficulty].label;$('finalBest').textContent=newBestValue;$('newBest').textContent=isNew?'★ Kỷ lục mới của cấp độ này!':'';updateHUD();showPanel('gameOverPanel');if(pendingVersionUpdate)showUpdateToast('Bản mới đã sẵn sàng • về Màn hình chính để cập nhật')}
   function gameOver(){if(state!=='playing')return;state='crash';shake=16;hero.crashTimer=34;hero.crashVX=4.6;hero.vy=-8.6;hero.onGround=false;hero.rot=-.18;burst(hero.x+hero.w/2,hero.y+hero.h/2,22,'spark');burst(hero.x+hero.w*.78,hero.y+hero.h*.26,9,'mask');beep(130,.25,'sawtooth',.055);vibrate([90,45,130])}
   function currentSpeed(){const cfg=difficultyConfigs[difficulty],phase=Math.floor(time/60/30),stageBoost=progressStage()*(difficulty==='easy'?.04:difficulty==='medium'?.06:.08);let base=cfg.baseSpeed+phase*cfg.speedStep+stageBoost;if(slowTimer>0)base*=.72;return Math.min(cfg.maxSpeed,base)}
-  function updateHUD(){$('score').textContent=Math.floor(score);$('coins').textContent=coinCount;$('difficultyChip').textContent=difficultyConfigs[difficulty].label;$('best').textContent=getBest(difficulty);$('shieldChip').style.display=shieldTimer>0?'flex':'none';$('slowChip').style.display=slowTimer>0?'flex':'none';$('shieldTime').textContent=`${Math.ceil(shieldTimer/60)}s`;$('slowTime').textContent=`${Math.ceil(slowTimer/60)}s`;const ratio=health/maxHealth;$('healthText').textContent=`${health}/${maxHealth}`;$('healthFill').style.width=`${ratio*100}%`;if(ratio>.6)$('healthFill').style.background='linear-gradient(90deg,#18cd88,#69dd60)';else if(ratio>.3)$('healthFill').style.background='linear-gradient(90deg,#ffd85a,#ffb347)';else $('healthFill').style.background='linear-gradient(90deg,#ff7286,#ff3c5f)'}
+  function updateHUD(){
+    hudText('score',Math.floor(score));hudText('coins',coinCount);hudText('difficultyChip',difficultyConfigs[difficulty].label);hudText('best',getBest(difficulty));
+    const shieldOn=shieldTimer>0,slowOn=slowTimer>0;hudDisplay('shieldChip',shieldOn?'flex':'none');hudDisplay('slowChip',slowOn?'flex':'none');
+    if(shieldOn)hudText('shieldTime',`${Math.ceil(shieldTimer/60)}s`);if(slowOn)hudText('slowTime',`${Math.ceil(slowTimer/60)}s`);
+    const ratio=health/maxHealth;hudText('healthText',`${health}/${maxHealth}`);hudStyle('healthFill','width',`${ratio*100}%`);
+    const healthBg=ratio>.6?'linear-gradient(90deg,#18cd88,#69dd60)':ratio>.3?'linear-gradient(90deg,#ffd85a,#ffb347)':'linear-gradient(90deg,#ff7286,#ff3c5f)';hudStyle('healthFill','background',healthBg);
+  }
   function handleDamage(dmg,x,y){if(hitCooldown>0||state!=='playing')return;if(shieldTimer>0){burst(x,y,18,'ice');addPopup(hero.x+hero.w/2,hero.y-16,'🛡 KHIÊN CHẶN ĐÒN','#168fd0',22);beep(220,.08,'square',.04);vibrate(10);return}health=Math.max(0,health-dmg);hitCooldown=28;shake=dmg>=5?16:10;addPopup(hero.x+hero.w/2,hero.y-18,`-${dmg} SINH TỒN`,'#ff405c',dmg>=5?30:26);burst(x,y,dmg>=5?22:14,'spark');beep(dmg>=5?150:210,dmg>=5?.14:.08,dmg>=5?'sawtooth':'square',dmg>=5?.055:.04);vibrate(dmg>=5?[80,35,110]:dmg>=3?[45,25,55]:18);$('flash').classList.remove('on');void $('flash').offsetWidth;$('flash').classList.add('on');updateHUD();if(health<=0)gameOver()}
 
   function update(dt=1){
@@ -596,7 +623,7 @@ cache doctor-rush-v${BUILD_ID}`}
   addEventListener('appinstalled',()=>{deferredInstallPrompt=null;refreshInstallUI();installTip.textContent='✓ Đã cài Doctor Rush. Mở bằng icon bác sĩ ngoài màn hình để chơi dạng ứng dụng, không có thanh địa chỉ.';installTip.classList.add('show')});
   installBtn.onclick=async()=>{if(isInstalled())return;if(deferredInstallPrompt){deferredInstallPrompt.prompt();try{await deferredInstallPrompt.userChoice}catch(e){}deferredInstallPrompt=null;refreshInstallUI();return}installTip.textContent=isiOS?'iPhone/iPad: mở bằng Safari → Chia sẻ → Thêm vào Màn hình chính. Sau đó mở từ icon bác sĩ để không còn thanh địa chỉ.':'Nếu hộp cài chưa xuất hiện: mở menu trình duyệt → Cài ứng dụng / Thêm vào màn hình chính.';installTip.classList.add('show')};refreshInstallUI();
   function preloadOne(url,type='image'){return new Promise(resolve=>{if(type==='image'){const im=new Image();im.onload=()=>resolve(true);im.onerror=()=>resolve(false);im.src=url}else fetch(url,{cache:'no-cache'}).then(r=>resolve(r.ok)).catch(()=>resolve(false))})}
-  async function preloadAssets(){const assets=[['logo-gpp.png?v=16','image'],['icon-192.png?v=16','image'],['icon-512.png?v=16','image'],['apple-touch-icon.png?v=16','image'],['manifest.webmanifest?v=16','fetch'],['version.json?v=16','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
+  async function preloadAssets(){const assets=[['logo-gpp.png?v=17','image'],['icon-192.png?v=17','image'],['icon-512.png?v=17','image'],['apple-touch-icon.png?v=17','image'],['manifest.webmanifest?v=17','fetch'],['version.json?v=17','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
   let toastTimer=null;function showUpdateToast(text='Có phiên bản mới • sẽ cập nhật sau ván này',duration=2600){const el=$('updateToast');el.textContent=text;el.classList.add('show-toast');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show-toast'),duration)}
   let swRegistration=null,serverBuild=BUILD_ID,applyingUpdate=false;
   async function checkForVersionUpdate(){if(location.protocol==='file:'||location.protocol==='data:')return false;try{const r=await fetch(`./version.json?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)return false;const v=await r.json();serverBuild=String(v.version||v.build||'');if(serverBuild&&serverBuild!==BUILD_ID){pendingVersionUpdate=true;showUpdateToast(['playing','paused','crash'].includes(state)?'Có phiên bản mới • sẽ cập nhật sau ván này':'Có phiên bản mới • đang chuẩn bị cập nhật');await checkForAppUpdate();return true}}catch(e){}return false}

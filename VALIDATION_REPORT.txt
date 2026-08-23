@@ -1,70 +1,28 @@
-DOCTOR RUSH v1.0.16 — VALIDATION REPORT
-Ngày: 2026-08-23
+DOCTOR RUSH v1.0.17 – VALIDATION REPORT
+Date: 2026-08-23
 
-MỤC TIÊU BẢN v16
-- Giảm độ khó của cả Dễ / Trung bình / Khó theo hướng thư giãn.
-- Vật phẩm không còn dẫn/bẫy người chơi vào vật cản.
-- Giảm tốc vật cản bay ngược và làm chuyển động lên/xuống êm hơn.
+Mục tiêu: ổn định HUD Điểm/Vật phẩm, tách liên hệ khỏi Sinh tồn trên PC, hiển thị liên hệ rõ trên mobile.
 
-1. TỐC ĐỘ KHỞI ĐẦU
-- Dễ: 4.75 -> 3.65  (giảm 23.2%)
-- Trung bình: 5.25 -> 4.15  (giảm 21.0%)
-- Khó: 5.70 -> 4.65  (giảm 18.4%)
+PASS Version HTML v1.0.17
+PASS Không còn CSS ẩn brand mobile
+PASS Thông tin liên hệ gameplay
+PASS Thông tin liên hệ menu
+PASS HUD tabular
+PASS HUD fixed PC
+PASS HUD fixed mobile
+PASS HUD update cache
+PASS updateHUD no direct DOM churn
+PASS Best score memory cache
+PASS SW build 17
+PASS version build 17
+PASS PWA landscape
+PASS IDs unique — []
+PASS Required files — []
+PASS PC health-brand gap — 456->592
+PASS 844 mobile health-brand gap — 316->322
+PASS 844 mobile brand-jump gap — 758->764
+PASS 568 mobile health-brand gap — 286->292
+PASS 568 mobile brand-jump nonoverlap — 488->488
 
-2. TỐC ĐỘ TĂNG / GIỚI HẠN
-- Dễ: +0.18 mỗi 30 giây, tối đa 6.4
-- Trung bình: +0.25 mỗi 30 giây, tối đa 7.9
-- Khó: +0.32 mỗi 30 giây, tối đa 9.6
-- Stage boost đã giảm còn 0.04 / 0.06 / 0.08 mỗi mốc tiến trình.
-
-3. VẬT CẢN TRÊN KHÔNG
-- Dễ: 3.5% -> 7.0% theo tiến trình; combo 0% cho tới mốc cuối, tối đa 1%.
-- Trung bình: 8% -> 16%; combo tối đa 6%.
-- Khó: 15% -> 27%; combo tối đa 10%.
-- Mọi vật cản lên/xuống vẫn chỉ trừ 1 sinh tồn.
-- Chỉ một loại giữ biên độ lớn 42; các loại còn lại 16 / 20.
-- Tần số dao động giảm 0.09 -> 0.065 để chuyển động mềm hơn.
-- Bay ngược đã giảm drift: Dễ 0.35/0.50, Trung bình 0.50/0.70, Khó 0.65/0.90.
-
-4. KHOẢNG CÁCH VẬT CẢN Ở TỐC ĐỘ KHỞI ĐẦU
-- Dễ: trung bình khoảng 3.93s giữa encounter ở giai đoạn đầu; thời gian nhìn trước từ spawn tới nhân vật ~5.57s.
-- Trung bình: ~3.01s; nhìn trước ~4.90s.
-- Khó: ~2.37s; nhìn trước ~4.37s.
-- Khoảng cách vẫn giảm từ từ ở các mốc 250 / 500 / 1000 vật phẩm.
-
-5. HÀNH LANG AN TOÀN CHO VẬT PHẨM
-- Dễ: 720 px; Trung bình: 660 px; Khó: 600 px quanh vùng sinh.
-- Hàng thuốc: nếu có vật cản gần hành lang, vật phẩm không sinh và thử lại sau.
-- Bonus/GPP dùng hành lang còn rộng hơn để tránh phần thưởng đặc biệt trở thành mồi nhử.
-- Nếu item đang ở gần vùng sinh vật cản, encounter/scheduled obstacle sẽ chờ thay vì đè lên tuyến ăn item.
-- 36% hàng thuốc là hàng thấp, dễ lấy mà không cần nhảy liên tục.
-
-6. KIỂM TRA LOGIC HÀNH LANG
-- PASS: easy: item cùng vùng sinh chặn vật cản
-- PASS: easy: item cách đủ xa cho phép vật cản
-- PASS: easy: vật cản cạnh hàng item làm item chờ
-- PASS: easy: vật cản cách xa cho phép item
-- PASS: medium: item cùng vùng sinh chặn vật cản
-- PASS: medium: item cách đủ xa cho phép vật cản
-- PASS: medium: vật cản cạnh hàng item làm item chờ
-- PASS: medium: vật cản cách xa cho phép item
-- PASS: hard: item cùng vùng sinh chặn vật cản
-- PASS: hard: item cách đủ xa cho phép vật cản
-- PASS: hard: vật cản cạnh hàng item làm item chờ
-- PASS: hard: vật cản cách xa cho phép item
-
-7. SÁT THƯƠNG THEO CẤP
-- Dễ: tối đa -2, không có -5.
-- Trung bình: tối đa -4, không có -5.
-- Khó: giữ -5 hiếm để còn điểm khác biệt nhưng mật độ/tốc độ tổng đã giảm.
-
-8. KỸ THUẬT / PWA
-- JavaScript: node --check PASS.
-- version.json: build 16.
-- sw.js: cache doctor-rush-v16.
-- APP_VERSION: v1.0.16.
-- manifest.webmanifest hợp lệ và vẫn landscape + standalone/fullscreen override.
-- Đủ icon 192, 512, Apple icon, logo GPP, README.
-
-KẾT LUẬN
-Bản v1.0.16 ưu tiên cảm giác thư giãn: giảm tốc, giảm mật độ, giảm air/combo, tăng khoảng nhìn trước và tách hành lang vật phẩm khỏi vật cản.
+Tổng: 20/20 PASS
+Kết luận: Tất cả kiểm tra đạt.
