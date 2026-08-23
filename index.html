@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Doctor Rush" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=12" />
   <title>Doctor Rush • Trường GPP</title>
-  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="manifest" href="manifest.webmanifest?v=12" />
   <style>
     :root{
       --glass:rgba(255,255,255,.60);
@@ -210,6 +210,7 @@
     medium:{label:'TRUNG BÌNH',baseSpeed:5.25,speedStep:.85,maxSpeed:13.5,airChance:[.18,.22,.26,.30],comboChance:[.015,.07,.14,.20],movingAirChance:.66,gaps:[[460,610],[400,550],[350,500],[300,450]],bonus:[360,560],gpp:[2100,3300]},
     hard:{label:'KHÓ',baseSpeed:5.7,speedStep:1.05,maxSpeed:15.2,airChance:[.30,.35,.40,.45],comboChance:[.05,.13,.22,.30],movingAirChance:.58,gaps:[[400,540],[350,480],[300,430],[260,390]],bonus:[460,700],gpp:[2600,3900]}
   };
+  if(!difficultyConfigs[difficulty]) difficulty='medium';
   let best=Number(localStorage.getItem('doctor-rush-best')||0); $('best').textContent=best;
   let health=10, maxHealth=10, shieldTimer=0, slowTimer=0, hitCooldown=0;
   let encounterTimer=0, pillTimer=0, bonusTimer=0, gppTimer=0;
@@ -272,13 +273,25 @@
   function reset(){
     score=0; coinCount=0; time=0; shake=0; sceneTheme=0; health=maxHealth; shieldTimer=0; slowTimer=0; hitCooldown=0;
     obstacles.length=items.length=particles.length=popups.length=scheduledSpawns.length=0;
-    hero.x=150; hero.y=groundY-hero.h; hero.vy=0; hero.onGround=true; hero.rot=0; hero.run=0; hero.crashTimer=0; hero.crashVX=0;
+    hero.x=Math.round(W*.117); hero.y=groundY-hero.h; hero.vy=0; hero.onGround=true; hero.rot=0; hero.run=0; hero.crashTimer=0; hero.crashVX=0;
     const cfg=difficultyConfigs[difficulty];
     encounterTimer=distanceToFrames(randomRange(cfg.gaps[0][0],cfg.gaps[0][1])); pillTimer=90; bonusTimer=randomRange(cfg.bonus[0],cfg.bonus[1]); gppTimer=randomRange(cfg.gpp[0],cfg.gpp[1]);
     updateHUD();
   }
+  function isInstalled(){
+    return matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || navigator.standalone===true;
+  }
   async function requestLandscape(){ try{ if(screen.orientation && screen.orientation.lock) await screen.orientation.lock('landscape'); }catch(e){} }
-  function start(){ requestLandscape(); reset(); state='playing'; $('startPanel').classList.add('hidden'); $('gameOverPanel').classList.add('hidden'); beep(540,.08,'triangle',.05); }
+  async function requestAppFullscreen(){
+    const mobileLike=matchMedia('(pointer:coarse)').matches;
+    if(!mobileLike || document.fullscreenElement || isInstalled()) return;
+    try{ if(document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen({navigationUI:'hide'}); }catch(e){}
+  }
+  async function start(){
+    await requestAppFullscreen();
+    await requestLandscape();
+    reset(); state='playing'; $('startPanel').classList.add('hidden'); $('gameOverPanel').classList.add('hidden'); beep(540,.08,'triangle',.05);
+  }
   function jump(){ if(state==='menu'){start();return} if(state==='over'){start();return} if(state!=='playing') return; if(hero.onGround){hero.vy=-16.4; hero.onGround=false; burst(hero.x+26,groundY-4,10,'dust'); beep(640,.055,'square',.03);} }
   function burst(x,y,n,type='spark'){ for(let i=0;i<n;i++) particles.push({x,y,vx:(Math.random()-.5)*7,vy:(Math.random()-.75)*7,life:25+Math.random()*25,size:2+Math.random()*4,type}); }
   function addPopup(x,y,text,color='#ff6879',size=22){ popups.push({x,y,text,color,size,life:72,maxLife:72,vy:-0.82}); }
@@ -622,7 +635,7 @@
     } else if(o.kind==='hazard5'){
       ctx.shadowColor='rgba(255,74,98,.34)'; ctx.shadowBlur=20; ctx.fillStyle='#ff687c'; roundedRect(0,10,o.w,o.h-10,8); ctx.fill();
       ctx.fillStyle='#fff2f4'; ctx.beginPath(); ctx.arc(o.w*.5, o.h*.44, 12,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='#e53f61'; ctx.font='900 18px system-ui'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('5',o.w*.5,o.h*.44+1);
+      ctx.fillStyle='#e53f61'; ctx.font='900 18px system-ui'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('!',o.w*.5,o.h*.44+1);
       ctx.fillStyle='#ffd95b'; ctx.fillRect(8,18,o.w-16,8); ctx.fillRect(8,o.h-6,o.w-16,6);
     } else {
       ctx.shadowColor='rgba(115,95,255,.30)'; ctx.shadowBlur=16; ctx.fillStyle='#6f88d9'; roundedRect(0,10,o.w,o.h-10,8); ctx.fill(); ctx.fillStyle='#94a8eb'; ctx.fillRect(8,18,o.w-16,12); ctx.fillStyle='#e4efff'; for(let i=0;i<3;i++){ ctx.fillRect(12+i*14,35,8,18); } ctx.fillStyle='#ff6879'; ctx.beginPath(); ctx.arc(o.w*.76, o.h*.58, 10,0,Math.PI*2); ctx.fill();
@@ -701,7 +714,7 @@
   $('mobileJump').onclick=e=>{ e.preventDefault(); if(state==='paused') togglePause(); else jump(); };
   $('mobilePause').onclick=e=>{ e.preventDefault(); togglePause(); };
   stage.addEventListener('pointerdown',e=>{
-    if(e.target.tagName==='BUTTON') return;
+    if(e.target.closest && e.target.closest('button')) return;
     if(e.pointerType==='mouse' && (state==='playing' || state==='paused')){ togglePause(); return; }
     if(e.pointerType!=='mouse' && state==='paused'){ togglePause(); return; }
     jump();
@@ -719,7 +732,7 @@
       installTip.classList.remove('show');
       return;
     }
-    if(deferredInstallPrompt || isiOS){ installBtn.hidden=false; }
+    installBtn.hidden=false;
   }
   addEventListener('beforeinstallprompt',e=>{
     e.preventDefault(); deferredInstallPrompt=e; refreshInstallUI();
@@ -745,7 +758,27 @@
   };
   refreshInstallUI();
 
-  if('serviceWorker' in navigator && location.protocol!=='file:') addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  let swRegistration=null, swReloading=false;
+  async function checkForAppUpdate(){
+    if(!swRegistration) return;
+    try{ await swRegistration.update(); }catch(e){}
+  }
+  if('serviceWorker' in navigator && location.protocol!=='file:'){
+    addEventListener('load',async()=>{
+      try{
+        swRegistration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
+        await checkForAppUpdate();
+      }catch(e){}
+    });
+    navigator.serviceWorker.addEventListener('controllerchange',()=>{
+      if(swReloading) return;
+      swReloading=true;
+      location.reload();
+    });
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible') checkForAppUpdate();
+    });
+  }
   updateHUD();
 })();
 
