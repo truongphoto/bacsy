@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Doctor Rush" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=15" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=16" />
   <title>Doctor Rush • Trường GPP</title>
-  <link rel="manifest" href="manifest.webmanifest?v=15" />
+  <link rel="manifest" href="manifest.webmanifest?v=16" />
   <style>
     :root{
       --glass:rgba(255,255,255,.60);
@@ -98,7 +98,7 @@
       #rotateOverlay{display:flex}
     }
 
-    /* ===== Doctor Rush v1.0.15 professional UI ===== */
+    /* ===== Doctor Rush v1.0.16 relaxed gameplay UI ===== */
     .version-label{position:absolute;right:18px;bottom:16px;font-size:10px;font-weight:900;letter-spacing:.08em;color:rgba(13,61,70,.46);z-index:7;pointer-events:none}
     .menu-card{width:min(920px,95vw);padding:24px}
     .menu-shell{display:grid;grid-template-columns:minmax(0,.95fr) minmax(360px,1.05fr);gap:24px;align-items:stretch;text-align:left}
@@ -170,16 +170,16 @@
     <div class="panel" id="startPanel">
       <div class="card menu-card"><div class="menu-shell">
         <section class="menu-brand">
-          <div class="card-top"><img src="logo-gpp.png?v=15" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
+          <div class="card-top"><img src="logo-gpp.png?v=16" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
           <p class="sub">Bác sĩ vượt virus và các mối nguy y tế, thu thập vật phẩm. Logo GPP là vật phẩm hiếm: +4 sinh tồn, +80 điểm và khiên 10 giây. Chai thuốc xanh làm chậm trò chơi 10 giây.</p>
           <div class="contact-compact"><b>Ngô Quang Trường • TRƯỜNG GPP 0829076979</b><br>Zalo: <b>truongphotoart</b><span class="service-line">Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</span></div>
         </section>
         <section class="menu-actions">
           <div class="difficulty-title">Chọn cấp độ</div>
           <div class="difficulty-grid" id="difficultyGrid">
-            <button class="difficulty-option" data-difficulty="easy"><strong>🌿 DỄ</strong><span>Ít vật cản • trên không rất ít • tối đa -2</span></button>
-            <button class="difficulty-option active" data-difficulty="medium"><strong>⚕ TRUNG BÌNH</strong><span>Cân bằng • combo có kiểm soát • tối đa -4</span></button>
-            <button class="difficulty-option hard" data-difficulty="hard"><strong>⚠ KHÓ</strong><span>Mật độ cao • nhiều vật cản bay • có nguy hiểm -5</span></button>
+            <button class="difficulty-option" data-difficulty="easy"><strong>🌿 DỄ</strong><span>Rất nhẹ • vật cản bay cực ít • tối đa -2</span></button>
+            <button class="difficulty-option active" data-difficulty="medium"><strong>⚕ TRUNG BÌNH</strong><span>Nhẹ nhàng • vật cản thưa • tối đa -4</span></button>
+            <button class="difficulty-option hard" data-difficulty="hard"><strong>⚠ KHÓ</strong><span>Thử thách vừa • có vật cản -5 hiếm</span></button>
           </div>
           <div class="btns"><button class="btn primary-play" id="startBtn" disabled>Đang tải 0%</button><button class="btn" id="installBtn">📲 Cài ứng dụng</button><button class="btn secondary" id="soundBtn">🔊 Âm thanh: Bật</button><button class="btn secondary" id="vibrationBtn">📳 Rung: Bật</button></div>
           <div id="installTip"></div><div class="loading-status" id="loadingStatus">Đang chuẩn bị tài nguyên…</div>
@@ -189,7 +189,7 @@
     </div>
 
     <div class="panel hidden" id="gameOverPanel"><div class="card">
-      <div class="card-top"><img src="logo-gpp.png?v=15" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
+      <div class="card-top"><img src="logo-gpp.png?v=16" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
       <div class="stat-grid"><div class="stat"><small>Điểm</small><b id="finalScore">0</b></div><div class="stat"><small>Vật phẩm</small><b id="finalCoins">0</b></div><div class="stat"><small>Thời gian</small><b id="finalTime">0s</b></div><div class="stat"><small>GPP hiếm</small><b id="finalGpp">0</b></div></div>
       <p class="sub">Cấp độ: <b id="finalDifficulty" style="color:#0b7f89">TRUNG BÌNH</b> • Kỷ lục cấp này: <b id="finalBest" style="color:#0d3d46">0</b><br><span id="newBest" style="color:#11a3b2;font-weight:900"></span></p>
       <div class="info-box"><b>Ngô Quang Trường • TRƯỜNG GPP 0829076979</b> • Zalo: truongphotoart<br>Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</div>
@@ -198,7 +198,7 @@
     <div class="panel hidden" id="tutorialPanel"><div class="card tutorial-card"><div class="eyebrow">Hướng dẫn nhanh • chỉ hiện lần đầu</div><div class="title" style="font-size:clamp(30px,5vw,46px)">SẴN SÀNG?</div><div class="tutorial-steps">
       <div class="tutorial-step"><div class="ico">⬆️</div><b>NHẢY</b><span>Space/↑/W trên PC hoặc chạm sân chơi trên điện thoại.</span></div><div class="tutorial-step"><div class="ico">⚠️</div><b>NÉ VẬT CẢN</b><span>Đọc nhịp, tránh virus và nguy hiểm. Game luôn chừa đường thoát.</span></div><div class="tutorial-step"><div class="ico">🛡️</div><b>SĂN GPP</b><span>Logo GPP hiếm: hồi sinh tồn, cộng điểm và bật khiên 10 giây.</span></div>
     </div><div class="tutorial-progress"><i id="tutorialProgress"></i></div><div class="loading-status" id="tutorialCountdown">Tự bắt đầu sau 7 giây</div><div class="btns"><button class="btn" id="tutorialStartBtn">▶ Bắt đầu ngay</button><button class="btn secondary" id="tutorialSkipBtn">Bỏ qua hướng dẫn</button></div></div></div>
-    <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.15</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
+    <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.16</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
   </div></div>
 <div id="rotateOverlay">
   <div class="rotate-card">
@@ -210,17 +210,17 @@
 <script>
 
 (() => {
-  const APP_VERSION='v1.0.15',BUILD_ID='15';
+  const APP_VERSION='v1.0.16',BUILD_ID='16';
   const canvas=document.getElementById('game'),ctx=canvas.getContext('2d',{alpha:false}),stage=document.getElementById('stage'),$=id=>document.getElementById(id);
   const DEBUG=new URLSearchParams(location.search).get('debug')==='1'; if(DEBUG)document.body.classList.add('debug-on');
-  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=15';
+  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=16';
   let W=0,H=0,DPR=1,groundY=0; const GAME_H=720,BASE_GAME_W=1280,FIXED_MS=1000/60,PHYSICS={jump:-17.5,gravity:.82};
   let state='menu',score=0,coinCount=0,speed=5.25,time=0,shake=0;
   let muted=localStorage.getItem('doctor-rush-muted')==='1',vibrationEnabled=localStorage.getItem('doctor-rush-vibration')!=='0',difficulty=localStorage.getItem('doctor-rush-difficulty')||'medium';
   const difficultyConfigs={
-    easy:{label:'DỄ',baseSpeed:4.75,speedStep:.52,maxSpeed:10.4,airChance:[.08,.09,.10,.12],comboChance:[0,0,.025,.05],movingAirChance:.84,gaps:[[540,700],[485,630],[435,570],[390,520]],bonus:[270,420],gpp:[1800,2750]},
-    medium:{label:'TRUNG BÌNH',baseSpeed:5.25,speedStep:.78,maxSpeed:13.2,airChance:[.18,.22,.26,.30],comboChance:[.01,.055,.12,.18],movingAirChance:.67,gaps:[[475,620],[420,560],[365,505],[315,455]],bonus:[350,550],gpp:[2050,3200]},
-    hard:{label:'KHÓ',baseSpeed:5.7,speedStep:.95,maxSpeed:14.8,airChance:[.30,.35,.40,.45],comboChance:[.035,.105,.19,.27],movingAirChance:.58,gaps:[[420,555],[365,495],[315,440],[275,400]],bonus:[450,680],gpp:[2500,3800]}
+    easy:{label:'DỄ',baseSpeed:3.65,speedStep:.18,maxSpeed:6.4,airChance:[.035,.045,.055,.07],comboChance:[0,0,0,.01],movingAirChance:.90,gaps:[[760,960],[700,900],[640,840],[580,780]],bonus:[240,380],gpp:[1650,2450]},
+    medium:{label:'TRUNG BÌNH',baseSpeed:4.15,speedStep:.25,maxSpeed:7.9,airChance:[.08,.10,.13,.16],comboChance:[0,.01,.035,.06],movingAirChance:.75,gaps:[[660,840],[600,780],[540,720],[480,660]],bonus:[310,500],gpp:[1900,2950]},
+    hard:{label:'KHÓ',baseSpeed:4.65,speedStep:.32,maxSpeed:9.6,airChance:[.15,.18,.22,.27],comboChance:[.01,.025,.06,.10],movingAirChance:.65,gaps:[[580,740],[520,680],[460,620],[410,570]],bonus:[390,610],gpp:[2300,3500]}
   }; if(!difficultyConfigs[difficulty])difficulty='medium';
   let health=10,maxHealth=10,shieldTimer=0,slowTimer=0,hitCooldown=0,encounterTimer=0,pillTimer=0,bonusTimer=0,gppTimer=0,sceneTheme=0,gppCollected=0;
   const obstacles=[],items=[],particles=[],clouds=[],skyline=[],popups=[],scheduledSpawns=[];
@@ -282,16 +282,16 @@
     }
     const roll=Math.random();
     if(difficulty==='easy'){
-      return roll<.72 ? {kind:'batvirus',damage:1,w:54,h:40,moving:false,driftX:1.2} : {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:1.55};
+      return roll<.72 ? {kind:'batvirus',damage:1,w:54,h:40,moving:false,driftX:.35} : {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:.50};
     }
     if(difficulty==='medium'){
-      if(roll<.38) return {kind:'batvirus',damage:2,w:54,h:40,moving:false,driftX:1.5};
-      if(roll<.68) return {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:1.9};
+      if(roll<.38) return {kind:'batvirus',damage:2,w:54,h:40,moving:false,driftX:.50};
+      if(roll<.68) return {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:.70};
       if(roll<.90) return {kind:'spikeball',damage:3,w:54,h:54,moving:false,spinSpeed:.1};
       return {kind:'airmine4',damage:4,w:60,h:60,moving:false,spinSpeed:.13};
     }
-    if(roll<.28) return {kind:'batvirus',damage:2,w:54,h:40,moving:false,driftX:1.6};
-    if(roll<.52) return {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:2.15};
+    if(roll<.28) return {kind:'batvirus',damage:2,w:54,h:40,moving:false,driftX:.65};
+    if(roll<.52) return {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:.90};
     if(roll<.82) return {kind:'spikeball',damage:3,w:54,h:54,moving:false,spinSpeed:.1};
     if(roll<.95) return {kind:'airmine4',damage:4,w:60,h:60,moving:false,spinSpeed:.13};
     return {kind:'airmine5',damage:5,w:60,h:60,moving:false,spinSpeed:.14};
@@ -300,27 +300,44 @@
   function canSpawnAt(x,lane,minDist=190){return!obstacles.some(o=>Math.abs(o.x-x)<minDist&&(o.lane===lane||Math.abs((o.y+o.h/2)-(groundY-130))<95))}
   function makeGroundObstacle(type=null,x=spawnLineX()){const t=type||pickGroundType();return{x,y:groundY-t.h,w:t.w,h:t.h,kind:t.kind,damage:t.damage,pulse:Math.random()*6,lane:'ground',warned:false}}
   function makeAirObstacle(opts={},x=spawnLineX()){const t=pickAirType(opts),baseY=opts.baseY??(t.moving?randomRange(groundY-205,groundY-160):randomRange(groundY-248,groundY-190));return{x,y:baseY,w:t.w,h:t.h,kind:t.kind,damage:t.damage,pulse:Math.random()*6,lane:'air',moving:!!t.moving,baseY,phase:Math.random()*Math.PI*2,bottomLimit:t.bottomLimit||groundY-92,amplitude:t.amplitude||0,spinSpeed:t.spinSpeed||0,driftX:t.driftX||0,warned:false}}
-  function spawnGroundObstacle(type=null,x=spawnLineX()){const o=makeGroundObstacle(type,x);if(canSpawnAt(x,'ground'))obstacles.push(o);return o}
-  function spawnAirObstacle(opts={},x=spawnLineX()){const o=makeAirObstacle(opts,x);if(canSpawnAt(x,'air'))obstacles.push(o);return o}
+  function itemSafetyEnvelope(){return difficulty==='easy'?720:difficulty==='medium'?660:600}
+  function obstacleSpawnSafeFromItems(x=spawnLineX()){const margin=itemSafetyEnvelope();return !items.some(it=>Math.abs(it.x-x)<margin)}
+  function collectiblePlanSafe(plan,margin=360){if(!plan.length)return false;const minX=Math.min(...plan.map(p=>p.x))-margin,maxX=Math.max(...plan.map(p=>p.x))+margin;return !obstacles.some(o=>o.x+o.w>minX&&o.x<maxX)}
+  function spawnGroundObstacle(type=null,x=spawnLineX()){const o=makeGroundObstacle(type,x);if(canSpawnAt(x,'ground')&&obstacleSpawnSafeFromItems(x))obstacles.push(o);return o}
+  function spawnAirObstacle(opts={},x=spawnLineX()){const o=makeAirObstacle(opts,x);if(canSpawnAt(x,'air')&&obstacleSpawnSafeFromItems(x))obstacles.push(o);return o}
   function scheduleSpawn(delayFrames,type,opts={}){scheduledSpawns.push({delay:delayFrames,type,opts})}
   function progressStage(){if(coinCount>=1000)return 3;if(coinCount>=500)return 2;if(coinCount>=250)return 1;return 0}
   function jumpRecoveryDistance(){const flight=2*Math.abs(PHYSICS.jump)/PHYSICS.gravity;return speed*flight+84}
   function patternHasEscapePath(primaryLane,secondaryLane,distance,primaryMoving=false,secondaryMoving=false){if(primaryMoving||secondaryMoving)return false;if(primaryLane==='ground'&&secondaryLane==='air')return distance>=jumpRecoveryDistance();if(primaryLane==='air'&&secondaryLane==='ground')return distance>=Math.max(300,speed*22);return distance>=jumpRecoveryDistance()+70}
-  function spawnEncounter(){const cfg=difficultyConfigs[difficulty],stageIndex=progressStage(),airChance=cfg.airChance[stageIndex],comboChance=cfg.comboChance[stageIndex],primaryAir=Math.random()<airChance,primaryMoving=primaryAir&&Math.random()<cfg.movingAirChance;if(primaryAir)spawnAirObstacle({moving:primaryMoving});else spawnGroundObstacle();let usedCombo=false;if(!primaryMoving&&Math.random()<comboChance){const secondaryLane=primaryAir?'ground':'air',desired=difficulty==='easy'?randomRange(500,610):difficulty==='medium'?randomRange(430,550):randomRange(390,520),safeDistance=Math.max(desired,primaryAir?Math.max(320,speed*22):jumpRecoveryDistance());if(patternHasEscapePath(primaryAir?'air':'ground',secondaryLane,safeDistance,false,false)){scheduleSpawn(distanceToFrames(safeDistance),secondaryLane,secondaryLane==='air'?{moving:false,baseY:groundY-240}:{});usedCombo=true;encounterTimer=distanceToFrames(safeDistance+randomRange(330,450))}}if(!usedCombo){const gap=cfg.gaps[stageIndex];encounterTimer=distanceToFrames(randomRange(gap[0],gap[1]))}}
+  function spawnEncounter(){
+    const cfg=difficultyConfigs[difficulty],stageIndex=progressStage(),lineX=spawnLineX();
+    // Vật phẩm luôn được ưu tiên: nếu đang có phần thưởng gần vùng sinh vật cản, chờ thay vì tạo bẫy.
+    if(!obstacleSpawnSafeFromItems(lineX)){encounterTimer=distanceToFrames(difficulty==='easy'?360:300);return}
+    const airChance=cfg.airChance[stageIndex],comboChance=cfg.comboChance[stageIndex],primaryAir=Math.random()<airChance,primaryMoving=primaryAir&&Math.random()<cfg.movingAirChance;
+    if(primaryAir)spawnAirObstacle({moving:primaryMoving});else spawnGroundObstacle();
+    let usedCombo=false;
+    if(!primaryMoving&&Math.random()<comboChance){
+      const secondaryLane=primaryAir?'ground':'air',desired=difficulty==='easy'?randomRange(650,780):difficulty==='medium'?randomRange(560,700):randomRange(500,650),safeDistance=Math.max(desired,primaryAir?Math.max(390,speed*26):jumpRecoveryDistance()+90);
+      if(patternHasEscapePath(primaryAir?'air':'ground',secondaryLane,safeDistance,false,false)){
+        scheduleSpawn(distanceToFrames(safeDistance),secondaryLane,secondaryLane==='air'?{moving:false,baseY:groundY-245}:{});usedCombo=true;encounterTimer=distanceToFrames(safeDistance+randomRange(420,560));
+      }
+    }
+    if(!usedCombo){const gap=cfg.gaps[stageIndex];encounterTimer=distanceToFrames(randomRange(gap[0],gap[1]))}
+  }
   function collectibleTopLimit(kind='pill',r=11){const apex=PHYSICS.jump*PHYSICS.jump/(2*PHYSICS.gravity),pickupRange=kind==='gpp'?30:kind==='medkit'?28:24,heroCenterAtApex=groundY-hero.h/2-apex;return heroCenterAtApex-(r+pickupRange)+12}
   function clampCollectibleY(y,kind='pill',r=11){return Math.max(collectibleTopLimit(kind,r),Math.min(groundY-52,y))}
   function jumpFlightSteps(){let y=0,vy=PHYSICS.jump,steps=0;while(steps<120){vy+=PHYSICS.gravity;y+=vy;steps++;if(y>=0&&steps>2)break}return steps}
   function heroPickupYAtStep(t){const top=groundY-hero.h+PHYSICS.jump*t+PHYSICS.gravity*t*(t+1)/2;return top+hero.h*.45}
   function buildPillRowPlan(kind,n,lowRow=false,rowSpeed=Math.max(4.75,speed)){const plan=[],startX=spawnLineX();if(lowRow){const y=clampCollectibleY(groundY-randomRange(58,70),kind,11);for(let i=0;i<n;i++)plan.push({x:startX+i*44,y});return plan}const flight=Math.max(34,jumpFlightSteps()-2);for(let i=0;i<n;i++){const ratio=i/(n-1||1),t=ratio*flight,y=clampCollectibleY(heroPickupYAtStep(t)-2,kind,11);plan.push({x:startX+rowSpeed*t,y})}return plan}
-  function spawnPillRow(){const n=5+Math.floor(Math.random()*3),commonKinds=['pill','capsule','tablet'],rowKind=commonKinds[Math.floor(Math.random()*commonKinds.length)],lowRow=Math.random()<.24,plan=buildPillRowPlan(rowKind,n,lowRow);for(const pt of plan)items.push({x:pt.x,y:pt.y,r:11,t:Math.random()*6,kind:rowKind})}
-  function spawnBonusItem(){const roll=Math.random(),kind=roll<.46?'bottle':roll<.78?'syringe':'medkit',r=15,y=clampCollectibleY(groundY-randomRange(105,205),kind,r);items.push({x:spawnLineX()+20,y,r,t:Math.random()*6,kind})}
-  function spawnGPP(){const r=20,y=clampCollectibleY(groundY-randomRange(125,215),'gpp',r);items.push({x:spawnLineX()+30,y,r,t:0,kind:'gpp'})}
+  function spawnPillRow(){const n=5+Math.floor(Math.random()*3),commonKinds=['pill','capsule','tablet'],rowKind=commonKinds[Math.floor(Math.random()*commonKinds.length)],lowRow=Math.random()<.36,plan=buildPillRowPlan(rowKind,n,lowRow);if(!collectiblePlanSafe(plan,difficulty==='easy'?720:difficulty==='medium'?660:600))return false;for(const pt of plan)items.push({x:pt.x,y:pt.y,r:11,t:Math.random()*6,kind:rowKind});return true}
+  function spawnBonusItem(){const roll=Math.random(),kind=roll<.46?'bottle':roll<.78?'syringe':'medkit',r=15,y=clampCollectibleY(groundY-randomRange(95,185),kind,r),candidate={x:spawnLineX()+20,y};if(!collectiblePlanSafe([candidate],difficulty==='easy'?760:difficulty==='medium'?700:640))return false;items.push({x:candidate.x,y,r,t:Math.random()*6,kind});return true}
+  function spawnGPP(){const r=20,y=clampCollectibleY(groundY-randomRange(110,195),'gpp',r),candidate={x:spawnLineX()+30,y};if(!collectiblePlanSafe([candidate],difficulty==='easy'?820:difficulty==='medium'?750:680))return false;items.push({x:candidate.x,y,r,t:0,kind:'gpp'});return true}
   function heroHitbox(){return{x:hero.x+10,y:hero.y+8,w:hero.w-19,h:hero.h-13}}
   function obstacleHitbox(o){const ix=o.lane==='air'?8:7,iy=o.lane==='air'?7:6;return{x:o.x+ix,y:o.y+iy,w:Math.max(8,o.w-ix*2),h:Math.max(8,o.h-iy*2)}}
   function boxesOverlap(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
   function finishGameOver(){state='over';const s=Math.floor(score),oldBest=getBest(difficulty),isNew=s>oldBest,newBestValue=Math.max(oldBest,s);if(isNew)localStorage.setItem(bestKey(difficulty),String(s));totalStats.items+=coinCount;localStorage.setItem('doctor-rush-total-items',totalStats.items);$('finalScore').textContent=s;$('finalCoins').textContent=coinCount;$('finalTime').textContent=`${Math.floor(time/60)}s`;$('finalGpp').textContent=gppCollected;$('finalDifficulty').textContent=difficultyConfigs[difficulty].label;$('finalBest').textContent=newBestValue;$('newBest').textContent=isNew?'★ Kỷ lục mới của cấp độ này!':'';updateHUD();showPanel('gameOverPanel');if(pendingVersionUpdate)showUpdateToast('Bản mới đã sẵn sàng • về Màn hình chính để cập nhật')}
   function gameOver(){if(state!=='playing')return;state='crash';shake=16;hero.crashTimer=34;hero.crashVX=4.6;hero.vy=-8.6;hero.onGround=false;hero.rot=-.18;burst(hero.x+hero.w/2,hero.y+hero.h/2,22,'spark');burst(hero.x+hero.w*.78,hero.y+hero.h*.26,9,'mask');beep(130,.25,'sawtooth',.055);vibrate([90,45,130])}
-  function currentSpeed(){const cfg=difficultyConfigs[difficulty],phase=Math.floor(time/60/30),stageBoost=progressStage()*(difficulty==='hard'?.18:.12);let base=cfg.baseSpeed+phase*cfg.speedStep+stageBoost;if(slowTimer>0)base*=.72;return Math.min(cfg.maxSpeed,base)}
+  function currentSpeed(){const cfg=difficultyConfigs[difficulty],phase=Math.floor(time/60/30),stageBoost=progressStage()*(difficulty==='easy'?.04:difficulty==='medium'?.06:.08);let base=cfg.baseSpeed+phase*cfg.speedStep+stageBoost;if(slowTimer>0)base*=.72;return Math.min(cfg.maxSpeed,base)}
   function updateHUD(){$('score').textContent=Math.floor(score);$('coins').textContent=coinCount;$('difficultyChip').textContent=difficultyConfigs[difficulty].label;$('best').textContent=getBest(difficulty);$('shieldChip').style.display=shieldTimer>0?'flex':'none';$('slowChip').style.display=slowTimer>0?'flex':'none';$('shieldTime').textContent=`${Math.ceil(shieldTimer/60)}s`;$('slowTime').textContent=`${Math.ceil(slowTimer/60)}s`;const ratio=health/maxHealth;$('healthText').textContent=`${health}/${maxHealth}`;$('healthFill').style.width=`${ratio*100}%`;if(ratio>.6)$('healthFill').style.background='linear-gradient(90deg,#18cd88,#69dd60)';else if(ratio>.3)$('healthFill').style.background='linear-gradient(90deg,#ffd85a,#ffb347)';else $('healthFill').style.background='linear-gradient(90deg,#ff7286,#ff3c5f)'}
   function handleDamage(dmg,x,y){if(hitCooldown>0||state!=='playing')return;if(shieldTimer>0){burst(x,y,18,'ice');addPopup(hero.x+hero.w/2,hero.y-16,'🛡 KHIÊN CHẶN ĐÒN','#168fd0',22);beep(220,.08,'square',.04);vibrate(10);return}health=Math.max(0,health-dmg);hitCooldown=28;shake=dmg>=5?16:10;addPopup(hero.x+hero.w/2,hero.y-18,`-${dmg} SINH TỒN`,'#ff405c',dmg>=5?30:26);burst(x,y,dmg>=5?22:14,'spark');beep(dmg>=5?150:210,dmg>=5?.14:.08,dmg>=5?'sawtooth':'square',dmg>=5?.055:.04);vibrate(dmg>=5?[80,35,110]:dmg>=3?[45,25,55]:18);$('flash').classList.remove('on');void $('flash').offsetWidth;$('flash').classList.add('on');updateHUD();if(health<=0)gameOver()}
 
@@ -338,11 +355,11 @@
     if(shieldTimer>0)shieldTimer=Math.max(0,shieldTimer-dt);if(slowTimer>0)slowTimer=Math.max(0,slowTimer-dt);if(hitCooldown>0)hitCooldown=Math.max(0,hitCooldown-dt);
     hero.vy+=PHYSICS.gravity*dt;hero.y+=hero.vy*dt;if(hero.y>=groundY-hero.h){hero.y=groundY-hero.h;hero.vy=0;hero.onGround=true;hero.rot*=Math.pow(.7,dt)}else hero.rot=Math.max(-.2,Math.min(.26,hero.vy*.012));
     encounterTimer-=dt;if(encounterTimer<=0)spawnEncounter();
-    for(let i=scheduledSpawns.length-1;i>=0;i--){const s=scheduledSpawns[i];s.delay-=dt;if(s.delay<=0){if(s.type==='ground')spawnGroundObstacle();else spawnAirObstacle(s.opts);scheduledSpawns.splice(i,1)}}
-    pillTimer-=dt;if(pillTimer<=0){spawnPillRow();pillTimer=150+Math.random()*145}
-    bonusTimer-=dt;if(bonusTimer<=0){const cfg=difficultyConfigs[difficulty];spawnBonusItem();bonusTimer=randomRange(cfg.bonus[0],cfg.bonus[1])}
-    gppTimer-=dt;if(gppTimer<=0){const cfg=difficultyConfigs[difficulty];spawnGPP();gppTimer=randomRange(cfg.gpp[0],cfg.gpp[1])}
-    for(let i=obstacles.length-1;i>=0;i--){const o=obstacles[i];o.x-=(speed+(o.lane==='air'?(o.driftX||0):0))*dt;if(o.lane==='air'&&o.moving){const amp=o.amplitude||18;o.y=o.baseY+Math.sin(time*.09+o.phase)*amp;const maxY=o.bottomLimit-o.h;if(o.y>maxY)o.y=maxY}if(o.damage===5&&!o.warned&&o.x-hero.x<390&&o.x>hero.x){o.warned=true;addPopup(o.x+o.w/2,Math.max(80,o.y-20),'⚠ NGUY HIỂM','#d73554',20);beep(300,.08,'square',.038);vibrate([25,25,25])}if(o.x+o.w<-110){obstacles.splice(i,1);continue}if(boxesOverlap(heroHitbox(),obstacleHitbox(o))){handleDamage(o.damage,o.x+o.w/2,o.y+o.h/2);obstacles.splice(i,1)}}
+    for(let i=scheduledSpawns.length-1;i>=0;i--){const s=scheduledSpawns[i];s.delay-=dt;if(s.delay<=0){if(!obstacleSpawnSafeFromItems(spawnLineX())){s.delay=distanceToFrames(difficulty==='easy'?300:240);continue}if(s.type==='ground')spawnGroundObstacle();else spawnAirObstacle(s.opts);scheduledSpawns.splice(i,1)}}
+    pillTimer-=dt;if(pillTimer<=0){pillTimer=spawnPillRow()?(190+Math.random()*170):55}
+    bonusTimer-=dt;if(bonusTimer<=0){const cfg=difficultyConfigs[difficulty];bonusTimer=spawnBonusItem()?randomRange(cfg.bonus[0],cfg.bonus[1]):70}
+    gppTimer-=dt;if(gppTimer<=0){const cfg=difficultyConfigs[difficulty];gppTimer=spawnGPP()?randomRange(cfg.gpp[0],cfg.gpp[1]):90}
+    for(let i=obstacles.length-1;i>=0;i--){const o=obstacles[i];o.x-=(speed+(o.lane==='air'?(o.driftX||0):0))*dt;if(o.lane==='air'&&o.moving){const amp=o.amplitude||18;o.y=o.baseY+Math.sin(time*.065+o.phase)*amp;const maxY=o.bottomLimit-o.h;if(o.y>maxY)o.y=maxY}if(o.damage===5&&!o.warned&&o.x-hero.x<390&&o.x>hero.x){o.warned=true;addPopup(o.x+o.w/2,Math.max(80,o.y-20),'⚠ NGUY HIỂM','#d73554',20);beep(300,.08,'square',.038);vibrate([25,25,25])}if(o.x+o.w<-110){obstacles.splice(i,1);continue}if(boxesOverlap(heroHitbox(),obstacleHitbox(o))){handleDamage(o.damage,o.x+o.w/2,o.y+o.h/2);obstacles.splice(i,1)}}
     for(let i=items.length-1;i>=0;i--){const c=items[i];c.x-=speed*dt;c.t+=.12*dt;if(c.x<-70){items.splice(i,1);continue}const range=c.kind==='gpp'?30:c.kind==='medkit'?28:24,dx=hero.x+hero.w*.55-c.x,dy=hero.y+hero.h*.45-c.y;if(dx*dx+dy*dy<(c.r+range)*(c.r+range)){coinCount++;if([250,500,1000].includes(coinCount)){addPopup(W*.5,H*.14,`MỐC ${coinCount} VẬT PHẨM`,'#0d8c98',28);beep(700,.14,'triangle',.04);vibrate([25,20,25])}if(c.kind==='gpp'){gppCollected++;health=Math.min(maxHealth,health+4);shieldTimer=Math.max(shieldTimer,10*60);score+=80;addPopup(hero.x+hero.w/2,hero.y-24,'★ GPP: +80 ĐIỂM • +4 SINH TỒN','#087d70',22);addPopup(hero.x+hero.w/2,hero.y+2,'KHIÊN 10s','#168fd0',18);burst(c.x,c.y,24,'gpp');beep(930,.15,'triangle',.05);vibrate([35,20,55])}else if(c.kind==='medkit'){health=Math.min(maxHealth,health+1);score+=24;addPopup(hero.x+hero.w/2,hero.y-20,'+24 ĐIỂM • +1 SINH TỒN','#168f69',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035);vibrate(12)}else if(c.kind==='syringe'){score+=22;addPopup(hero.x+hero.w/2,hero.y-20,'+22 ĐIỂM','#357bd1',24);burst(c.x,c.y,10,'ice');beep(820,.06,'sine',.03)}else if(c.kind==='bottle'){score+=18;slowTimer=Math.max(slowTimer,10*60);addPopup(hero.x+hero.w/2,hero.y-20,'+18 ĐIỂM • CHẬM 10s','#8150ca',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035)}else if(c.kind==='capsule'){score+=16;addPopup(hero.x+hero.w/2,hero.y-20,'+16 ĐIỂM','#ef763b',24);burst(c.x,c.y,8,'gold');beep(900,.045,'sine',.03)}else if(c.kind==='tablet'){score+=12;addPopup(hero.x+hero.w/2,hero.y-20,'+12 ĐIỂM','#268fc2',24);burst(c.x,c.y,7,'gold');beep(860,.045,'sine',.028)}else{score+=10;addPopup(hero.x+hero.w/2,hero.y-20,'+10 ĐIỂM','#ed5067',24);burst(c.x,c.y,7,'gold');beep(980,.045,'sine',.03)}items.splice(i,1);updateHUD()}}
     for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.18*dt;p.life-=dt;if(p.life<=0)particles.splice(i,1)}
     for(let i=popups.length-1;i>=0;i--){const p=popups[i];p.y+=p.vy*dt;p.life-=dt;if(p.life<=0)popups.splice(i,1)}
@@ -579,7 +596,7 @@ cache doctor-rush-v${BUILD_ID}`}
   addEventListener('appinstalled',()=>{deferredInstallPrompt=null;refreshInstallUI();installTip.textContent='✓ Đã cài Doctor Rush. Mở bằng icon bác sĩ ngoài màn hình để chơi dạng ứng dụng, không có thanh địa chỉ.';installTip.classList.add('show')});
   installBtn.onclick=async()=>{if(isInstalled())return;if(deferredInstallPrompt){deferredInstallPrompt.prompt();try{await deferredInstallPrompt.userChoice}catch(e){}deferredInstallPrompt=null;refreshInstallUI();return}installTip.textContent=isiOS?'iPhone/iPad: mở bằng Safari → Chia sẻ → Thêm vào Màn hình chính. Sau đó mở từ icon bác sĩ để không còn thanh địa chỉ.':'Nếu hộp cài chưa xuất hiện: mở menu trình duyệt → Cài ứng dụng / Thêm vào màn hình chính.';installTip.classList.add('show')};refreshInstallUI();
   function preloadOne(url,type='image'){return new Promise(resolve=>{if(type==='image'){const im=new Image();im.onload=()=>resolve(true);im.onerror=()=>resolve(false);im.src=url}else fetch(url,{cache:'no-cache'}).then(r=>resolve(r.ok)).catch(()=>resolve(false))})}
-  async function preloadAssets(){const assets=[['logo-gpp.png?v=15','image'],['icon-192.png?v=15','image'],['icon-512.png?v=15','image'],['apple-touch-icon.png?v=15','image'],['manifest.webmanifest?v=15','fetch'],['version.json?v=15','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
+  async function preloadAssets(){const assets=[['logo-gpp.png?v=16','image'],['icon-192.png?v=16','image'],['icon-512.png?v=16','image'],['apple-touch-icon.png?v=16','image'],['manifest.webmanifest?v=16','fetch'],['version.json?v=16','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
   let toastTimer=null;function showUpdateToast(text='Có phiên bản mới • sẽ cập nhật sau ván này',duration=2600){const el=$('updateToast');el.textContent=text;el.classList.add('show-toast');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show-toast'),duration)}
   let swRegistration=null,serverBuild=BUILD_ID,applyingUpdate=false;
   async function checkForVersionUpdate(){if(location.protocol==='file:'||location.protocol==='data:')return false;try{const r=await fetch(`./version.json?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)return false;const v=await r.json();serverBuild=String(v.version||v.build||'');if(serverBuild&&serverBuild!==BUILD_ID){pendingVersionUpdate=true;showUpdateToast(['playing','paused','crash'].includes(state)?'Có phiên bản mới • sẽ cập nhật sau ván này':'Có phiên bản mới • đang chuẩn bị cập nhật');await checkForAppUpdate();return true}}catch(e){}return false}

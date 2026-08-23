@@ -1,6 +1,6 @@
 {
-  "version": "15",
-  "app_version": "v1.0.15",
+  "version": "16",
+  "app_version": "v1.0.16",
   "released": "2026-08-23",
-  "notes": "Bản hoàn thiện 1-27: fixed-step 60Hz chống lag/chậm nhịp, 3 cấp độ, quỹ đạo vật phẩm theo nhảy, mobile landscape chuyên biệt, PWA tự cập nhật."
+  "notes": "Bản thư giãn v16: giảm tốc độ và mật độ cả 3 cấp; vật phẩm có hành lang an toàn, ưu tiên phần thưởng trước vật cản; giảm tốc vật cản bay ngược và chuyển động lên xuống mượt hơn."
 }
