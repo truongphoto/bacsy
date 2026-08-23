@@ -1,4 +1,4 @@
-const BUILD_ID = '21';
+const BUILD_ID = '22';
 const CACHE_NAME = `doctor-rush-v${BUILD_ID}`;
 const CORE = ['./','./index.html','./manifest.webmanifest','./version.json','./logo-gpp.png','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 

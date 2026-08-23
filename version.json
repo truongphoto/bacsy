@@ -1,6 +1,6 @@
 {
-  "version": "21",
-  "app_version": "v1.0.21",
+  "version": "22",
+  "app_version": "v1.0.22",
   "released": "2026-08-23",
-  "notes": "PC + Mobile Main Menu & GPP All-in-One: nút ← Về menu chính hiển thị trong gameplay trên PC và điện thoại; Esc trên PC mở xác nhận; GPP đặc biệt gồm +4 sinh tồn, +100 điểm, khiên 10s và nam châm 8s; tần suất GPP chỉ thấp hơn bonus item ở mức vừa phải."
+  "notes": "Large GPP Hospital Background: thêm logo GPP thật lớn cố định ở trung tâm hậu cảnh, nằm sau chữ BỆNH VIỆN; hòa trộn multiply + opacity thấp + sương nhẹ để nhận diện thương hiệu nhưng không nhầm với vật phẩm GPP đặc biệt."
 }
