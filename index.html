@@ -27,7 +27,7 @@
       linear-gradient(180deg,#effdff 0%,#d2f7fd 44%,#b1edf4 100%);
       z-index:-2}
     #wrap{position:fixed;inset:0;display:grid;place-items:center;padding:14px}
-    #stage{position:relative;width:min(1180px,100%);height:min(720px,100%);border:1px solid rgba(255,255,255,.65);border-radius:28px;overflow:hidden;box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.25);background:linear-gradient(180deg,#ecfeff,#c8f3f6)}
+    #stage{position:relative;width:min(1180px,calc(100vw - 28px),calc((100vh - 28px)*16/9));aspect-ratio:16/9;height:auto;border:1px solid rgba(255,255,255,.65);border-radius:28px;overflow:hidden;box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.25);background:linear-gradient(180deg,#ecfeff,#c8f3f6)}
     canvas{width:100%;height:100%;display:block}
     .hud{position:absolute;left:18px;right:18px;top:16px;display:flex;justify-content:space-between;gap:12px;pointer-events:none}
     .hud-left,.hud-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -57,11 +57,35 @@
     .btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;color:white;background:linear-gradient(135deg,#21bbb2,#47c6e8);padding:13px 19px;border-radius:15px;font-weight:1000;cursor:pointer;box-shadow:0 12px 34px rgba(31,183,176,.25);font-size:15px}.btn.secondary{color:#13626b;background:rgba(255,255,255,.74);border:1px solid rgba(18,108,118,.12);box-shadow:none}.hint{margin-top:16px;font-size:12px;color:rgba(13,61,70,.66)}
     #mobileJump{display:none;position:absolute;right:18px;bottom:22px;width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.82);background:rgba(255,255,255,.55);backdrop-filter:blur(12px);color:#0c6971;font-size:24px;font-weight:1000;box-shadow:0 14px 40px rgba(0,0,0,.08)}
     .flash{position:absolute;inset:0;pointer-events:none;background:white;opacity:0}.flash.on{animation:flash .24s ease-out}@keyframes flash{0%{opacity:.38}100%{opacity:0}}
-    @media (max-width:760px){
-      #wrap{padding:0}#stage{width:100%;height:100%;border-radius:0;border:0}
-      .hud{left:10px;right:10px;top:10px}.chip{padding:8px 10px;font-size:11px}.chip b{font-size:13px}
-      .brand{display:none}#mobileJump{display:block}.card{padding:24px 18px;border-radius:24px}.hint{padding:0 10px}
-      .health-wrap{left:10px;right:10px;bottom:10px}.health-bar{width:min(220px,52vw)}
+
+    .difficulty-title{margin:10px 0 8px;font-size:12px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase;color:#24747c}
+    .difficulty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;max-width:650px;margin:0 auto}
+    .difficulty-option{appearance:none;border:1px solid rgba(18,108,118,.15);background:rgba(255,255,255,.72);border-radius:16px;padding:11px 10px;cursor:pointer;color:#15525a;text-align:left;transition:.18s transform,.18s border-color,.18s box-shadow,.18s background}
+    .difficulty-option:hover{transform:translateY(-1px)}
+    .difficulty-option.active{border-color:rgba(24,173,166,.62);background:linear-gradient(180deg,rgba(225,255,252,.96),rgba(239,253,255,.95));box-shadow:0 9px 24px rgba(31,183,176,.15)}
+    .difficulty-option strong{display:block;font-size:15px;color:#0d4f58}
+    .difficulty-option span{display:block;font-size:10px;line-height:1.35;margin-top:3px;color:#5c858b}
+    .difficulty-option.hard strong{color:#d84f63}
+    #mobilePause{display:none;position:absolute;right:14px;top:58px;width:46px;height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.82);background:rgba(255,255,255,.62);backdrop-filter:blur(12px);color:#0c6971;font-size:18px;font-weight:1000;box-shadow:0 10px 28px rgba(0,0,0,.08);z-index:8}
+    #rotateOverlay{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;text-align:center;background:linear-gradient(160deg,#eafcff,#bdeef4);color:#0d4f58}
+    .rotate-card{width:min(420px,90vw);padding:28px 20px;border-radius:26px;background:rgba(255,255,255,.88);border:1px solid rgba(18,108,118,.14);box-shadow:0 24px 70px rgba(11,84,92,.16)}
+    .rotate-icon{font-size:54px;line-height:1;margin-bottom:10px}
+    .rotate-card b{display:block;font-size:22px;margin-bottom:8px}
+    .rotate-card span{font-size:13px;line-height:1.5;color:#527e85}
+    @media (pointer:coarse) and (orientation:landscape){
+      #wrap{padding:0}
+      #stage{width:min(100vw,calc(100vh*16/9));height:auto;aspect-ratio:16/9;border-radius:0;border:0}
+      .hud{left:8px;right:8px;top:8px}.hud-left,.hud-right{gap:6px}.chip{padding:6px 8px;font-size:9px;gap:5px}.chip b{font-size:11px}
+      .brand{display:none}#mobileJump{display:block;right:12px;bottom:12px;width:62px;height:62px}#mobilePause{display:block}
+      .health-wrap{left:8px;right:8px;bottom:8px}.health-card{padding:7px 10px;gap:7px}.heart{width:28px;height:28px;font-size:15px}.health-bar{width:min(210px,38vw);height:13px}
+      .card{width:min(690px,96%);max-height:96%;overflow:auto;padding:12px 14px;border-radius:20px}
+      .card-top{gap:10px;margin-bottom:3px}.hero-logo{width:56px;height:56px}.eyebrow{font-size:8px}.title{font-size:30px;margin:3px 0 5px}.sub{font-size:10px;line-height:1.35;margin-bottom:6px}
+      #startPanel .info-box{display:none}.difficulty-title{font-size:9px;margin:5px 0}.difficulty-grid{gap:6px}.difficulty-option{padding:7px 7px;border-radius:12px}.difficulty-option strong{font-size:12px}.difficulty-option span{font-size:8px}
+      .btns{margin-top:7px;gap:6px}.btn{padding:8px 12px;font-size:11px;border-radius:12px}.hint{font-size:8px;margin-top:6px}
+      #gameOverPanel .info-box{font-size:9px;line-height:1.35;padding:7px 9px;margin-top:5px}
+    }
+    @media (pointer:coarse) and (orientation:portrait){
+      #rotateOverlay{display:flex}
     }
   </style>
 </head>
@@ -73,11 +97,12 @@
       <div class="hud-left">
         <div class="chip"><span class="dot"></span> ĐIỂM <b id="score">0</b></div>
         <div class="chip coin">🧰 VẬT PHẨM <b id="coins">0</b></div>
+        <div class="chip">🎚 <b id="difficultyChip">TRUNG BÌNH</b></div>
       </div>
       <div class="hud-right">
         <div class="chip">KỶ LỤC <b id="best">0</b></div>
         <div class="chip shield" id="shieldChip" style="display:none">🛡 Khiên <b id="shieldTime">10s</b></div>
-        <div class="chip gpp-chip" id="slowChip" style="display:none">🌀 Chậm <b id="slowTime">6s</b></div>
+        <div class="chip gpp-chip" id="slowChip" style="display:none">🌀 Chậm <b id="slowTime">10s</b></div>
       </div>
     </div>
 
@@ -91,6 +116,7 @@
 
     <div class="brand">Ngô Quang Trường • TRƯỜNG GPP 0829076979 • Zalo: truongphotoart</div>
     <button id="mobileJump" aria-label="Nhảy">↑</button>
+    <button id="mobilePause" aria-label="Tạm dừng">⏸</button>
     <div class="flash" id="flash"></div>
 
     <div class="panel" id="startPanel">
@@ -108,8 +134,25 @@
           <b>Liên hệ tư vấn:</b> TRƯỜNG GPP 0829076979 • Zalo: truongphotoart<br>
           <b>Dịch vụ:</b> “Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược & Hiệu chuẩn TBYT”
         </div>
+
+        <div class="difficulty-title">Chọn cấp độ</div>
+        <div class="difficulty-grid" id="difficultyGrid">
+          <button class="difficulty-option" data-difficulty="easy">
+            <strong>🌿 DỄ</strong>
+            <span>Ít vật cản • trên không rất ít • tối đa -2</span>
+          </button>
+          <button class="difficulty-option active" data-difficulty="medium">
+            <strong>⚕ TRUNG BÌNH</strong>
+            <span>Cân bằng • có combo • tối đa -4 • khuyến nghị</span>
+          </button>
+          <button class="difficulty-option hard" data-difficulty="hard">
+            <strong>⚠ KHÓ</strong>
+            <span>Mật độ cao • nhiều vật cản bay • có nguy hiểm -5</span>
+          </button>
+        </div>
+
         <div class="btns"><button class="btn" id="startBtn">▶ Chơi ngay</button><button class="btn secondary" id="soundBtn">🔊 Âm thanh: Bật</button></div>
-        <div class="hint">Space / ↑ / Click để nhảy • Nhấn P để tạm dừng • Chạm màn hình trên điện thoại</div>
+        <div class="hint">PC: Space / ↑ để nhảy • Click chuột để tạm dừng • Điện thoại: xoay ngang, chạm để nhảy</div>
       </div>
     </div>
 
@@ -122,7 +165,7 @@
             <div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div>
           </div>
         </div>
-        <p class="sub">Điểm: <b id="finalScore" style="color:#0d3d46">0</b> &nbsp;•&nbsp; Vật phẩm: <b id="finalCoins" style="color:#ee5872">0</b><br><span id="newBest" style="color:#11a3b2;font-weight:900"></span></p>
+        <p class="sub">Điểm: <b id="finalScore" style="color:#0d3d46">0</b> &nbsp;•&nbsp; Vật phẩm: <b id="finalCoins" style="color:#ee5872">0</b> &nbsp;•&nbsp; Cấp độ: <b id="finalDifficulty" style="color:#0b7f89">TRUNG BÌNH</b><br><span id="newBest" style="color:#11a3b2;font-weight:900"></span></p>
         <div class="info-box">
           <b>Ngô Quang Trường</b><br>
           TRƯỜNG GPP 0829076979 • Zalo: truongphotoart<br>
@@ -133,6 +176,13 @@
     </div>
   </div>
 </div>
+<div id="rotateOverlay">
+  <div class="rotate-card">
+    <div class="rotate-icon">📱↻</div>
+    <b>Vui lòng xoay ngang điện thoại</b>
+    <span>Doctor Rush được thiết kế để chơi ở chế độ ngang. Sau khi xoay, chạm màn hình để tiếp tục nếu game đang tạm dừng.</span>
+  </div>
+</div>
 <script>
 
 (() => {
@@ -141,7 +191,14 @@
   const $ = id => document.getElementById(id);
   const logoImg = new Image(); logoImg.src = 'logo-gpp.png';
   let W=0,H=0,DPR=1,groundY=0;
+  const GAME_W=1280, GAME_H=720;
   let state='menu', score=0, coinCount=0, speed=5.25, time=0, shake=0, muted=false;
+  let difficulty=localStorage.getItem('doctor-rush-difficulty')||'medium';
+  const difficultyConfigs={
+    easy:{label:'DỄ',baseSpeed:4.75,speedStep:.55,maxSpeed:10.5,airChance:[.08,.09,.10,.12],comboChance:[0,0,.035,.065],movingAirChance:.82,gaps:[[520,680],[470,620],[420,560],[370,510]],bonus:[280,430],gpp:[1850,2850]},
+    medium:{label:'TRUNG BÌNH',baseSpeed:5.25,speedStep:.85,maxSpeed:13.5,airChance:[.18,.22,.26,.30],comboChance:[.015,.07,.14,.20],movingAirChance:.66,gaps:[[460,610],[400,550],[350,500],[300,450]],bonus:[360,560],gpp:[2100,3300]},
+    hard:{label:'KHÓ',baseSpeed:5.7,speedStep:1.05,maxSpeed:15.2,airChance:[.30,.35,.40,.45],comboChance:[.05,.13,.22,.30],movingAirChance:.58,gaps:[[400,540],[350,480],[300,430],[260,390]],bonus:[460,700],gpp:[2600,3900]}
+  };
   let best=Number(localStorage.getItem('doctor-rush-best')||0); $('best').textContent=best;
   let health=10, maxHealth=10, shieldTimer=0, slowTimer=0, hitCooldown=0;
   let encounterTimer=0, pillTimer=0, bonusTimer=0, gppTimer=0;
@@ -154,7 +211,16 @@
   function beep(freq=440,dur=.06,type='sine',vol=.04){ if(muted) return; try{ audioCtx ||= new (window.AudioContext||window.webkitAudioContext)(); const o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(audioCtx.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+dur);o.stop(audioCtx.currentTime+dur);}catch(e){} }
   function randomRange(a,b){ return a+Math.random()*(b-a); }
   function distanceToFrames(dist){ return Math.max(20, Math.round(dist/Math.max(4.5,speed))); }
-  function resize(){ const r=stage.getBoundingClientRect(); DPR=Math.min(devicePixelRatio||1,2); W=Math.max(320,r.width);H=Math.max(420,r.height);canvas.width=W*DPR;canvas.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);groundY=H*.78; if(state==='menu'){hero.y=groundY-hero.h} buildScene(); }
+  function resize(){
+    DPR=Math.min(devicePixelRatio||1,2);
+    W=GAME_W; H=GAME_H;
+    canvas.width=W*DPR; canvas.height=H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    groundY=H*.78;
+    hero.x=150;
+    if(state==='menu'){hero.y=groundY-hero.h}
+    buildScene();
+  }
   function buildScene(){
     clouds.length=0; skyline.length=0;
     for(let i=0;i<12;i++){
@@ -194,34 +260,56 @@
     score=0; coinCount=0; time=0; shake=0; sceneTheme=0; health=maxHealth; shieldTimer=0; slowTimer=0; hitCooldown=0;
     obstacles.length=items.length=particles.length=popups.length=scheduledSpawns.length=0;
     hero.x=150; hero.y=groundY-hero.h; hero.vy=0; hero.onGround=true; hero.rot=0; hero.run=0; hero.crashTimer=0; hero.crashVX=0;
-    encounterTimer=encounterGap(420,560); pillTimer=90; bonusTimer=randomRange(360,520); gppTimer=randomRange(2100,3300);
+    const cfg=difficultyConfigs[difficulty];
+    encounterTimer=distanceToFrames(randomRange(cfg.gaps[0][0],cfg.gaps[0][1])); pillTimer=90; bonusTimer=randomRange(cfg.bonus[0],cfg.bonus[1]); gppTimer=randomRange(cfg.gpp[0],cfg.gpp[1]);
     updateHUD();
   }
-  function start(){ reset(); state='playing'; $('startPanel').classList.add('hidden'); $('gameOverPanel').classList.add('hidden'); beep(540,.08,'triangle',.05); }
+  async function requestLandscape(){ try{ if(screen.orientation && screen.orientation.lock) await screen.orientation.lock('landscape'); }catch(e){} }
+  function start(){ requestLandscape(); reset(); state='playing'; $('startPanel').classList.add('hidden'); $('gameOverPanel').classList.add('hidden'); beep(540,.08,'triangle',.05); }
   function jump(){ if(state==='menu'){start();return} if(state==='over'){start();return} if(state!=='playing') return; if(hero.onGround){hero.vy=-16.4; hero.onGround=false; burst(hero.x+26,groundY-4,10,'dust'); beep(640,.055,'square',.03);} }
   function burst(x,y,n,type='spark'){ for(let i=0;i<n;i++) particles.push({x,y,vx:(Math.random()-.5)*7,vy:(Math.random()-.75)*7,life:25+Math.random()*25,size:2+Math.random()*4,type}); }
   function addPopup(x,y,text,color='#ff6879',size=22){ popups.push({x,y,text,color,size,life:72,maxLife:72,vy:-0.82}); }
 
   function pickGroundType(){
     const roll=Math.random();
-    if(roll<.28) return {kind:'virus1', damage:1, w:42, h:42};
-    if(roll<.52) return {kind:'virus2', damage:2, w:52, h:50};
-    if(roll<.73) return {kind:'bio', damage:3, w:54, h:56};
-    if(roll<.93) return {kind:'toxic', damage:4, w:58, h:62};
-    return {kind:'hazard5', damage:5, w:64, h:68};
+    if(difficulty==='easy'){
+      if(roll<.70) return {kind:'virus1',damage:1,w:42,h:42};
+      return {kind:'virus2',damage:2,w:52,h:50};
+    }
+    if(difficulty==='medium'){
+      if(roll<.32) return {kind:'virus1',damage:1,w:42,h:42};
+      if(roll<.63) return {kind:'virus2',damage:2,w:52,h:50};
+      if(roll<.87) return {kind:'bio',damage:3,w:54,h:56};
+      return {kind:'toxic',damage:4,w:58,h:62};
+    }
+    if(roll<.24) return {kind:'virus1',damage:1,w:42,h:42};
+    if(roll<.48) return {kind:'virus2',damage:2,w:52,h:50};
+    if(roll<.70) return {kind:'bio',damage:3,w:54,h:56};
+    if(roll<.95) return {kind:'toxic',damage:4,w:58,h:62};
+    return {kind:'hazard5',damage:5,w:64,h:68};
   }
   function pickAirType(opts={}){
     if(opts.moving){
       const roll=Math.random();
-      if(roll<.46) return {kind:'drone', damage:1, w:60, h:36, moving:true, amplitude:16, bottomLimit:groundY-46};
-      if(roll<.82) return {kind:'rotorvirus', damage:1, w:58, h:58, moving:true, amplitude:20, spinSpeed:.18, bottomLimit:groundY-52};
-      return {kind:'scarecrowl', damage:1, w:60, h:36, moving:true, amplitude:42, spinSpeed:.06, bottomLimit:groundY-52};
+      if(roll<.46) return {kind:'drone',damage:1,w:60,h:36,moving:true,amplitude:16,bottomLimit:groundY-46};
+      if(roll<.82) return {kind:'rotorvirus',damage:1,w:58,h:58,moving:true,amplitude:20,spinSpeed:.18,bottomLimit:groundY-52};
+      return {kind:'scarecrowl',damage:1,w:60,h:36,moving:true,amplitude:42,spinSpeed:.06,bottomLimit:groundY-52};
     }
     const roll=Math.random();
-    if(roll<.30) return {kind:'batvirus', damage:2, w:54, h:40, moving:false, driftX:1.6};
-    if(roll<.52) return {kind:'nightreaper', damage:2, w:62, h:38, moving:false, driftX:2.15};
-    if(roll<.84) return {kind:'spikeball', damage:3, w:54, h:54, moving:false, spinSpeed:.1};
-    return {kind:'airmine5', damage:5, w:60, h:60, moving:false, spinSpeed:.14};
+    if(difficulty==='easy'){
+      return roll<.72 ? {kind:'batvirus',damage:1,w:54,h:40,moving:false,driftX:1.2} : {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:1.55};
+    }
+    if(difficulty==='medium'){
+      if(roll<.38) return {kind:'batvirus',damage:2,w:54,h:40,moving:false,driftX:1.5};
+      if(roll<.68) return {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:1.9};
+      if(roll<.90) return {kind:'spikeball',damage:3,w:54,h:54,moving:false,spinSpeed:.1};
+      return {kind:'airmine4',damage:4,w:60,h:60,moving:false,spinSpeed:.13};
+    }
+    if(roll<.28) return {kind:'batvirus',damage:2,w:54,h:40,moving:false,driftX:1.6};
+    if(roll<.52) return {kind:'nightreaper',damage:2,w:62,h:38,moving:false,driftX:2.15};
+    if(roll<.82) return {kind:'spikeball',damage:3,w:54,h:54,moving:false,spinSpeed:.1};
+    if(roll<.95) return {kind:'airmine4',damage:4,w:60,h:60,moving:false,spinSpeed:.13};
+    return {kind:'airmine5',damage:5,w:60,h:60,moving:false,spinSpeed:.14};
   }
   function spawnGroundObstacle(type=null){
     const t=type || pickGroundType();
@@ -237,61 +325,26 @@
     });
   }
   function scheduleSpawn(delayFrames, type, opts={}){ scheduledSpawns.push({delay:delayFrames, type, opts}); }
+  function progressStage(){
+    if(coinCount>=1000) return 3;
+    if(coinCount>=500) return 2;
+    if(coinCount>=250) return 1;
+    return 0;
+  }
   function spawnEncounter(){
-    const p=itemProgress();
-    const roll=Math.random();
-    if(p<.22){
-      if(roll<.72) spawnGroundObstacle();
-      else spawnAirObstacle({moving:true});
-      encounterTimer=encounterGap(420,560);
-      return;
-    }
-    if(p<.48){
-      if(roll<.50){
-        spawnGroundObstacle();
-        encounterTimer=encounterGap(360,500);
-      } else if(roll<.78){
-        spawnAirObstacle({moving:Math.random()<.7});
-        encounterTimer=encounterGap(360,500);
-      } else {
-        spawnGroundObstacle();
-        scheduleSpawn(distanceToFrames(randomRange(420,520)), 'air', {moving:true});
-        encounterTimer=encounterGap(520,660);
-      }
-      return;
-    }
-    if(p<.78){
-      if(roll<.34){
-        spawnGroundObstacle();
-        encounterTimer=encounterGap(320,460);
-      } else if(roll<.56){
-        spawnAirObstacle({moving:Math.random()<.65});
-        encounterTimer=encounterGap(320,460);
-      } else if(roll<.82){
-        spawnGroundObstacle();
-        scheduleSpawn(distanceToFrames(randomRange(360,460)), 'air', {moving:Math.random()<.45});
-        encounterTimer=encounterGap(470,620);
-      } else {
-        spawnAirObstacle({moving:true});
-        scheduleSpawn(distanceToFrames(randomRange(380,500)), 'ground', {});
-        encounterTimer=encounterGap(500,650);
-      }
-      return;
-    }
-    if(roll<.24){
-      spawnGroundObstacle();
-      encounterTimer=encounterGap(280,420);
-    } else if(roll<.44){
-      spawnAirObstacle({moving:Math.random()<.6});
-      encounterTimer=encounterGap(280,420);
-    } else if(roll<.74){
-      spawnGroundObstacle();
-      scheduleSpawn(distanceToFrames(randomRange(340,430)), 'air', {moving:Math.random()<.4});
-      encounterTimer=encounterGap(430,580);
-    } else {
-      spawnAirObstacle({moving:true});
-      scheduleSpawn(distanceToFrames(randomRange(340,440)), 'ground', {});
-      encounterTimer=encounterGap(450,600);
+    const cfg=difficultyConfigs[difficulty];
+    const stageIndex=progressStage();
+    const airChance=cfg.airChance[stageIndex];
+    const comboChance=cfg.comboChance[stageIndex];
+    const primaryAir=Math.random()<airChance;
+    if(primaryAir) spawnAirObstacle({moving:Math.random()<cfg.movingAirChance}); else spawnGroundObstacle();
+    if(Math.random()<comboChance){
+      const safeDistance=difficulty==='easy'?randomRange(460,560):difficulty==='medium'?randomRange(390,500):randomRange(350,460);
+      scheduleSpawn(distanceToFrames(safeDistance), primaryAir?'ground':'air', primaryAir?{}:{moving:Math.random()<cfg.movingAirChance});
+      encounterTimer=distanceToFrames(safeDistance+randomRange(320,430));
+    }else{
+      const gap=cfg.gaps[stageIndex];
+      encounterTimer=distanceToFrames(randomRange(gap[0],gap[1]));
     }
   }
 
@@ -311,25 +364,20 @@
   function finishGameOver(){
     state='over'; const s=Math.floor(score); let nb='';
     if(s>best){ best=s; localStorage.setItem('doctor-rush-best',best); $('best').textContent=best; nb='★ Kỷ lục mới!'; }
-    $('finalScore').textContent=s; $('finalCoins').textContent=coinCount; $('newBest').textContent=nb; $('gameOverPanel').classList.remove('hidden');
+    $('finalScore').textContent=s; $('finalCoins').textContent=coinCount; $('finalDifficulty').textContent=difficultyConfigs[difficulty].label; $('newBest').textContent=nb; $('gameOverPanel').classList.remove('hidden');
   }
   function gameOver(){ if(state!=='playing') return; state='crash'; shake=16; hero.crashTimer=34; hero.crashVX=4.6; hero.vy=-8.6; hero.onGround=false; hero.rot=-.18; burst(hero.x+hero.w/2,hero.y+hero.h/2,22,'spark'); burst(hero.x+hero.w*0.78,hero.y+hero.h*0.26,9,'mask'); beep(130,.25,'sawtooth',.055); }
 
   function currentSpeed(){
-    const phase = Math.floor((time/60)/30);
-    let base = 5.25 + phase*1.0;
-    if(slowTimer>0) base *= .72;
-    return Math.min(13.5, base);
-  }
-  function itemProgress(){ return Math.min(1, coinCount/1000); }
-  function encounterGap(minGap,maxGap){
-    const p=itemProgress();
-    const gapMin=minGap-(minGap-190)*p;
-    const gapMax=maxGap-(maxGap-320)*p;
-    return distanceToFrames(randomRange(gapMin,gapMax));
+    const cfg=difficultyConfigs[difficulty];
+    const phase=Math.floor((time/60)/30);
+    let base=cfg.baseSpeed+phase*cfg.speedStep;
+    if(slowTimer>0) base*=.72;
+    return Math.min(cfg.maxSpeed,base);
   }
   function updateHUD(){
     $('score').textContent=Math.floor(score); $('coins').textContent=coinCount;
+    $('difficultyChip').textContent=difficultyConfigs[difficulty].label;
     $('shieldChip').style.display=shieldTimer>0?'flex':'none'; $('slowChip').style.display=slowTimer>0?'flex':'none';
     $('shieldTime').textContent=`${Math.ceil(shieldTimer/60)}s`; $('slowTime').textContent=`${Math.ceil(slowTimer/60)}s`;
     const ratio=health/maxHealth; $('healthText').textContent=`${health}/${maxHealth}`;
@@ -360,7 +408,7 @@
     if(state!=='playing') return;
 
     time++; speed=currentSpeed(); score+=.09*speed; hero.run+=speed*.1;
-    sceneTheme += (Math.floor(coinCount/250)-sceneTheme)*.015;
+    sceneTheme += (progressStage()-sceneTheme)*.015;
     if(shieldTimer>0) shieldTimer--; if(slowTimer>0) slowTimer--; if(hitCooldown>0) hitCooldown--;
     hero.vy+=.82; hero.y+=hero.vy;
     if(hero.y>=groundY-hero.h){ hero.y=groundY-hero.h; hero.vy=0; hero.onGround=true; hero.rot*=.7; } else hero.rot=Math.max(-.2,Math.min(.26,hero.vy*.012));
@@ -368,8 +416,8 @@
     if(--encounterTimer<=0){ spawnEncounter(); }
     for(let i=scheduledSpawns.length-1;i>=0;i--){ const s=scheduledSpawns[i]; s.delay--; if(s.delay<=0){ if(s.type==='ground') spawnGroundObstacle(); else spawnAirObstacle(s.opts); scheduledSpawns.splice(i,1); } }
     if(--pillTimer<=0){ spawnPillRow(); pillTimer=145+Math.random()*150; }
-    if(--bonusTimer<=0){ spawnBonusItem(); bonusTimer=randomRange(360,560); }
-    if(--gppTimer<=0){ spawnGPP(); gppTimer=randomRange(2100,3300); }
+    if(--bonusTimer<=0){ const cfg=difficultyConfigs[difficulty]; spawnBonusItem(); bonusTimer=randomRange(cfg.bonus[0],cfg.bonus[1]); }
+    if(--gppTimer<=0){ const cfg=difficultyConfigs[difficulty]; spawnGPP(); gppTimer=randomRange(cfg.gpp[0],cfg.gpp[1]); }
 
     for(let i=obstacles.length-1;i>=0;i--){
       const o=obstacles[i];
@@ -393,7 +441,7 @@
       const dx=hero.x+hero.w*.55-c.x, dy=hero.y+hero.h*.45-c.y;
       if(dx*dx+dy*dy<(c.r+range)*(c.r+range)){
         coinCount++;
-        if(coinCount>0 && coinCount%250===0){ addPopup(W*.5,H*.14,`MỐC ${coinCount} VẬT PHẨM`, '#0d8c98', 28); beep(700,.14,'triangle',.04); }
+        if([250,500,1000].includes(coinCount)){ addPopup(W*.5,H*.14,`MỐC ${coinCount} VẬT PHẨM`, '#0d8c98', 28); beep(700,.14,'triangle',.04); }
         if(c.kind==='gpp'){
           health=Math.min(maxHealth, health+4); shieldTimer=Math.max(shieldTimer, 10*60); score+=80;
           addPopup(hero.x+hero.w/2,hero.y-24,'★ GPP: +80 ĐIỂM • +4 SINH TỒN','#087d70',22); addPopup(hero.x+hero.w/2,hero.y+2,'KHIÊN 10s','#168fd0',18); burst(c.x,c.y,24,'gpp'); beep(930,.15,'triangle',.05);
@@ -540,7 +588,7 @@
         for(let i=0;i<10;i++){ const a=Math.PI*2*i/10; const x1=Math.cos(a)*(o.h*.18)+o.w/2, y1=Math.sin(a)*(o.h*.18); const x2=Math.cos(a)*(o.h*.36)+o.w/2, y2=Math.sin(a)*(o.h*.36); ctx.strokeStyle='#d68f24'; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); }
         ctx.fillStyle='#6b3e00'; ctx.beginPath(); ctx.arc(o.w*.42,-3,2.4,0,Math.PI*2); ctx.arc(o.w*.58,-3,2.4,0,Math.PI*2); ctx.fill();
         ctx.restore();
-      } else if(o.kind==='airmine5'){
+      } else if(o.kind==='airmine5' || o.kind==='airmine4'){
         ctx.save();
         ctx.translate(o.w/2,0); ctx.rotate(time*(o.spinSpeed||.14)+o.phase); ctx.translate(-o.w/2,0);
         ctx.shadowColor='rgba(255,81,112,.38)'; ctx.shadowBlur=22;
@@ -627,11 +675,28 @@
   function loop(){ update(); render(); requestAnimationFrame(loop); } requestAnimationFrame(loop);
   function togglePause(){ if(state==='playing') state='paused'; else if(state==='paused') state='playing'; }
 
+  function selectDifficulty(level){
+    difficulty=level;
+    localStorage.setItem('doctor-rush-difficulty',difficulty);
+    document.querySelectorAll('.difficulty-option').forEach(btn=>btn.classList.toggle('active',btn.dataset.difficulty===difficulty));
+    updateHUD();
+  }
+  document.querySelectorAll('.difficulty-option').forEach(btn=>btn.onclick=()=>selectDifficulty(btn.dataset.difficulty));
+  selectDifficulty(difficulty);
   $('startBtn').onclick=start; $('restartBtn').onclick=start; $('homeBtn').onclick=()=>{ state='menu'; $('gameOverPanel').classList.add('hidden'); $('startPanel').classList.remove('hidden'); };
   $('soundBtn').onclick=()=>{ muted=!muted; $('soundBtn').textContent=muted?'🔇 Âm thanh: Tắt':'🔊 Âm thanh: Bật'; if(!muted) beep(660,.05,'sine',.03); };
-  $('mobileJump').onclick=e=>{ e.preventDefault(); jump(); };
-  stage.addEventListener('pointerdown',e=>{ if(e.target.tagName==='BUTTON') return; if(e.pointerType==='mouse' && (state==='playing' || state==='paused')){ togglePause(); return; } jump(); });
+  $('mobileJump').onclick=e=>{ e.preventDefault(); if(state==='paused') togglePause(); else jump(); };
+  $('mobilePause').onclick=e=>{ e.preventDefault(); togglePause(); };
+  stage.addEventListener('pointerdown',e=>{
+    if(e.target.tagName==='BUTTON') return;
+    if(e.pointerType==='mouse' && (state==='playing' || state==='paused')){ togglePause(); return; }
+    if(e.pointerType!=='mouse' && state==='paused'){ togglePause(); return; }
+    jump();
+  });
   addEventListener('keydown',e=>{ if(['Space','ArrowUp','KeyW'].includes(e.code)){ e.preventDefault(); jump(); } else if(e.code==='KeyP') togglePause(); });
+  function checkPortrait(){ const mobileLike=matchMedia('(pointer:coarse)').matches || innerWidth<901; if(mobileLike && innerHeight>innerWidth && state==='playing') state='paused'; }
+  addEventListener('orientationchange',()=>setTimeout(checkPortrait,120));
+  addEventListener('resize',checkPortrait);
   if('serviceWorker' in navigator && location.protocol!=='file:') addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
   updateHUD();
 })();
