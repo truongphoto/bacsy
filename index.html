@@ -4,6 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#23b8b2" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Doctor Rush" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>Doctor Rush • Trường GPP</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <style>
@@ -55,6 +60,11 @@
     .info-box{margin:14px auto 0;max-width:650px;padding:14px 16px;border-radius:18px;background:rgba(39,183,176,.07);border:1px solid rgba(39,183,176,.12);font-size:14px;line-height:1.6;color:#15525a}
     .info-box b{color:#0d3d46}
     .btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;color:white;background:linear-gradient(135deg,#21bbb2,#47c6e8);padding:13px 19px;border-radius:15px;font-weight:1000;cursor:pointer;box-shadow:0 12px 34px rgba(31,183,176,.25);font-size:15px}.btn.secondary{color:#13626b;background:rgba(255,255,255,.74);border:1px solid rgba(18,108,118,.12);box-shadow:none}.hint{margin-top:16px;font-size:12px;color:rgba(13,61,70,.66)}
+
+    #installBtn{background:linear-gradient(135deg,#0d7f89,#20b8ac);box-shadow:0 12px 34px rgba(13,127,137,.22)}
+    #installBtn[hidden]{display:none!important}
+    #installTip{display:none;margin:9px auto 0;max-width:570px;padding:9px 12px;border-radius:13px;background:rgba(13,127,137,.08);border:1px solid rgba(13,127,137,.13);font-size:11px;line-height:1.45;color:#416f75}
+    #installTip.show{display:block}
     #mobileJump{display:none;position:absolute;right:18px;bottom:22px;width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.82);background:rgba(255,255,255,.55);backdrop-filter:blur(12px);color:#0c6971;font-size:24px;font-weight:1000;box-shadow:0 14px 40px rgba(0,0,0,.08)}
     .flash{position:absolute;inset:0;pointer-events:none;background:white;opacity:0}.flash.on{animation:flash .24s ease-out}@keyframes flash{0%{opacity:.38}100%{opacity:0}}
 
@@ -73,11 +83,11 @@
     .rotate-card b{display:block;font-size:22px;margin-bottom:8px}
     .rotate-card span{font-size:13px;line-height:1.5;color:#527e85}
     @media (pointer:coarse) and (orientation:landscape){
-      #wrap{padding:0}
-      #stage{width:min(100vw,calc(100vh*16/9));height:auto;aspect-ratio:16/9;border-radius:0;border:0}
-      .hud{left:8px;right:8px;top:8px}.hud-left,.hud-right{gap:6px}.chip{padding:6px 8px;font-size:9px;gap:5px}.chip b{font-size:11px}
+      #wrap{padding:0;width:100vw;height:100dvh}
+      #stage{width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;border:0}
+      .hud{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));top:max(8px,env(safe-area-inset-top))}.hud-left,.hud-right{gap:6px}.chip{padding:6px 8px;font-size:9px;gap:5px}.chip b{font-size:11px}
       .brand{display:none}#mobileJump{display:block;right:12px;bottom:12px;width:62px;height:62px}#mobilePause{display:block}
-      .health-wrap{left:8px;right:8px;bottom:8px}.health-card{padding:7px 10px;gap:7px}.heart{width:28px;height:28px;font-size:15px}.health-bar{width:min(210px,38vw);height:13px}
+      .health-wrap{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom))}.health-card{padding:7px 10px;gap:7px}.heart{width:28px;height:28px;font-size:15px}.health-bar{width:min(210px,38vw);height:13px}
       .card{width:min(690px,96%);max-height:96%;overflow:auto;padding:12px 14px;border-radius:20px}
       .card-top{gap:10px;margin-bottom:3px}.hero-logo{width:56px;height:56px}.eyebrow{font-size:8px}.title{font-size:30px;margin:3px 0 5px}.sub{font-size:10px;line-height:1.35;margin-bottom:6px}
       #startPanel .info-box{display:none}.difficulty-title{font-size:9px;margin:5px 0}.difficulty-grid{gap:6px}.difficulty-option{padding:7px 7px;border-radius:12px}.difficulty-option strong{font-size:12px}.difficulty-option span{font-size:8px}
@@ -151,7 +161,8 @@
           </button>
         </div>
 
-        <div class="btns"><button class="btn" id="startBtn">▶ Chơi ngay</button><button class="btn secondary" id="soundBtn">🔊 Âm thanh: Bật</button></div>
+        <div class="btns"><button class="btn" id="startBtn">▶ Chơi ngay</button><button class="btn" id="installBtn" hidden>📲 Cài ứng dụng</button><button class="btn secondary" id="soundBtn">🔊 Âm thanh: Bật</button></div>
+        <div id="installTip"></div>
         <div class="hint">PC: Space / ↑ để nhảy • Click chuột để tạm dừng • Điện thoại: xoay ngang, chạm để nhảy</div>
       </div>
     </div>
@@ -212,13 +223,15 @@
   function randomRange(a,b){ return a+Math.random()*(b-a); }
   function distanceToFrames(dist){ return Math.max(20, Math.round(dist/Math.max(4.5,speed))); }
   function resize(){
+    const r=stage.getBoundingClientRect();
     DPR=Math.min(devicePixelRatio||1,2);
-    W=GAME_W; H=GAME_H;
+    const aspect=Math.max(16/9, r.width/Math.max(1,r.height));
+    H=GAME_H; W=Math.round(GAME_H*aspect);
     canvas.width=W*DPR; canvas.height=H*DPR;
     ctx.setTransform(DPR,0,0,DPR,0,0);
     groundY=H*.78;
-    hero.x=150;
-    if(state==='menu'){hero.y=groundY-hero.h}
+    hero.x=Math.round(W*.117);
+    if(state==='menu') hero.y=groundY-hero.h;
     buildScene();
   }
   function buildScene(){
@@ -697,6 +710,41 @@
   function checkPortrait(){ const mobileLike=matchMedia('(pointer:coarse)').matches || innerWidth<901; if(mobileLike && innerHeight>innerWidth && state==='playing') state='paused'; }
   addEventListener('orientationchange',()=>setTimeout(checkPortrait,120));
   addEventListener('resize',checkPortrait);
+  let deferredInstallPrompt=null;
+  const installBtn=$('installBtn'), installTip=$('installTip');
+  const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  function refreshInstallUI(){
+    if(isInstalled()){
+      installBtn.hidden=true;
+      installTip.classList.remove('show');
+      return;
+    }
+    if(deferredInstallPrompt || isiOS){ installBtn.hidden=false; }
+  }
+  addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault(); deferredInstallPrompt=e; refreshInstallUI();
+  });
+  addEventListener('appinstalled',()=>{
+    deferredInstallPrompt=null; installBtn.hidden=true;
+    installTip.textContent='✓ Doctor Rush đã được cài. Hãy mở bằng biểu tượng bác sĩ ngoài màn hình để chơi toàn màn hình.';
+    installTip.classList.add('show');
+  });
+  installBtn.onclick=async()=>{
+    if(deferredInstallPrompt){
+      deferredInstallPrompt.prompt();
+      try{ await deferredInstallPrompt.userChoice; }catch(e){}
+      deferredInstallPrompt=null; refreshInstallUI();
+      return;
+    }
+    if(isiOS){
+      installTip.textContent='Trên iPhone/iPad: bấm nút Chia sẻ của Safari → Thêm vào Màn hình chính. Sau đó mở game bằng icon bác sĩ để không còn thanh địa chỉ.';
+    }else{
+      installTip.textContent='Nếu trình duyệt chưa hiện hộp cài đặt: mở menu trình duyệt → Cài ứng dụng / Thêm vào màn hình chính.';
+    }
+    installTip.classList.add('show');
+  };
+  refreshInstallUI();
+
   if('serviceWorker' in navigator && location.protocol!=='file:') addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
   updateHUD();
 })();

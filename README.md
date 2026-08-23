@@ -1,17 +1,13 @@
-# Dragon Sky Runner
+# Doctor Rush • Trường GPP
 
-Game runner vô tận bằng HTML5 Canvas, chạy tốt trên desktop/mobile và phù hợp GitHub Pages.
+Bộ PWA đầy đủ để đưa lên GitHub Pages.
 
-## Cách chạy
-- Mở `index.html` để chơi trực tiếp trên máy.
-- Để chế độ PWA/offline hoạt động đầy đủ, upload toàn bộ thư mục lên GitHub Pages/HTTPS.
+- `index.html`: game
+- `manifest.webmanifest`: cấu hình cài ứng dụng, landscape + fullscreen
+- `sw.js`: chạy offline/cache
+- `icon-192.png`, `icon-512.png`: icon bác sĩ từ vai trở lên
+- `apple-touch-icon.png`: icon cho iPhone/iPad
+- `logo-gpp.png`: logo GPP trong game
 
-## Điều khiển
-- Space / ↑ / W / click / chạm: nhảy
-- P: tạm dừng
-
-## File
-- `index.html`: toàn bộ game
-- `manifest.webmanifest`: cấu hình PWA
-- `sw.js`: cache offline
-- `icon-192.png`, `icon-512.png`: icon ứng dụng
+GitHub Pages: chọn **Settings → Pages → Deploy from a branch → main → /(root)**.
+Khi đã cài PWA và mở từ icon ngoài màn hình, trình duyệt sẽ không hiển thị thanh URL như khi mở website thông thường.
