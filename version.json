@@ -1,6 +1,6 @@
 {
-  "version": "19",
-  "app_version": "v1.0.19",
+  "version": "21",
+  "app_version": "v1.0.21",
   "released": "2026-08-23",
-  "notes": "Smooth Pace: tốc độ tăng liên tục theo đường cong mượt và không bao giờ giảm; chai thuốc xanh đổi thành nam châm hút vật phẩm 8 giây; vật cản đầu tiên xuất hiện sớm trong 10 giây đầu và mật độ/tỷ lệ vật cản tăng dần liên tục, không nhảy bậc tại mốc vật phẩm."
+  "notes": "PC + Mobile Main Menu & GPP All-in-One: nút ← Về menu chính hiển thị trong gameplay trên PC và điện thoại; Esc trên PC mở xác nhận; GPP đặc biệt gồm +4 sinh tồn, +100 điểm, khiên 10s và nam châm 8s; tần suất GPP chỉ thấp hơn bonus item ở mức vừa phải."
 }

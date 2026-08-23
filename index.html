@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Doctor Rush" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=17" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=21" />
   <title>Doctor Rush • Trường GPP</title>
-  <link rel="manifest" href="manifest.webmanifest?v=17" />
+  <link rel="manifest" href="manifest.webmanifest?v=21" />
   <style>
     :root{
       --glass:rgba(255,255,255,.60);
@@ -80,6 +80,8 @@
     .difficulty-option span{display:block;font-size:10px;line-height:1.35;margin-top:3px;color:#5c858b}
     .difficulty-option.hard strong{color:#d84f63}
     #mobilePause{display:none;position:absolute;right:14px;top:58px;width:46px;height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.82);background:rgba(255,255,255,.62);backdrop-filter:blur(12px);color:#0c6971;font-size:18px;font-weight:1000;box-shadow:0 10px 28px rgba(0,0,0,.08);z-index:8}
+    #gameHome{display:none;position:absolute;left:18px;top:66px;height:44px;padding:0 14px;border-radius:14px;border:1px solid rgba(255,255,255,.86);background:rgba(255,255,255,.88);color:#0c6971;font-size:12px;font-weight:1000;letter-spacing:.01em;box-shadow:0 10px 28px rgba(0,0,0,.08);z-index:16;white-space:nowrap;cursor:pointer}#stage.game-active #gameHome{display:block}
+    .menu-confirm-layer{position:absolute;inset:0;z-index:70;display:grid;place-items:center;padding:18px;background:rgba(12,55,62,.22);backdrop-filter:blur(3px)}.menu-confirm-layer.hidden{display:none}.menu-confirm-card{width:min(420px,90%);padding:22px;border-radius:22px;background:rgba(252,255,255,.97);border:1px solid rgba(18,108,118,.16);box-shadow:0 24px 70px rgba(6,58,65,.22);text-align:center;color:#124e56}.menu-confirm-icon{font-size:34px;line-height:1;margin-bottom:8px}.menu-confirm-card h3{margin:0 0 7px;font-size:22px}.menu-confirm-card p{margin:0;color:#5a7f84;font-size:12px;line-height:1.45}.menu-confirm-card .btns{margin-top:14px}.btn.danger{background:linear-gradient(135deg,#e45c70,#f07862);box-shadow:0 12px 28px rgba(224,82,103,.2)}
     #rotateOverlay{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;text-align:center;background:linear-gradient(160deg,#eafcff,#bdeef4);color:#0d4f58}
     .rotate-card{width:min(420px,90vw);padding:28px 20px;border-radius:26px;background:rgba(255,255,255,.88);border:1px solid rgba(18,108,118,.14);box-shadow:0 24px 70px rgba(11,84,92,.16)}
     .rotate-icon{font-size:54px;line-height:1;margin-bottom:10px}
@@ -90,7 +92,7 @@
       #stage{width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;border:0}
       .hud{left:max(7px,env(safe-area-inset-left));right:max(7px,env(safe-area-inset-right));top:max(7px,env(safe-area-inset-top));gap:7px}.hud-left,.hud-right{gap:5px;flex-wrap:nowrap}.chip{height:30px;padding:0 7px;font-size:8.5px;gap:4px}.chip b{font-size:10px}
       .hud-left .chip:nth-child(1){width:96px}.hud-left .chip:nth-child(2){width:118px}.hud-left .chip:nth-child(3){width:132px}.hud-right .chip:first-child{width:102px}#score{min-width:34px}#coins{min-width:28px}#difficultyChip{min-width:65px}#best{min-width:34px}
-      #mobileJump{display:block;right:12px;bottom:12px;width:62px;height:62px}#mobilePause{display:block}
+      #mobileJump{display:block;right:12px;bottom:12px;width:62px;height:62px}#mobilePause{display:block}#gameHome{left:12px;top:58px;height:44px;padding:0 12px}
       .health-wrap{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom))}.health-card{padding:7px 10px;gap:7px}.heart{width:28px;height:28px;font-size:15px}.health-bar{width:min(210px,38vw);height:13px}
       .card{width:min(690px,96%);max-height:96%;overflow:auto;padding:12px 14px;border-radius:20px}
       .card-top{gap:10px;margin-bottom:3px}.hero-logo{width:56px;height:56px}.eyebrow{font-size:8px}.title{font-size:30px;margin:3px 0 5px}.sub{font-size:10px;line-height:1.35;margin-bottom:6px}
@@ -135,11 +137,12 @@
       .version-label{right:max(8px,env(safe-area-inset-right));bottom:84px;font-size:7px}
       #mobileJump{z-index:15;width:68px;height:68px;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));background:rgba(255,255,255,.78);backdrop-filter:none}
       #mobilePause{z-index:15;top:max(54px,calc(env(safe-area-inset-top) + 50px));right:max(13px,env(safe-area-inset-right));background:rgba(255,255,255,.78);backdrop-filter:none}
+      #gameHome{z-index:16;top:max(54px,calc(env(safe-area-inset-top) + 50px));left:max(12px,env(safe-area-inset-left));background:rgba(255,255,255,.84);backdrop-filter:none}
       .stat-grid{grid-template-columns:repeat(4,1fr);gap:5px;margin:7px 0}.stat{padding:6px 4px;border-radius:10px}.stat small{font-size:6.5px}.stat b{font-size:12px;margin-top:1px}
       #gameOverPanel .card{width:min(650px,94%);padding:10px 12px;overflow:hidden}.tutorial-card{width:min(650px,94%);padding:12px}.tutorial-steps{gap:6px;margin:8px 0}.tutorial-step{padding:8px 5px}.tutorial-step .ico{font-size:20px}.tutorial-step b{font-size:10px}.tutorial-step span{font-size:8px}#debugPanel{top:58px;font-size:8px}
     }
-    @media (max-height:390px) and (pointer:coarse) and (orientation:landscape){.menu-brand .sub{display:none}.contact-compact{font-size:9px;line-height:1.35}.service-line{display:none}.difficulty-option{min-height:47px;padding:5px}.menu-actions .hint{display:none}.btn{padding:7px 9px}.menu-actions{padding-right:52px}.brand{font-size:7.8px;left:max(322px,calc(env(safe-area-inset-left) + 322px));right:max(84px,calc(env(safe-area-inset-right) + 74px))}}
-    @media (pointer:coarse) and (orientation:landscape){#mobileJump,#mobilePause{display:none}#stage.game-active #mobileJump,#stage.game-active #mobilePause{display:block}}
+    @media (max-height:390px) and (pointer:coarse) and (orientation:landscape){#gameHome{height:40px;padding:0 10px;font-size:10px}.menu-confirm-card{padding:16px}.menu-confirm-card h3{font-size:18px}.menu-confirm-card p{font-size:10px}.menu-brand .sub{display:none}.contact-compact{font-size:9px;line-height:1.35}.service-line{display:none}.difficulty-option{min-height:47px;padding:5px}.menu-actions .hint{display:none}.btn{padding:7px 9px}.menu-actions{padding-right:52px}.brand{font-size:7.8px;left:max(322px,calc(env(safe-area-inset-left) + 322px));right:max(84px,calc(env(safe-area-inset-right) + 74px))}}
+    @media (pointer:coarse) and (orientation:landscape){#mobileJump,#mobilePause{display:none}#stage.game-active #mobileJump,#stage.game-active #mobilePause{display:block}#stage.game-active #gameHome{display:block}}
 
     @media (pointer:coarse) and (orientation:landscape) and (max-width:720px){
       .hud{gap:4px}.hud-left,.hud-right{gap:3px}.chip{height:28px;padding:0 6px;font-size:7.6px;gap:3px}.chip b{font-size:9px}
@@ -177,15 +180,24 @@
     </div>
 
     <div class="brand">Ngô Quang Trường • Liên hệ tư vấn: 0829076979 • Zalo: truongphotoart</div>
+    <button id="gameHome" aria-label="Về menu chính để đổi cấp độ">← Về menu chính</button>
     <button id="mobileJump" aria-label="Nhảy">↑</button>
     <button id="mobilePause" aria-label="Tạm dừng">⏸</button>
+    <div class="menu-confirm-layer hidden" id="menuConfirmLayer" role="dialog" aria-modal="true" aria-labelledby="menuConfirmTitle">
+      <div class="menu-confirm-card">
+        <div class="menu-confirm-icon">↩️</div>
+        <h3 id="menuConfirmTitle">Về menu chính?</h3>
+        <p>Ván hiện tại sẽ dừng. Bạn có thể tiếp tục chơi hoặc quay về màn chọn Dễ / Trung bình / Khó.</p>
+        <div class="btns"><button class="btn secondary" id="menuContinueBtn">▶ Tiếp tục chơi</button><button class="btn danger" id="menuConfirmBtn">← Về menu chính</button></div>
+      </div>
+    </div>
     <div class="flash" id="flash"></div>
 
     <div class="panel" id="startPanel">
       <div class="card menu-card"><div class="menu-shell">
         <section class="menu-brand">
-          <div class="card-top"><img src="logo-gpp.png?v=19" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
-          <p class="sub">Bác sĩ vượt virus và các mối nguy y tế, thu thập vật phẩm. Logo GPP là vật phẩm hiếm: +4 sinh tồn, +80 điểm và khiên 10 giây. Chai thuốc xanh bật nam châm hút vật phẩm trong 8 giây, không làm thay đổi tốc độ chạy.</p>
+          <div class="card-top"><img src="logo-gpp.png?v=21" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
+          <p class="sub">Bác sĩ vượt virus và các mối nguy y tế, thu thập vật phẩm. Logo GPP là vật phẩm đặc biệt tổng hợp: +4 sinh tồn, +100 điểm, khiên 10 giây và nam châm hút vật phẩm 8 giây. Logo xuất hiện ít hơn vật phẩm khác một mức vừa phải. Chai thuốc xanh bật nam châm hút vật phẩm trong 8 giây, không làm thay đổi tốc độ chạy.</p>
           <div class="contact-compact"><b>Ngô Quang Trường</b><br>Liên hệ tư vấn: <b>0829076979</b> • Zalo: <b>truongphotoart</b><span class="service-line">Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</span></div>
         </section>
         <section class="menu-actions">
@@ -197,20 +209,20 @@
           </div>
           <div class="btns"><button class="btn primary-play" id="startBtn" disabled>Đang tải 0%</button><button class="btn" id="installBtn">📲 Cài ứng dụng</button><button class="btn secondary" id="soundBtn">🔊 Âm thanh: Bật</button><button class="btn secondary" id="vibrationBtn">📳 Rung: Bật</button></div>
           <div id="installTip"></div><div class="loading-status" id="loadingStatus">Đang chuẩn bị tài nguyên…</div>
-          <div class="hint">PC: Space / ↑ / W để nhảy • Click chuột hoặc P để tạm dừng. Điện thoại: xoay ngang • chạm sân chơi để nhảy • nút ⏸ để tạm dừng.</div>
+          <div class="hint">PC: Space / ↑ / W để nhảy • Click hoặc P để tạm dừng • Esc / ← Về menu chính để đổi cấp độ. Điện thoại: xoay ngang • chạm sân chơi để nhảy • nút ⏸ để tạm dừng.</div>
         </section>
       </div></div>
     </div>
 
     <div class="panel hidden" id="gameOverPanel"><div class="card">
-      <div class="card-top"><img src="logo-gpp.png?v=19" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
-      <div class="stat-grid"><div class="stat"><small>Điểm</small><b id="finalScore">0</b></div><div class="stat"><small>Vật phẩm</small><b id="finalCoins">0</b></div><div class="stat"><small>Thời gian</small><b id="finalTime">0s</b></div><div class="stat"><small>GPP hiếm</small><b id="finalGpp">0</b></div></div>
+      <div class="card-top"><img src="logo-gpp.png?v=21" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
+      <div class="stat-grid"><div class="stat"><small>Điểm</small><b id="finalScore">0</b></div><div class="stat"><small>Vật phẩm</small><b id="finalCoins">0</b></div><div class="stat"><small>Thời gian</small><b id="finalTime">0s</b></div><div class="stat"><small>GPP đặc biệt</small><b id="finalGpp">0</b></div></div>
       <p class="sub">Cấp độ: <b id="finalDifficulty" style="color:#0b7f89">TRUNG BÌNH</b> • Kỷ lục cấp này: <b id="finalBest" style="color:#0d3d46">0</b><br><span id="newBest" style="color:#11a3b2;font-weight:900"></span></p>
       <div class="info-box"><b>Ngô Quang Trường</b> • Liên hệ tư vấn: <b>0829076979</b> • Zalo: truongphotoart<br>Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</div>
       <div class="btns"><button class="btn primary-play" id="restartBtn">↻ Chơi lại cùng cấp</button><button class="btn secondary" id="homeBtn">⌂ Màn hình chính</button></div>
     </div></div>
     <div class="panel hidden" id="tutorialPanel"><div class="card tutorial-card"><div class="eyebrow">Hướng dẫn nhanh • chỉ hiện lần đầu</div><div class="title" style="font-size:clamp(30px,5vw,46px)">SẴN SÀNG?</div><div class="tutorial-steps">
-      <div class="tutorial-step"><div class="ico">⬆️</div><b>NHẢY</b><span>Space/↑/W trên PC hoặc chạm sân chơi trên điện thoại.</span></div><div class="tutorial-step"><div class="ico">⚠️</div><b>NÉ VẬT CẢN</b><span>Đọc nhịp, tránh virus và nguy hiểm. Game luôn chừa đường thoát.</span></div><div class="tutorial-step"><div class="ico">🛡️</div><b>SĂN GPP</b><span>Logo GPP hiếm: hồi sinh tồn, cộng điểm và bật khiên 10 giây.</span></div>
+      <div class="tutorial-step"><div class="ico">⬆️</div><b>NHẢY</b><span>Space/↑/W trên PC hoặc chạm sân chơi trên điện thoại.</span></div><div class="tutorial-step"><div class="ico">⚠️</div><b>NÉ VẬT CẢN</b><span>Đọc nhịp, tránh virus và nguy hiểm. Game luôn chừa đường thoát.</span></div><div class="tutorial-step"><div class="ico">⭐</div><b>SĂN GPP</b><span>Logo GPP đặc biệt tổng hợp: +4 sinh tồn, +100 điểm, khiên 10 giây và nam châm 8 giây.</span></div>
     </div><div class="tutorial-progress"><i id="tutorialProgress"></i></div><div class="loading-status" id="tutorialCountdown">Tự bắt đầu sau 7 giây</div><div class="btns"><button class="btn" id="tutorialStartBtn">▶ Bắt đầu ngay</button><button class="btn secondary" id="tutorialSkipBtn">Bỏ qua hướng dẫn</button></div></div></div>
     <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.19</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
   </div></div>
@@ -224,17 +236,18 @@
 <script>
 
 (() => {
-  const APP_VERSION='v1.0.19',BUILD_ID='19';
+  const APP_VERSION='v1.0.21',BUILD_ID='21';
   const canvas=document.getElementById('game'),ctx=canvas.getContext('2d',{alpha:false}),stage=document.getElementById('stage'),$=id=>document.getElementById(id);
   const DEBUG=new URLSearchParams(location.search).get('debug')==='1'; if(DEBUG)document.body.classList.add('debug-on');
-  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=19';
+  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=21';
   let W=0,H=0,DPR=1,groundY=0; const GAME_H=720,BASE_GAME_W=1280,FIXED_MS=1000/60,PHYSICS={jump:-17.5,gravity:.82};
   let state='menu',score=0,coinCount=0,speed=5.25,time=0,shake=0;
+  let menuConfirmReturnState='playing',menuConfirmFromBack=false,gameHistoryActive=false,pendingMenuHistoryBack=false;
   let muted=localStorage.getItem('doctor-rush-muted')==='1',vibrationEnabled=localStorage.getItem('doctor-rush-vibration')!=='0',difficulty=localStorage.getItem('doctor-rush-difficulty')||'medium';
   const difficultyConfigs={
-    easy:{label:'DỄ',baseSpeed:3.40,maxSpeed:6.80,speedTau:260,challengeTau:300,firstEncounter:[150,240],airChance:[.035,.07],comboChance:[0,.012],movingAirChance:.90,gaps:[[850,1050],[600,760]],bonus:[240,380],gpp:[1650,2450]},
-    medium:{label:'TRUNG BÌNH',baseSpeed:3.90,maxSpeed:8.20,speedTau:240,challengeTau:275,firstEncounter:[125,215],airChance:[.08,.16],comboChance:[0,.06],movingAirChance:.75,gaps:[[720,900],[500,650]],bonus:[310,500],gpp:[1900,2950]},
-    hard:{label:'KHÓ',baseSpeed:4.40,maxSpeed:9.80,speedTau:220,challengeTau:250,firstEncounter:[105,195],airChance:[.15,.27],comboChance:[.01,.10],movingAirChance:.65,gaps:[[620,780],[420,560]],bonus:[390,610],gpp:[2300,3500]}
+    easy:{label:'DỄ',baseSpeed:3.40,maxSpeed:6.80,speedTau:260,challengeTau:300,firstEncounter:[150,240],airChance:[.035,.07],comboChance:[0,.012],movingAirChance:.90,gaps:[[850,1050],[600,760]],bonus:[240,380],gpp:[360,520]},
+    medium:{label:'TRUNG BÌNH',baseSpeed:3.90,maxSpeed:8.20,speedTau:240,challengeTau:275,firstEncounter:[125,215],airChance:[.08,.16],comboChance:[0,.06],movingAirChance:.75,gaps:[[720,900],[500,650]],bonus:[310,500],gpp:[460,680]},
+    hard:{label:'KHÓ',baseSpeed:4.40,maxSpeed:9.80,speedTau:220,challengeTau:250,firstEncounter:[105,195],airChance:[.15,.27],comboChance:[.01,.10],movingAirChance:.65,gaps:[[620,780],[420,560]],bonus:[390,610],gpp:[560,820]}
   }; if(!difficultyConfigs[difficulty])difficulty='medium';
   let health=10,maxHealth=10,shieldTimer=0,magnetTimer=0,hitCooldown=0,encounterTimer=0,pillTimer=0,bonusTimer=0,gppTimer=0,itemRefillTimer=0,visibleItemGoal=3,sceneTheme=0,gppCollected=0,firstObstacleSpawned=false;
   const obstacles=[],items=[],particles=[],clouds=[],skyline=[],popups=[],scheduledSpawns=[];
@@ -275,7 +288,16 @@
   async function requestLandscape(){try{if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape')}catch(e){}}
   async function requestAppFullscreen(){if(!isMobileLike()||document.fullscreenElement||isInstalled())return;try{if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen({navigationUI:'hide'})}catch(e){}}
   function showPanel(id){['startPanel','gameOverPanel','tutorialPanel'].forEach(x=>$(x).classList.toggle('hidden',x!==id));if(id)stage.classList.remove('game-active')}
-  function beginRun(){reset();state='playing';showPanel('');stage.classList.add('game-active');totalStats.plays++;localStorage.setItem('doctor-rush-total-plays',totalStats.plays);beep(540,.08,'triangle',.05);vibrate(18)}
+  function armGameHistory(){if(!isMobileLike()||gameHistoryActive)return;try{history.pushState({doctorRushGame:true},'',location.href);gameHistoryActive=true}catch(e){}}
+  function openMenuConfirm(fromBack=false){if(!['playing','paused'].includes(state))return;menuConfirmReturnState=state;menuConfirmFromBack=fromBack;if(state==='playing')state='paused';$('menuConfirmLayer').classList.remove('hidden');vibrate(8)}
+  function closeMenuConfirm(){if($('menuConfirmLayer').classList.contains('hidden'))return;$('menuConfirmLayer').classList.add('hidden');if(menuConfirmFromBack){armGameHistory();menuConfirmFromBack=false}state=menuConfirmReturnState;if(state==='playing'){lastFrameTs=performance.now();simAccumulator=0}}
+  function goMainMenuCore(){menuConfirmFromBack=false;$('menuConfirmLayer').classList.add('hidden');state='menu';autoPausedReason='';showPanel('startPanel');updateHUD();if(pendingVersionUpdate)applyPendingUpdate()}
+  function requestMainMenu(){if(['playing','paused'].includes(state)){openMenuConfirm(false);return}if(['over','crash'].includes(state)){returnToMainMenu()} }
+  function returnToMainMenu(){
+    if(isMobileLike()&&gameHistoryActive){pendingMenuHistoryBack=true;gameHistoryActive=false;try{history.back();setTimeout(()=>{if(pendingMenuHistoryBack){pendingMenuHistoryBack=false;goMainMenuCore()}},180);return}catch(e){pendingMenuHistoryBack=false}}
+    goMainMenuCore()
+  }
+  function beginRun(){reset();state='playing';showPanel('');stage.classList.add('game-active');armGameHistory();totalStats.plays++;localStorage.setItem('doctor-rush-total-plays',totalStats.plays);beep(540,.08,'triangle',.05);vibrate(18)}
   let tutorialTimer=null,tutorialStartedAt=0;
   function stopTutorialTimer(){if(tutorialTimer){clearInterval(tutorialTimer);tutorialTimer=null}}
   function finishTutorialAndStart(){stopTutorialTimer();localStorage.setItem('doctor-rush-tutorial-done','1');beginRun()}
@@ -487,7 +509,7 @@
     bonusTimer-=dt;if(bonusTimer<=0){const cfg=difficultyConfigs[difficulty];bonusTimer=spawnBonusItem()?randomRange(cfg.bonus[0],cfg.bonus[1]):70}
     gppTimer-=dt;if(gppTimer<=0){const cfg=difficultyConfigs[difficulty];gppTimer=spawnGPP()?randomRange(cfg.gpp[0],cfg.gpp[1]):90}
     for(let i=obstacles.length-1;i>=0;i--){const o=obstacles[i];o.x-=(speed+(o.lane==='air'?(o.driftX||0):0))*dt;if(o.lane==='air'&&o.moving){const amp=o.amplitude||18;o.y=o.baseY+Math.sin(time*.065+o.phase)*amp;const maxY=o.bottomLimit-o.h;if(o.y>maxY)o.y=maxY}if(o.damage===5&&!o.warned&&o.x-hero.x<390&&o.x>hero.x){o.warned=true;addPopup(o.x+o.w/2,Math.max(80,o.y-20),'⚠ NGUY HIỂM','#d73554',20);beep(300,.08,'square',.038);vibrate([25,25,25])}if(o.x+o.w<-110){obstacles.splice(i,1);continue}if(boxesOverlap(heroHitbox(),obstacleHitbox(o))){handleDamage(o.damage,o.x+o.w/2,o.y+o.h/2);obstacles.splice(i,1)}}
-    for(let i=items.length-1;i>=0;i--){const c=items[i];c.x-=speed*dt;c.t+=.12*dt;if(c.x<-70){items.splice(i,1);continue}const hx=hero.x+hero.w*.55,hy=hero.y+hero.h*.45;if(magnetTimer>0){const mx=hx-c.x,my=hy-c.y,md2=mx*mx+my*my;if(md2<340*340){const pull=Math.min(.16,.055*dt+.03*(1-Math.sqrt(md2)/340));c.x+=mx*pull;c.y+=my*pull}}const range=c.kind==='gpp'?30:c.kind==='medkit'?28:24,dx=hx-c.x,dy=hy-c.y;if(dx*dx+dy*dy<(c.r+range)*(c.r+range)){coinCount++;if([250,500,1000].includes(coinCount)){addPopup(W*.5,H*.14,`MỐC ${coinCount} VẬT PHẨM`,'#0d8c98',28);beep(700,.14,'triangle',.04);vibrate([25,20,25])}if(c.kind==='gpp'){gppCollected++;health=Math.min(maxHealth,health+4);shieldTimer=Math.max(shieldTimer,10*60);score+=80;addPopup(hero.x+hero.w/2,hero.y-24,'★ GPP: +80 ĐIỂM • +4 SINH TỒN','#087d70',22);addPopup(hero.x+hero.w/2,hero.y+2,'KHIÊN 10s','#168fd0',18);burst(c.x,c.y,24,'gpp');beep(930,.15,'triangle',.05);vibrate([35,20,55])}else if(c.kind==='medkit'){health=Math.min(maxHealth,health+1);score+=24;addPopup(hero.x+hero.w/2,hero.y-20,'+24 ĐIỂM • +1 SINH TỒN','#168f69',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035);vibrate(12)}else if(c.kind==='syringe'){score+=22;addPopup(hero.x+hero.w/2,hero.y-20,'+22 ĐIỂM','#357bd1',24);burst(c.x,c.y,10,'ice');beep(820,.06,'sine',.03)}else if(c.kind==='bottle'){score+=18;magnetTimer=Math.max(magnetTimer,8*60);addPopup(hero.x+hero.w/2,hero.y-20,'+18 ĐIỂM • NAM CHÂM 8s','#8150ca',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035);vibrate(12)}else if(c.kind==='capsule'){score+=16;addPopup(hero.x+hero.w/2,hero.y-20,'+16 ĐIỂM','#ef763b',24);burst(c.x,c.y,8,'gold');beep(900,.045,'sine',.03)}else if(c.kind==='tablet'){score+=12;addPopup(hero.x+hero.w/2,hero.y-20,'+12 ĐIỂM','#268fc2',24);burst(c.x,c.y,7,'gold');beep(860,.045,'sine',.028)}else{score+=10;addPopup(hero.x+hero.w/2,hero.y-20,'+10 ĐIỂM','#ed5067',24);burst(c.x,c.y,7,'gold');beep(980,.045,'sine',.03)}items.splice(i,1);updateHUD()}}
+    for(let i=items.length-1;i>=0;i--){const c=items[i];c.x-=speed*dt;c.t+=.12*dt;if(c.x<-70){items.splice(i,1);continue}const hx=hero.x+hero.w*.55,hy=hero.y+hero.h*.45;if(magnetTimer>0){const mx=hx-c.x,my=hy-c.y,md2=mx*mx+my*my;if(md2<340*340){const pull=Math.min(.16,.055*dt+.03*(1-Math.sqrt(md2)/340));c.x+=mx*pull;c.y+=my*pull}}const range=c.kind==='gpp'?30:c.kind==='medkit'?28:24,dx=hx-c.x,dy=hy-c.y;if(dx*dx+dy*dy<(c.r+range)*(c.r+range)){coinCount++;if([250,500,1000].includes(coinCount)){addPopup(W*.5,H*.14,`MỐC ${coinCount} VẬT PHẨM`,'#0d8c98',28);beep(700,.14,'triangle',.04);vibrate([25,20,25])}if(c.kind==='gpp'){gppCollected++;health=Math.min(maxHealth,health+4);shieldTimer=Math.max(shieldTimer,10*60);magnetTimer=Math.max(magnetTimer,8*60);score+=100;addPopup(hero.x+hero.w/2,hero.y-28,'★ GPP ĐẶC BIỆT: +100 ĐIỂM • +4 SINH TỒN','#087d70',21);addPopup(hero.x+hero.w/2,hero.y-2,'🛡 KHIÊN 10s • 🧲 NAM CHÂM 8s','#168fd0',18);burst(c.x,c.y,28,'gpp');beep(930,.17,'triangle',.055);vibrate([35,20,55,20,35])}else if(c.kind==='medkit'){health=Math.min(maxHealth,health+1);score+=24;addPopup(hero.x+hero.w/2,hero.y-20,'+24 ĐIỂM • +1 SINH TỒN','#168f69',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035);vibrate(12)}else if(c.kind==='syringe'){score+=22;addPopup(hero.x+hero.w/2,hero.y-20,'+22 ĐIỂM','#357bd1',24);burst(c.x,c.y,10,'ice');beep(820,.06,'sine',.03)}else if(c.kind==='bottle'){score+=18;magnetTimer=Math.max(magnetTimer,8*60);addPopup(hero.x+hero.w/2,hero.y-20,'+18 ĐIỂM • NAM CHÂM 8s','#8150ca',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035);vibrate(12)}else if(c.kind==='capsule'){score+=16;addPopup(hero.x+hero.w/2,hero.y-20,'+16 ĐIỂM','#ef763b',24);burst(c.x,c.y,8,'gold');beep(900,.045,'sine',.03)}else if(c.kind==='tablet'){score+=12;addPopup(hero.x+hero.w/2,hero.y-20,'+12 ĐIỂM','#268fc2',24);burst(c.x,c.y,7,'gold');beep(860,.045,'sine',.028)}else{score+=10;addPopup(hero.x+hero.w/2,hero.y-20,'+10 ĐIỂM','#ed5067',24);burst(c.x,c.y,7,'gold');beep(980,.045,'sine',.03)}items.splice(i,1);updateHUD()}}
     for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.18*dt;p.life-=dt;if(p.life<=0)particles.splice(i,1)}
     for(let i=popups.length-1;i>=0;i--){const p=popups[i];p.y+=p.vy*dt;p.life-=dt;if(p.life<=0)popups.splice(i,1)}
     shake*=Math.pow(.9,dt);ensureVisibleCollectibles(0);updateHUD();
@@ -647,7 +669,7 @@
       ctx.strokeStyle='rgba(39,183,176,.62)'; ctx.lineWidth=3; ctx.stroke();
       ctx.globalAlpha=.32; ctx.strokeStyle='#ffcf55'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(0,0,aura+6,0,Math.PI*2); ctx.stroke(); ctx.globalAlpha=1;
       if(logoImg.complete) ctx.drawImage(logoImg,-23,-23,46,46); else { ctx.fillStyle='#27b7b0'; ctx.font='bold 16px system-ui'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('GPP',0,0); }
-      ctx.fillStyle='#0d7f6f'; ctx.font='900 9px system-ui'; ctx.textAlign='center'; ctx.fillText('HIẾM',0,39);
+      ctx.fillStyle='#0d7f6f'; ctx.font='900 7px system-ui'; ctx.textAlign='center'; ctx.fillText('ĐẶC BIỆT',0,39);
     } else if(it.kind==='pill'){
       ctx.shadowColor='rgba(255,108,125,.30)'; ctx.shadowBlur=fxBlur(12); ctx.fillStyle='#fff'; ctx.strokeStyle='#f2d9e1'; ctx.lineWidth=2; roundedRect(-16,-8,32,16,8); ctx.fill(); ctx.stroke(); ctx.fillStyle='#ff7585'; roundedRect(-16,-8,16,16,8); ctx.fill();
     } else if(it.kind==='capsule'){
@@ -706,14 +728,21 @@ cache doctor-rush-v${BUILD_ID}`}
   document.querySelectorAll('.difficulty-option').forEach(btn=>btn.onclick=()=>selectDifficulty(btn.dataset.difficulty));selectDifficulty(difficulty);$('versionLabel').textContent=APP_VERSION;
   $('startBtn').onclick=requestStart;
   $('restartBtn').onclick=async()=>{if(pendingVersionUpdate){applyPendingUpdate();return}await requestAppFullscreen();await requestLandscape();beginRun()};
-  $('homeBtn').onclick=()=>{state='menu';showPanel('startPanel');if(pendingVersionUpdate)applyPendingUpdate()};
+  $('homeBtn').onclick=returnToMainMenu;
   $('tutorialStartBtn').onclick=finishTutorialAndStart;$('tutorialSkipBtn').onclick=finishTutorialAndStart;
   function syncPreferenceButtons(){$('soundBtn').textContent=muted?'🔇 Âm thanh: Tắt':'🔊 Âm thanh: Bật';$('vibrationBtn').textContent=vibrationEnabled?'📳 Rung: Bật':'📴 Rung: Tắt'}
   $('soundBtn').onclick=()=>{muted=!muted;localStorage.setItem('doctor-rush-muted',muted?'1':'0');syncPreferenceButtons();if(!muted)beep(660,.05,'sine',.03)};
   $('vibrationBtn').onclick=()=>{vibrationEnabled=!vibrationEnabled;localStorage.setItem('doctor-rush-vibration',vibrationEnabled?'1':'0');syncPreferenceButtons();if(vibrationEnabled)vibrate([20,20,35])};syncPreferenceButtons();
+  $('gameHome').onclick=e=>{e.preventDefault();requestMainMenu()};$('menuContinueBtn').onclick=e=>{e.preventDefault();closeMenuConfirm()};$('menuConfirmBtn').onclick=e=>{e.preventDefault();returnToMainMenu()};
   $('mobileJump').onclick=e=>{e.preventDefault();if(state==='playing')jump()};$('mobilePause').onclick=e=>{e.preventDefault();togglePause()};
   stage.addEventListener('pointerdown',e=>{if(e.target.closest&&e.target.closest('button'))return;if(e.pointerType==='mouse'&&(state==='playing'||state==='paused')){togglePause();return}if(e.pointerType!=='mouse'&&state==='paused'){togglePause();return}if(e.pointerType!=='mouse'&&state==='playing')jump()});
-  addEventListener('keydown',e=>{if(['Space','ArrowUp','KeyW'].includes(e.code)){e.preventDefault();jump()}else if(e.code==='KeyP')togglePause()});
+  addEventListener('popstate',()=>{
+    if(pendingMenuHistoryBack){pendingMenuHistoryBack=false;goMainMenuCore();return}
+    if(!isMobileLike())return;
+    if(['playing','paused'].includes(state)){gameHistoryActive=false;openMenuConfirm(true);return}
+    if(state==='over'){gameHistoryActive=false;goMainMenuCore()}
+  });
+  addEventListener('keydown',e=>{if(['Space','ArrowUp','KeyW'].includes(e.code)){e.preventDefault();jump()}else if(e.code==='KeyP')togglePause();else if(e.code==='Escape'&&['playing','paused'].includes(state)){e.preventDefault();requestMainMenu()}});
   function checkPortrait(){if(isMobileLike()&&innerHeight>innerWidth&&state==='playing'){state='paused';autoPausedReason='portrait'}}
   addEventListener('orientationchange',()=>setTimeout(()=>{resize();checkPortrait()},140));
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&state==='playing'){state='paused';autoPausedReason='hidden'}else if(document.visibilityState==='visible'){lastFrameTs=performance.now();simAccumulator=0;checkForVersionUpdate();checkForAppUpdate()}});
@@ -723,7 +752,7 @@ cache doctor-rush-v${BUILD_ID}`}
   addEventListener('appinstalled',()=>{deferredInstallPrompt=null;refreshInstallUI();installTip.textContent='✓ Đã cài Doctor Rush. Mở bằng icon bác sĩ ngoài màn hình để chơi dạng ứng dụng, không có thanh địa chỉ.';installTip.classList.add('show')});
   installBtn.onclick=async()=>{if(isInstalled())return;if(deferredInstallPrompt){deferredInstallPrompt.prompt();try{await deferredInstallPrompt.userChoice}catch(e){}deferredInstallPrompt=null;refreshInstallUI();return}installTip.textContent=isiOS?'iPhone/iPad: mở bằng Safari → Chia sẻ → Thêm vào Màn hình chính. Sau đó mở từ icon bác sĩ để không còn thanh địa chỉ.':'Nếu hộp cài chưa xuất hiện: mở menu trình duyệt → Cài ứng dụng / Thêm vào màn hình chính.';installTip.classList.add('show')};refreshInstallUI();
   function preloadOne(url,type='image'){return new Promise(resolve=>{if(type==='image'){const im=new Image();im.onload=()=>resolve(true);im.onerror=()=>resolve(false);im.src=url}else fetch(url,{cache:'no-cache'}).then(r=>resolve(r.ok)).catch(()=>resolve(false))})}
-  async function preloadAssets(){const assets=[['logo-gpp.png?v=19','image'],['icon-192.png?v=17','image'],['icon-512.png?v=17','image'],['apple-touch-icon.png?v=17','image'],['manifest.webmanifest?v=17','fetch'],['version.json?v=17','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
+  async function preloadAssets(){const assets=[['logo-gpp.png?v=21','image'],['icon-192.png?v=21','image'],['icon-512.png?v=21','image'],['apple-touch-icon.png?v=21','image'],['manifest.webmanifest?v=21','fetch'],['version.json?v=21','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
   let toastTimer=null;function showUpdateToast(text='Có phiên bản mới • sẽ cập nhật sau ván này',duration=2600){const el=$('updateToast');el.textContent=text;el.classList.add('show-toast');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show-toast'),duration)}
   let swRegistration=null,serverBuild=BUILD_ID,applyingUpdate=false;
   async function checkForVersionUpdate(){if(location.protocol==='file:'||location.protocol==='data:')return false;try{const r=await fetch(`./version.json?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)return false;const v=await r.json();serverBuild=String(v.version||v.build||'');if(serverBuild&&serverBuild!==BUILD_ID){pendingVersionUpdate=true;showUpdateToast(['playing','paused','crash'].includes(state)?'Có phiên bản mới • sẽ cập nhật sau ván này':'Có phiên bản mới • đang chuẩn bị cập nhật');await checkForAppUpdate();return true}}catch(e){}return false}
@@ -731,6 +760,7 @@ cache doctor-rush-v${BUILD_ID}`}
   async function applyPendingUpdate(){if(applyingUpdate)return;applyingUpdate=true;showUpdateToast('Đang cập nhật Doctor Rush…',4000);try{if(swRegistration){await swRegistration.update();if(swRegistration.waiting){swRegistration.waiting.postMessage('SKIP_WAITING');return}}}catch(e){}setTimeout(()=>location.replace(`./?v=${encodeURIComponent(serverBuild||Date.now())}`),500)}
   if('serviceWorker'in navigator&&!['file:','data:'].includes(location.protocol)){addEventListener('load',async()=>{try{swRegistration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});await checkForVersionUpdate();await checkForAppUpdate()}catch(e){}});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(['playing','paused','crash'].includes(state)){pendingControllerReload=true;pendingVersionUpdate=true;showUpdateToast('Bản mới đã tải • sẽ áp dụng sau ván này')}else location.replace(`./?v=${encodeURIComponent(serverBuild||Date.now())}`)});setInterval(()=>{if(document.visibilityState==='visible')checkForVersionUpdate()},300000)}
   if(DEBUG){window.__doctorDebug={snapshot:()=>({version:APP_VERSION,build:BUILD_ID,state,difficulty,score,coinCount,speed,time,health,magnetTimer,challenge:challengeProgress(),hero:{...hero},fps,quality,DPR,W,H,groundY,obstacles:obstacles.map(o=>({...o})),items:items.map(i=>({...i})),best:getBest(difficulty)}),selectDifficulty,pickGround:(d,n=1000)=>{const old=difficulty;difficulty=d;const out={};for(let i=0;i<n;i++){const t=pickGroundType();out[t.damage]=(out[t.damage]||0)+1}difficulty=old;return out},pickAir:(d,moving,n=1000)=>{const old=difficulty;difficulty=d;const out={};for(let i=0;i<n;i++){const t=pickAirType({moving});out[t.damage]=(out[t.damage]||0)+1}difficulty=old;return out},simulateJump:(hz=60)=>{const frameMs=1000/hz;let acc=0,y=0,vy=PHYSICS.jump,min=0,renderFrames=0,sim=0,done=false;while(renderFrames<hz*3&&!done){acc+=frameMs;while(acc>=FIXED_MS-0.0001){vy+=PHYSICS.gravity;y+=vy;min=Math.min(min,y);sim++;acc-=FIXED_MS;if(y>=0&&sim>2){done=true;break}}renderFrames++}return{hz,apex:-min,seconds:renderFrames/hz,virtualFrames:sim}},simulateTravel:(hz=60,seconds=10,s=8)=>{const frameMs=1000/hz;let acc=0,x=0;for(let i=0;i<Math.round(hz*seconds);i++){acc+=frameMs;while(acc>=FIXED_MS-0.0001){x+=s;acc-=FIXED_MS}}return x},validateRow:(rowSpeed=8,n=7)=>{const plan=buildPillRowPlan('pill',n,false,rowSpeed),flight=Math.max(34,jumpFlightSteps()-2);let maxError=0;for(let i=0;i<plan.length;i++){const t=(i/(n-1||1))*flight;maxError=Math.max(maxError,Math.abs(plan[i].y-heroPickupYAtStep(t)))}return{rowSpeed,n,width:plan.at(-1).x-plan[0].x,maxCenterError:maxError,topLimit:collectibleTopLimit('pill',11),minY:Math.min(...plan.map(p=>p.y))}},collectibleTopLimit,progressStageFor:n=>{const old=coinCount;coinCount=n;const r=progressStage();coinCount=old;return r},patternSafe:(a,b,d,pm=false,sm=false)=>patternHasEscapePath(a,b,d,pm,sm),forceCoins:n=>{coinCount=n;updateHUD()},beginRun,finishGameOver,jump}}
+  try{if(!history.state||(!history.state.doctorRushRoot&&!history.state.doctorRushGame))history.replaceState({doctorRushRoot:true},'',location.href)}catch(e){}
   preloadAssets();updateHUD();
 })();
 
