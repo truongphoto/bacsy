@@ -1,0 +1,6 @@
+{
+  "version": "15",
+  "app_version": "v1.0.15",
+  "released": "2026-08-23",
+  "notes": "Bản hoàn thiện 1-27: fixed-step 60Hz chống lag/chậm nhịp, 3 cấp độ, quỹ đạo vật phẩm theo nhảy, mobile landscape chuyên biệt, PWA tự cập nhật."
+}

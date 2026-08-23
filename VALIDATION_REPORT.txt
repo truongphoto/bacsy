@@ -1,0 +1,79 @@
+DOCTOR RUSH • TRƯỜNG GPP — RELEASE VALIDATION
+Version: v1.0.15 / build 15
+Date: 2026-08-23
+
+1) FILE / PWA
+PASS - index.html JavaScript syntax
+PASS - sw.js JavaScript syntax
+PASS - manifest.webmanifest JSON
+PASS - version.json JSON
+PASS - No missing HTML IDs referenced by JavaScript
+PASS - All runtime files present
+PASS - Manifest: landscape + standalone, display_override prefers fullscreen
+PASS - Service Worker cache: doctor-rush-v15
+PASS - Network-first for navigation/version/manifest, automatic old-cache cleanup
+PASS - version.json / index.html / sw.js version synchronized
+PASS - PWA icons synchronized from shoulder-up doctor artwork:
+       icon-192.png 192x192
+       icon-512.png 512x512
+       apple-touch-icon.png 180x180
+
+2) DIFFICULTY LOGIC — 30,000 RANDOM GROUND SAMPLES / LEVEL
+PASS - EASY: only -1/-2; no -3/-4/-5
+PASS - MEDIUM: -1..-4; no -5
+PASS - HARD: -1..-5; -5 approximately 4.85% in sampled ground obstacles
+PASS - HARD fixed-air -5 approximately 5% in sampled fixed-air obstacles
+PASS - Vertically moving air obstacles: 100% damage -1 in 15,000 samples for each level
+PASS - Air frequency progression configured:
+       EASY 8% -> 9% -> 10% -> 12%
+       MEDIUM 18% -> 22% -> 26% -> 30%
+       HARD 30% -> 35% -> 40% -> 45%
+PASS - Progress stages switch exactly at 250 / 500 / 1000 collected items
+PASS - Only one moving-air type has large vertical amplitude (42); others use 16 / 20
+PASS - Combo scheduler uses escape-path guard and never pairs a moving-air obstacle in a forced combo
+
+3) FRAME RATE / MOBILE PERFORMANCE
+PASS - Game simulation converted to fixed 60 Hz timestep, rendering remains adaptive
+PASS - 10-second travel test at speed 8:
+       30 FPS = 4800 units
+       45 FPS = 4800 units
+       60 FPS = 4800 units
+PASS - Jump apex:
+       30 FPS = 178.08 px
+       45 FPS = 178.08 px
+       60 FPS = 178.08 px
+PASS - Adaptive quality reduces rendering effects only; gameplay timing is unchanged
+PASS - Simulation accumulator resets after pause/visibility resume to avoid time jumps
+
+4) JUMP / COLLECTIBLES
+PASS - Jump power: -17.5, gravity: 0.82
+PASS - Collectible rows are generated from the doctor's actual jump trajectory
+PASS - Row width automatically increases with speed so item timing matches the jump arc
+PASS - Maximum tested collectible-center mismatch: 11.3 px (well inside pickup radius)
+PASS - Bonus/GPP item height is clamped to the reachable jump zone
+
+5) UI / CONTROLS
+PASS - DỄ / TRUNG BÌNH / KHÓ buttons receive clicks correctly
+PASS - Clicking child text/icon inside a difficulty button stays on menu (no click-through start bug)
+PASS - First-run tutorial displays and can be skipped/started
+PASS - Desktop mouse click: pause -> click again: resume
+PASS - Mobile pause button: pause/resume works
+PASS - Mobile jump/pause controls hidden on menu, visible only during gameplay
+PASS - Install button visible on menu when not installed
+PASS - Install fallback instructions appear when browser install prompt is unavailable
+PASS - TRƯỜNG GPP contact/service information remains visible on mobile menu
+
+6) MOBILE LAYOUT
+PASS - Landscape test viewport 844x390 fills the complete viewport
+PASS - Mobile menu has no hidden vertical overflow/scroll at 844x390
+PASS - Install / Play / Easy / Medium / Hard / contact information all visible
+PASS - Portrait 390x844 shows rotate-to-landscape overlay
+PASS - Character gameplay coordinate remains at the left side (x=150)
+
+7) RELEASE NOTES
+- Hidden debug mode: append ?debug=1 to the deployed URL.
+- Opening from the installed PWA icon uses standalone/fullscreen-capable display without browser address bar.
+- On iPhone/iPad installation follows Safari Share -> Add to Home Screen.
+- Browser automation in this build environment blocks direct localhost navigation, so interaction/layout tests were executed in Chromium using the production DOM/JS/CSS with local storage and asset-loading test stubs. Static PWA/service-worker validation was performed directly on the release files.
+
+RESULT: PASS — READY FOR GITHUB PAGES DEPLOYMENT
