@@ -102,7 +102,7 @@
       #rotateOverlay{display:flex}
     }
 
-    /* ===== Doctor Rush v1.0.17 relaxed gameplay UI ===== */
+    /* ===== Doctor Rush v1.0.18 continuous items UI ===== */
     .version-label{position:absolute;right:18px;bottom:16px;font-size:10px;font-weight:900;letter-spacing:.08em;color:rgba(13,61,70,.46);z-index:7;pointer-events:none}
     .menu-card{width:min(920px,95vw);padding:24px}
     .menu-shell{display:grid;grid-template-columns:minmax(0,.95fr) minmax(360px,1.05fr);gap:24px;align-items:stretch;text-align:left}
@@ -184,7 +184,7 @@
     <div class="panel" id="startPanel">
       <div class="card menu-card"><div class="menu-shell">
         <section class="menu-brand">
-          <div class="card-top"><img src="logo-gpp.png?v=17" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
+          <div class="card-top"><img src="logo-gpp.png?v=18" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Offline runner • medical style</div><div class="title">DOCTOR<br>RUSH</div></div></div>
           <p class="sub">Bác sĩ vượt virus và các mối nguy y tế, thu thập vật phẩm. Logo GPP là vật phẩm hiếm: +4 sinh tồn, +80 điểm và khiên 10 giây. Chai thuốc xanh làm chậm trò chơi 10 giây.</p>
           <div class="contact-compact"><b>Ngô Quang Trường</b><br>Liên hệ tư vấn: <b>0829076979</b> • Zalo: <b>truongphotoart</b><span class="service-line">Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</span></div>
         </section>
@@ -203,7 +203,7 @@
     </div>
 
     <div class="panel hidden" id="gameOverPanel"><div class="card">
-      <div class="card-top"><img src="logo-gpp.png?v=17" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
+      <div class="card-top"><img src="logo-gpp.png?v=18" alt="Logo Trường GPP" class="hero-logo" /><div><div class="eyebrow">Ca trực đã dừng</div><div class="title" style="font-size:clamp(34px,6vw,54px)">GAME OVER</div></div></div>
       <div class="stat-grid"><div class="stat"><small>Điểm</small><b id="finalScore">0</b></div><div class="stat"><small>Vật phẩm</small><b id="finalCoins">0</b></div><div class="stat"><small>Thời gian</small><b id="finalTime">0s</b></div><div class="stat"><small>GPP hiếm</small><b id="finalGpp">0</b></div></div>
       <p class="sub">Cấp độ: <b id="finalDifficulty" style="color:#0b7f89">TRUNG BÌNH</b> • Kỷ lục cấp này: <b id="finalBest" style="color:#0d3d46">0</b><br><span id="newBest" style="color:#11a3b2;font-weight:900"></span></p>
       <div class="info-box"><b>Ngô Quang Trường</b> • Liên hệ tư vấn: <b>0829076979</b> • Zalo: truongphotoart<br>Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</div>
@@ -212,7 +212,7 @@
     <div class="panel hidden" id="tutorialPanel"><div class="card tutorial-card"><div class="eyebrow">Hướng dẫn nhanh • chỉ hiện lần đầu</div><div class="title" style="font-size:clamp(30px,5vw,46px)">SẴN SÀNG?</div><div class="tutorial-steps">
       <div class="tutorial-step"><div class="ico">⬆️</div><b>NHẢY</b><span>Space/↑/W trên PC hoặc chạm sân chơi trên điện thoại.</span></div><div class="tutorial-step"><div class="ico">⚠️</div><b>NÉ VẬT CẢN</b><span>Đọc nhịp, tránh virus và nguy hiểm. Game luôn chừa đường thoát.</span></div><div class="tutorial-step"><div class="ico">🛡️</div><b>SĂN GPP</b><span>Logo GPP hiếm: hồi sinh tồn, cộng điểm và bật khiên 10 giây.</span></div>
     </div><div class="tutorial-progress"><i id="tutorialProgress"></i></div><div class="loading-status" id="tutorialCountdown">Tự bắt đầu sau 7 giây</div><div class="btns"><button class="btn" id="tutorialStartBtn">▶ Bắt đầu ngay</button><button class="btn secondary" id="tutorialSkipBtn">Bỏ qua hướng dẫn</button></div></div></div>
-    <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.17</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
+    <div id="updateToast">Có phiên bản mới • sẽ cập nhật sau ván này</div><div id="debugPanel"></div><div class="version-label" id="versionLabel">v1.0.18</div><div id="preloadOverlay"><div class="preload-card"><b>DOCTOR RUSH</b><div class="preload-bar"><i id="preloadFill"></i></div><span id="preloadText">Đang tải 0%</span></div></div>
   </div></div>
 <div id="rotateOverlay">
   <div class="rotate-card">
@@ -224,10 +224,10 @@
 <script>
 
 (() => {
-  const APP_VERSION='v1.0.17',BUILD_ID='17';
+  const APP_VERSION='v1.0.18',BUILD_ID='18';
   const canvas=document.getElementById('game'),ctx=canvas.getContext('2d',{alpha:false}),stage=document.getElementById('stage'),$=id=>document.getElementById(id);
   const DEBUG=new URLSearchParams(location.search).get('debug')==='1'; if(DEBUG)document.body.classList.add('debug-on');
-  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=17';
+  const logoImg=new Image(); logoImg.decoding='async'; logoImg.src='logo-gpp.png?v=18';
   let W=0,H=0,DPR=1,groundY=0; const GAME_H=720,BASE_GAME_W=1280,FIXED_MS=1000/60,PHYSICS={jump:-17.5,gravity:.82};
   let state='menu',score=0,coinCount=0,speed=5.25,time=0,shake=0;
   let muted=localStorage.getItem('doctor-rush-muted')==='1',vibrationEnabled=localStorage.getItem('doctor-rush-vibration')!=='0',difficulty=localStorage.getItem('doctor-rush-difficulty')||'medium';
@@ -236,7 +236,7 @@
     medium:{label:'TRUNG BÌNH',baseSpeed:4.15,speedStep:.25,maxSpeed:7.9,airChance:[.08,.10,.13,.16],comboChance:[0,.01,.035,.06],movingAirChance:.75,gaps:[[660,840],[600,780],[540,720],[480,660]],bonus:[310,500],gpp:[1900,2950]},
     hard:{label:'KHÓ',baseSpeed:4.65,speedStep:.32,maxSpeed:9.6,airChance:[.15,.18,.22,.27],comboChance:[.01,.025,.06,.10],movingAirChance:.65,gaps:[[580,740],[520,680],[460,620],[410,570]],bonus:[390,610],gpp:[2300,3500]}
   }; if(!difficultyConfigs[difficulty])difficulty='medium';
-  let health=10,maxHealth=10,shieldTimer=0,slowTimer=0,hitCooldown=0,encounterTimer=0,pillTimer=0,bonusTimer=0,gppTimer=0,sceneTheme=0,gppCollected=0;
+  let health=10,maxHealth=10,shieldTimer=0,slowTimer=0,hitCooldown=0,encounterTimer=0,pillTimer=0,bonusTimer=0,gppTimer=0,itemRefillTimer=0,visibleItemGoal=3,sceneTheme=0,gppCollected=0;
   const obstacles=[],items=[],particles=[],clouds=[],skyline=[],popups=[],scheduledSpawns=[];
   const deptLabels=['KHOA NHI','KHOA SẢN','KHOA DƯỢC','KHOA CẤP CỨU','KHOA NGOẠI','KHOA NỘI','KHOA XÉT NGHIỆM','KHOA TIM MẠCH'];
   const hero={x:150,y:0,w:62,h:74,vy:0,onGround:true,rot:0,run:0,crashTimer:0,crashVX:0};
@@ -261,7 +261,16 @@
   function buildScene(){clouds.length=0;skyline.length=0;const cloudCount=quality==='low'?7:12;for(let i=0;i<cloudCount;i++){const layer=i<Math.ceil(cloudCount*.4)?.22:i<Math.ceil(cloudCount*.75)?.38:.55;clouds.push({x:Math.random()*W*1.35,y:28+Math.random()*H*.25,w:90+Math.random()*150,h:28+Math.random()*42,s:layer,a:.48+Math.random()*.24})}const layerSpecs=[{depth:.24,alpha:.24,minW:54,maxW:92,minH:58,maxH:108,spacing:[quality==='low'?14:8,quality==='low'?23:16],labelChance:.14,crossChance:.16,brandChance:.22,brandMode:'rear'},{depth:.50,alpha:.50,minW:76,maxW:128,minH:92,maxH:156,spacing:[quality==='low'?18:12,quality==='low'?30:22],labelChance:.32,crossChance:.24,brandChance:.12,brandMode:'mid'},{depth:.84,alpha:.84,minW:100,maxW:182,minH:128,maxH:220,spacing:[quality==='low'?26:18,quality==='low'?38:30],labelChance:.48,crossChance:.34,brandChance:0,brandMode:'front'}];layerSpecs.forEach((spec,layerIndex)=>{let x=layerIndex===0?0:layerIndex===1?20:40;while(x<W*1.95){const w=randomRange(spec.minW,spec.maxW),h=randomRange(spec.minH,spec.maxH),cols=Math.max(2,Math.floor(w/18)),rows=Math.max(3,Math.floor(h/22)),win=[];for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const lit=Math.random()<(layerIndex===0?.35:layerIndex===1?.50:.64);win.push({r,c,tone:lit?(Math.random()<.54?'warm':'cool'):'off'})}skyline.push({x,w,h,depth:spec.depth,alpha:spec.alpha,cross:Math.random()<spec.crossChance,brand:Math.random()<spec.brandChance,brandMode:spec.brandMode,label:Math.random()<spec.labelChance?deptLabels[Math.floor(Math.random()*deptLabels.length)]:'',cols,rows,win,roof:Math.random()<.42?'flat':Math.random()<.5?'step':'dome'});x+=w+randomRange(spec.spacing[0],spec.spacing[1])}});skyline.sort((a,b)=>a.depth-b.depth)}
   addEventListener('resize',resize);resize();
 
-  function reset(){score=0;coinCount=0;time=0;shake=0;sceneTheme=0;health=maxHealth;shieldTimer=0;slowTimer=0;hitCooldown=0;gppCollected=0;obstacles.length=items.length=particles.length=popups.length=scheduledSpawns.length=0;hero.x=Math.round(BASE_GAME_W*.117);hero.y=groundY-hero.h;hero.vy=0;hero.onGround=true;hero.rot=0;hero.run=0;hero.crashTimer=0;hero.crashVX=0;const cfg=difficultyConfigs[difficulty];speed=cfg.baseSpeed;encounterTimer=distanceToFrames(randomRange(cfg.gaps[0][0],cfg.gaps[0][1]));pillTimer=105;bonusTimer=randomRange(cfg.bonus[0],cfg.bonus[1]);gppTimer=randomRange(cfg.gpp[0],cfg.gpp[1]);lastFrameTs=performance.now();simAccumulator=0;simSteps=0;updateHUD()}
+  function reset(){
+    score=0;coinCount=0;time=0;shake=0;sceneTheme=0;health=maxHealth;shieldTimer=0;slowTimer=0;hitCooldown=0;gppCollected=0;
+    obstacles.length=items.length=particles.length=popups.length=scheduledSpawns.length=0;
+    hero.x=Math.round(BASE_GAME_W*.117);hero.y=groundY-hero.h;hero.vy=0;hero.onGround=true;hero.rot=0;hero.run=0;hero.crashTimer=0;hero.crashVX=0;
+    const cfg=difficultyConfigs[difficulty];speed=cfg.baseSpeed;encounterTimer=distanceToFrames(randomRange(cfg.gaps[0][0],cfg.gaps[0][1]));
+    pillTimer=55;bonusTimer=randomRange(cfg.bonus[0],cfg.bonus[1]);gppTimer=randomRange(cfg.gpp[0],cfg.gpp[1]);itemRefillTimer=0;visibleItemGoal=2+Math.floor(Math.random()*5);
+    lastFrameTs=performance.now();simAccumulator=0;simSteps=0;updateHUD();
+    // Bắt đầu ván với vật phẩm đã nằm trong khung hình, tránh khoảng trống nhàm chán.
+    spawnContinuousItemCluster(true);
+  }
   function isInstalled(){return matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true}
   async function requestLandscape(){try{if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape')}catch(e){}}
   async function requestAppFullscreen(){if(!isMobileLike()||document.fullscreenElement||isInstalled())return;try{if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen({navigationUI:'hide'})}catch(e){}}
@@ -349,10 +358,81 @@
   function clampCollectibleY(y,kind='pill',r=11){return Math.max(collectibleTopLimit(kind,r),Math.min(groundY-52,y))}
   function jumpFlightSteps(){let y=0,vy=PHYSICS.jump,steps=0;while(steps<120){vy+=PHYSICS.gravity;y+=vy;steps++;if(y>=0&&steps>2)break}return steps}
   function heroPickupYAtStep(t){const top=groundY-hero.h+PHYSICS.jump*t+PHYSICS.gravity*t*(t+1)/2;return top+hero.h*.45}
-  function buildPillRowPlan(kind,n,lowRow=false,rowSpeed=Math.max(4.75,speed)){const plan=[],startX=spawnLineX();if(lowRow){const y=clampCollectibleY(groundY-randomRange(58,70),kind,11);for(let i=0;i<n;i++)plan.push({x:startX+i*44,y});return plan}const flight=Math.max(34,jumpFlightSteps()-2);for(let i=0;i<n;i++){const ratio=i/(n-1||1),t=ratio*flight,y=clampCollectibleY(heroPickupYAtStep(t)-2,kind,11);plan.push({x:startX+rowSpeed*t,y})}return plan}
-  function spawnPillRow(){const n=5+Math.floor(Math.random()*3),commonKinds=['pill','capsule','tablet'],rowKind=commonKinds[Math.floor(Math.random()*commonKinds.length)],lowRow=Math.random()<.36,plan=buildPillRowPlan(rowKind,n,lowRow);if(!collectiblePlanSafe(plan,difficulty==='easy'?720:difficulty==='medium'?660:600))return false;for(const pt of plan)items.push({x:pt.x,y:pt.y,r:11,t:Math.random()*6,kind:rowKind});return true}
-  function spawnBonusItem(){const roll=Math.random(),kind=roll<.46?'bottle':roll<.78?'syringe':'medkit',r=15,y=clampCollectibleY(groundY-randomRange(95,185),kind,r),candidate={x:spawnLineX()+20,y};if(!collectiblePlanSafe([candidate],difficulty==='easy'?760:difficulty==='medium'?700:640))return false;items.push({x:candidate.x,y,r,t:Math.random()*6,kind});return true}
-  function spawnGPP(){const r=20,y=clampCollectibleY(groundY-randomRange(110,195),'gpp',r),candidate={x:spawnLineX()+30,y};if(!collectiblePlanSafe([candidate],difficulty==='easy'?820:difficulty==='medium'?750:680))return false;items.push({x:candidate.x,y,r,t:0,kind:'gpp'});return true}
+  function visibleCollectibleCount(){return items.reduce((n,it)=>n+(it.x>hero.x+95&&it.x<W-18?1:0),0)}
+  function directionalCollectibleSafe(plan,leftMargin=170,rightMargin=390){
+    if(!plan.length)return false;
+    const minX=Math.min(...plan.map(p=>p.x))-leftMargin,maxX=Math.max(...plan.map(p=>p.x))+rightMargin;
+    return !obstacles.some(o=>o.x+o.w>minX&&o.x<maxX);
+  }
+  function buildPillRowPlan(kind,n,lowRow=false,rowSpeed=Math.max(4.2,speed),preferredStart=null){
+    const offsets=[],ys=[];
+    if(lowRow){
+      const y=clampCollectibleY(groundY-randomRange(58,74),kind,11);
+      for(let i=0;i<n;i++){offsets.push(i*44);ys.push(y)}
+    }else{
+      const flight=Math.max(32,jumpFlightSteps()-4);
+      for(let i=0;i<n;i++){const ratio=i/(n-1||1),t=ratio*flight;offsets.push(rowSpeed*t);ys.push(clampCollectibleY(heroPickupYAtStep(t)-2,kind,11))}
+    }
+    const width=offsets.length?Math.max(...offsets):0;
+    const naturalStart=Math.max(hero.x+330,W-width-randomRange(82,155));
+    const startX=preferredStart==null?naturalStart:preferredStart;
+    return offsets.map((dx,i)=>({x:startX+dx,y:ys[i]}));
+  }
+  function makeContinuousPlan(n=null,forceLow=false,shift=0){
+    const count=n??(2+Math.floor(Math.random()*5));
+    const commonKinds=['pill','capsule','tablet'],kind=commonKinds[Math.floor(Math.random()*commonKinds.length)];
+    const lowRow=forceLow||Math.random()<.48;
+    const base=buildPillRowPlan(kind,count,lowRow);
+    if(shift)for(const pt of base)pt.x-=shift;
+    return {kind,plan:base};
+  }
+  function spawnContinuousItemCluster(force=false){
+    const visible=visibleCollectibleCount();
+    if(!force&&visible>=Math.max(2,visibleItemGoal))return false;
+    const need=Math.max(2,visibleItemGoal-visible);
+    const count=Math.min(6,Math.max(2,need+Math.floor(Math.random()*3)));
+    const rightMargin=difficulty==='easy'?430:difficulty==='medium'?390:350;
+    const shifts=[0,120,240,360,480,600];
+    for(const shift of shifts){
+      const pack=makeContinuousPlan(count,Math.random()<.50,shift);
+      const minX=Math.min(...pack.plan.map(p=>p.x));
+      if(minX<hero.x+250)continue;
+      if(directionalCollectibleSafe(pack.plan,150,rightMargin)){
+        for(const pt of pack.plan)items.push({x:pt.x,y:pt.y,r:11,t:Math.random()*6,kind:pack.kind});
+        visibleItemGoal=2+Math.floor(Math.random()*5);
+        // Ưu tiên phần thưởng: nới thời điểm sinh vật cản để không biến vật phẩm thành mồi bẫy.
+        encounterTimer=Math.max(encounterTimer,distanceToFrames(difficulty==='easy'?330:difficulty==='medium'?285:245));
+        return true;
+      }
+    }
+    return false;
+  }
+  function ensureVisibleCollectibles(dt=1){
+    itemRefillTimer=Math.max(0,itemRefillTimer-dt);
+    const visible=visibleCollectibleCount();
+    if(visible>=2)return;
+    if(itemRefillTimer>0)return;
+    // Nếu khung hình sắp trống, vật phẩm được quyền ưu tiên trước encounter tiếp theo.
+    encounterTimer=Math.max(encounterTimer,distanceToFrames(difficulty==='easy'?300:difficulty==='medium'?260:225));
+    itemRefillTimer=spawnContinuousItemCluster(false)?24:12;
+  }
+  function spawnPillRow(){
+    const visible=visibleCollectibleCount();if(visible>=7)return false;
+    const n=Math.min(2+Math.floor(Math.random()*5),Math.max(2,8-visible)),commonKinds=['pill','capsule','tablet'],rowKind=commonKinds[Math.floor(Math.random()*commonKinds.length)],lowRow=Math.random()<.44,plan=buildPillRowPlan(rowKind,n,lowRow);
+    if(!directionalCollectibleSafe(plan,170,difficulty==='easy'?450:difficulty==='medium'?410:370))return false;
+    for(const pt of plan)items.push({x:pt.x,y:pt.y,r:11,t:Math.random()*6,kind:rowKind});
+    return true;
+  }
+  function spawnBonusItem(){
+    const roll=Math.random(),kind=roll<.46?'bottle':roll<.78?'syringe':'medkit',r=15,y=clampCollectibleY(groundY-randomRange(95,175),kind,r),candidate={x:Math.max(hero.x+430,W-randomRange(100,185)),y};
+    if(!directionalCollectibleSafe([candidate],170,difficulty==='easy'?470:difficulty==='medium'?430:390))return false;
+    items.push({x:candidate.x,y,r,t:Math.random()*6,kind});return true;
+  }
+  function spawnGPP(){
+    const r=20,y=clampCollectibleY(groundY-randomRange(105,185),'gpp',r),candidate={x:Math.max(hero.x+470,W-randomRange(110,195)),y};
+    if(!directionalCollectibleSafe([candidate],190,difficulty==='easy'?540:difficulty==='medium'?500:460))return false;
+    items.push({x:candidate.x,y,r,t:0,kind:'gpp'});return true;
+  }
   function heroHitbox(){return{x:hero.x+10,y:hero.y+8,w:hero.w-19,h:hero.h-13}}
   function obstacleHitbox(o){const ix=o.lane==='air'?8:7,iy=o.lane==='air'?7:6;return{x:o.x+ix,y:o.y+iy,w:Math.max(8,o.w-ix*2),h:Math.max(8,o.h-iy*2)}}
   function boxesOverlap(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
@@ -383,14 +463,14 @@
     hero.vy+=PHYSICS.gravity*dt;hero.y+=hero.vy*dt;if(hero.y>=groundY-hero.h){hero.y=groundY-hero.h;hero.vy=0;hero.onGround=true;hero.rot*=Math.pow(.7,dt)}else hero.rot=Math.max(-.2,Math.min(.26,hero.vy*.012));
     encounterTimer-=dt;if(encounterTimer<=0)spawnEncounter();
     for(let i=scheduledSpawns.length-1;i>=0;i--){const s=scheduledSpawns[i];s.delay-=dt;if(s.delay<=0){if(!obstacleSpawnSafeFromItems(spawnLineX())){s.delay=distanceToFrames(difficulty==='easy'?300:240);continue}if(s.type==='ground')spawnGroundObstacle();else spawnAirObstacle(s.opts);scheduledSpawns.splice(i,1)}}
-    pillTimer-=dt;if(pillTimer<=0){pillTimer=spawnPillRow()?(190+Math.random()*170):55}
+    ensureVisibleCollectibles(dt);pillTimer-=dt;if(pillTimer<=0){pillTimer=spawnPillRow()?(85+Math.random()*95):28}
     bonusTimer-=dt;if(bonusTimer<=0){const cfg=difficultyConfigs[difficulty];bonusTimer=spawnBonusItem()?randomRange(cfg.bonus[0],cfg.bonus[1]):70}
     gppTimer-=dt;if(gppTimer<=0){const cfg=difficultyConfigs[difficulty];gppTimer=spawnGPP()?randomRange(cfg.gpp[0],cfg.gpp[1]):90}
     for(let i=obstacles.length-1;i>=0;i--){const o=obstacles[i];o.x-=(speed+(o.lane==='air'?(o.driftX||0):0))*dt;if(o.lane==='air'&&o.moving){const amp=o.amplitude||18;o.y=o.baseY+Math.sin(time*.065+o.phase)*amp;const maxY=o.bottomLimit-o.h;if(o.y>maxY)o.y=maxY}if(o.damage===5&&!o.warned&&o.x-hero.x<390&&o.x>hero.x){o.warned=true;addPopup(o.x+o.w/2,Math.max(80,o.y-20),'⚠ NGUY HIỂM','#d73554',20);beep(300,.08,'square',.038);vibrate([25,25,25])}if(o.x+o.w<-110){obstacles.splice(i,1);continue}if(boxesOverlap(heroHitbox(),obstacleHitbox(o))){handleDamage(o.damage,o.x+o.w/2,o.y+o.h/2);obstacles.splice(i,1)}}
     for(let i=items.length-1;i>=0;i--){const c=items[i];c.x-=speed*dt;c.t+=.12*dt;if(c.x<-70){items.splice(i,1);continue}const range=c.kind==='gpp'?30:c.kind==='medkit'?28:24,dx=hero.x+hero.w*.55-c.x,dy=hero.y+hero.h*.45-c.y;if(dx*dx+dy*dy<(c.r+range)*(c.r+range)){coinCount++;if([250,500,1000].includes(coinCount)){addPopup(W*.5,H*.14,`MỐC ${coinCount} VẬT PHẨM`,'#0d8c98',28);beep(700,.14,'triangle',.04);vibrate([25,20,25])}if(c.kind==='gpp'){gppCollected++;health=Math.min(maxHealth,health+4);shieldTimer=Math.max(shieldTimer,10*60);score+=80;addPopup(hero.x+hero.w/2,hero.y-24,'★ GPP: +80 ĐIỂM • +4 SINH TỒN','#087d70',22);addPopup(hero.x+hero.w/2,hero.y+2,'KHIÊN 10s','#168fd0',18);burst(c.x,c.y,24,'gpp');beep(930,.15,'triangle',.05);vibrate([35,20,55])}else if(c.kind==='medkit'){health=Math.min(maxHealth,health+1);score+=24;addPopup(hero.x+hero.w/2,hero.y-20,'+24 ĐIỂM • +1 SINH TỒN','#168f69',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035);vibrate(12)}else if(c.kind==='syringe'){score+=22;addPopup(hero.x+hero.w/2,hero.y-20,'+22 ĐIỂM','#357bd1',24);burst(c.x,c.y,10,'ice');beep(820,.06,'sine',.03)}else if(c.kind==='bottle'){score+=18;slowTimer=Math.max(slowTimer,10*60);addPopup(hero.x+hero.w/2,hero.y-20,'+18 ĐIỂM • CHẬM 10s','#8150ca',22);burst(c.x,c.y,12,'ice');beep(760,.08,'triangle',.035)}else if(c.kind==='capsule'){score+=16;addPopup(hero.x+hero.w/2,hero.y-20,'+16 ĐIỂM','#ef763b',24);burst(c.x,c.y,8,'gold');beep(900,.045,'sine',.03)}else if(c.kind==='tablet'){score+=12;addPopup(hero.x+hero.w/2,hero.y-20,'+12 ĐIỂM','#268fc2',24);burst(c.x,c.y,7,'gold');beep(860,.045,'sine',.028)}else{score+=10;addPopup(hero.x+hero.w/2,hero.y-20,'+10 ĐIỂM','#ed5067',24);burst(c.x,c.y,7,'gold');beep(980,.045,'sine',.03)}items.splice(i,1);updateHUD()}}
     for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.18*dt;p.life-=dt;if(p.life<=0)particles.splice(i,1)}
     for(let i=popups.length-1;i>=0;i--){const p=popups[i];p.y+=p.vy*dt;p.life-=dt;if(p.life<=0)popups.splice(i,1)}
-    shake*=Math.pow(.9,dt);updateHUD();
+    shake*=Math.pow(.9,dt);ensureVisibleCollectibles(0);updateHUD();
   }
 
   function roundedRect(x,y,w,h,r){ ctx.beginPath(); ctx.roundRect(x,y,w,h,r); }
@@ -623,7 +703,7 @@ cache doctor-rush-v${BUILD_ID}`}
   addEventListener('appinstalled',()=>{deferredInstallPrompt=null;refreshInstallUI();installTip.textContent='✓ Đã cài Doctor Rush. Mở bằng icon bác sĩ ngoài màn hình để chơi dạng ứng dụng, không có thanh địa chỉ.';installTip.classList.add('show')});
   installBtn.onclick=async()=>{if(isInstalled())return;if(deferredInstallPrompt){deferredInstallPrompt.prompt();try{await deferredInstallPrompt.userChoice}catch(e){}deferredInstallPrompt=null;refreshInstallUI();return}installTip.textContent=isiOS?'iPhone/iPad: mở bằng Safari → Chia sẻ → Thêm vào Màn hình chính. Sau đó mở từ icon bác sĩ để không còn thanh địa chỉ.':'Nếu hộp cài chưa xuất hiện: mở menu trình duyệt → Cài ứng dụng / Thêm vào màn hình chính.';installTip.classList.add('show')};refreshInstallUI();
   function preloadOne(url,type='image'){return new Promise(resolve=>{if(type==='image'){const im=new Image();im.onload=()=>resolve(true);im.onerror=()=>resolve(false);im.src=url}else fetch(url,{cache:'no-cache'}).then(r=>resolve(r.ok)).catch(()=>resolve(false))})}
-  async function preloadAssets(){const assets=[['logo-gpp.png?v=17','image'],['icon-192.png?v=17','image'],['icon-512.png?v=17','image'],['apple-touch-icon.png?v=17','image'],['manifest.webmanifest?v=17','fetch'],['version.json?v=17','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
+  async function preloadAssets(){const assets=[['logo-gpp.png?v=18','image'],['icon-192.png?v=17','image'],['icon-512.png?v=17','image'],['apple-touch-icon.png?v=17','image'],['manifest.webmanifest?v=17','fetch'],['version.json?v=17','fetch']];let done=0;for(const[url,type]of assets){await preloadOne(url,type);done++;const pct=Math.round(done/assets.length*100);$('preloadFill').style.width=`${pct}%`;$('preloadText').textContent=`Đang tải ${pct}%`}assetsReady=true;$('startBtn').disabled=false;$('startBtn').textContent='▶ Chơi ngay';$('loadingStatus').textContent='✓ Sẵn sàng • '+APP_VERSION;const overlay=$('preloadOverlay');overlay.style.opacity='0';setTimeout(()=>overlay.remove(),260)}
   let toastTimer=null;function showUpdateToast(text='Có phiên bản mới • sẽ cập nhật sau ván này',duration=2600){const el=$('updateToast');el.textContent=text;el.classList.add('show-toast');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show-toast'),duration)}
   let swRegistration=null,serverBuild=BUILD_ID,applyingUpdate=false;
   async function checkForVersionUpdate(){if(location.protocol==='file:'||location.protocol==='data:')return false;try{const r=await fetch(`./version.json?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)return false;const v=await r.json();serverBuild=String(v.version||v.build||'');if(serverBuild&&serverBuild!==BUILD_ID){pendingVersionUpdate=true;showUpdateToast(['playing','paused','crash'].includes(state)?'Có phiên bản mới • sẽ cập nhật sau ván này':'Có phiên bản mới • đang chuẩn bị cập nhật');await checkForAppUpdate();return true}}catch(e){}return false}

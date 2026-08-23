@@ -1,6 +1,6 @@
 {
-  "version": "17",
-  "app_version": "v1.0.17",
+  "version": "18",
+  "app_version": "v1.0.18",
   "released": "2026-08-23",
-  "notes": "Ổn định HUD PC/mobile: khóa kích thước số và chip, giảm DOM cập nhật dư thừa, loại bỏ backdrop blur gây cảm giác rung; di chuyển thông tin liên hệ khỏi thanh sinh tồn trên PC và hiển thị rõ thông tin Ngô Quang Trường / 0829076979 / Zalo trên mobile."
+  "notes": "Continuous Items: vật phẩm thường được sinh trực tiếp trong khung hình theo cụm ngẫu nhiên 2–6 món; hệ thống tự bổ sung khi số vật phẩm nhìn thấy xuống dưới 2, đồng thời ưu tiên hành lang an toàn và trì hoãn vật cản để tránh dụ người chơi vào bẫy."
 }

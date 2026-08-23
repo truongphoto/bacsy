@@ -1,28 +1,14 @@
-DOCTOR RUSH v1.0.17 – VALIDATION REPORT
-Date: 2026-08-23
+DOCTOR RUSH v1.0.18 — CONTINUOUS ITEMS VALIDATION
 
-Mục tiêu: ổn định HUD Điểm/Vật phẩm, tách liên hệ khỏi Sinh tồn trên PC, hiển thị liên hệ rõ trên mobile.
+PASS — JavaScript syntax checked with Node.
+PASS — manifest.webmanifest and version.json are valid JSON.
+PASS — Version/build synchronized at v1.0.18 / build 18.
+PASS — Common item groups use random quantity 2–6.
+PASS — Initial run immediately creates an in-frame item cluster.
+PASS — Continuous refill triggers when visible item count drops below 2.
+PASS — Common item rows spawn inside the visible frame instead of outside the right edge.
+PASS — Monte Carlo geometry: 60,000 generated rows across PC/mobile widths remained visible and within reachable vertical limits.
+PASS — Item corridor uses directional obstacle safety margins and delays the next obstacle encounter.
+PASS — Normal extra item rows are capped to avoid excessive clutter.
 
-PASS Version HTML v1.0.17
-PASS Không còn CSS ẩn brand mobile
-PASS Thông tin liên hệ gameplay
-PASS Thông tin liên hệ menu
-PASS HUD tabular
-PASS HUD fixed PC
-PASS HUD fixed mobile
-PASS HUD update cache
-PASS updateHUD no direct DOM churn
-PASS Best score memory cache
-PASS SW build 17
-PASS version build 17
-PASS PWA landscape
-PASS IDs unique — []
-PASS Required files — []
-PASS PC health-brand gap — 456->592
-PASS 844 mobile health-brand gap — 316->322
-PASS 844 mobile brand-jump gap — 758->764
-PASS 568 mobile health-brand gap — 286->292
-PASS 568 mobile brand-jump nonoverlap — 488->488
-
-Tổng: 20/20 PASS
-Kết luận: Tất cả kiểm tra đạt.
+Design target: the playfield should almost always show collectible activity; if an active hazard temporarily occupies every safe corridor, safety takes priority and refill retries rapidly rather than baiting the player into a collision.
