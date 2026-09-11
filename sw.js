@@ -1,6 +1,6 @@
-const BUILD_ID = '26';
+const BUILD_ID = '28';
 const CACHE_NAME = `doctor-rush-v${BUILD_ID}`;
-const CORE = ['./','./index.html','./manifest.webmanifest','./version.json','./logo-gpp.png','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./leaderboard-config.js'];
+const CORE = ['./','./index.html','./manifest.webmanifest','./version.json','./logo-gpp.png','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./favicon.ico','./leaderboard-config.js'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => Promise.allSettled(CORE.map(url => fetch(url,{cache:'reload'}).then(r => { if(r.ok) return cache.put(url,r.clone()); })) )));

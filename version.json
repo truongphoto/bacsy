@@ -1,6 +1,6 @@
 {
-  "version": "26",
-  "app_version": "v1.0.26",
+  "version": "28",
+  "app_version": "v1.0.28",
   "released": "2026-09-11",
-  "notes": "Endless Speed Mua 2: toc do dau De 3.50, Trung binh 4.00, Kho 4.50; tang lien tuc rat muot theo 0.006/0.012/0.018 moi giay, khong maxSpeed. Giu nguyen toan bo co che vat pham/vat can. Bang xep hang chuyen Mua 2 va ky luc local tach rieng theo mua."
+  "notes": "Browser favicon hotfix. Gameplay, Endless Speed Mua 2, Fast Start and leaderboard unchanged."
 }
