@@ -1,6 +1,6 @@
 {
-  "version": "28",
-  "app_version": "v1.0.28",
+  "version": "29",
+  "app_version": "v1.0.29",
   "released": "2026-09-11",
-  "notes": "Browser favicon hotfix. Gameplay, Endless Speed Mua 2, Fast Start and leaderboard unchanged."
+  "notes": "Hero action sync: jump timing now accelerates smoothly with Endless Speed while jump height stays unchanged. Items/obstacles, Season 2, leaderboard and graphics behavior unchanged."
 }
