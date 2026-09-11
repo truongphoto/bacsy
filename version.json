@@ -1,6 +1,6 @@
 {
-  "version": "24",
-  "app_version": "v1.0.24",
-  "released": "2026-08-23",
-  "notes": "Tinh chỉnh GPP jackpot: chỉ một logo trên màn hình mỗi lúc, hiếm hơn (35-50 giây hoặc 40-60 vật phẩm, tối thiểu 30 giây giữa hai lần), xuất hiện trên đường an toàn, vật phẩm có aura/halo xanh-vàng, trail và hiệu ứng nhận thưởng riêng ở giữa màn hình."
+  "version": "25",
+  "app_version": "v1.0.25",
+  "released": "2026-09-11",
+  "notes": "Adaptive Graphics: AUTO/Tiet kiem/Can bang/Cao, render cap 30/45/60 va theo doi FPS thuc te. Them giao dien leaderboard Dễ/Trung bình/Khó + Hom nay/Tuan nay/Moi thoi dai, fallback offline va bo SQL Supabase co RPC kiem tra run truoc khi ghi diem."
 }

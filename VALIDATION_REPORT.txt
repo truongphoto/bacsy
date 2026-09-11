@@ -1,11 +1,21 @@
-Doctor Rush v1.0.24 – GPP Special Refinement
+Doctor Rush v1.0.25 — Adaptive Graphics + Online Leaderboard
 
-PASS
-- Chỉ cho phép tối đa 1 logo GPP trên màn hình tại một thời điểm.
-- GPP giữ nguyên sức mạnh tổng hợp: +4 sinh tồn, +100 điểm, khiên 10 giây, nam châm 8 giây.
-- Tần suất GPP đổi sang nhịp hiếm hơn: lần đầu 20–25 giây; sau đó 35–50 giây hoặc 40–60 vật phẩm; tối thiểu 30 giây giữa hai lần.
-- GPP chỉ sinh ở vùng an toàn và đẩy lùi spawn vật cản phía sau để tránh bẫy người chơi.
-- Vật phẩm GPP có aura/halo xanh-vàng, trail và thông báo riêng khi vào màn hình.
-- Khi nhặt GPP có flash nhẹ, rung ngắn, logo phóng to giữa màn hình khoảng 0.47s và hiển thị “★ GPP ĐẶC BIỆT”, sau đó mới bung thông tin quyền lợi.
-- Logo GPP nền bệnh viện vẫn mờ, cố định và khác rõ với GPP vật phẩm.
-- Kiểm tra cú pháp JavaScript PASS (node --check).
+IMPLEMENTED
+- Đồ họa có 4 lựa chọn người dùng: AUTO / Tiết kiệm / Cân bằng / Cao.
+- AUTO nhận diện sơ bộ thiết bị và tự điều chỉnh theo FPS thực tế với hysteresis để tránh nhảy chất lượng liên tục.
+- 3 tầng chất lượng nội bộ thay đổi DPR, blur/glow, particle, số mây và mật độ hậu cảnh.
+- Render cap tách khỏi simulation: Tiết kiệm 30 FPS; AUTO khi rất yếu có thể 45 rồi 30 FPS; Cân bằng/Cao ưu tiên 60 FPS.
+- Simulation gameplay vẫn FIXED 60 Hz, giữ nguyên cơ chế va chạm và độ khó.
+- Màn hình 90/120 Hz không bắt buộc render 90/120 lần/giây.
+- Có giao diện trạng thái FPS, DPR, profile máy và chất lượng Auto đang dùng.
+- Thêm UI bảng xếp hạng Dễ/Trung bình/Khó + Hôm nay/Tuần này/Mọi thời đại.
+- Có tên hiển thị, Top 50, đánh dấu chính mình và hiển thị hạng của mình nếu nằm ngoài Top 50.
+- Có fallback offline bằng kỷ lục localStorage.
+- Có SQL Supabase: ticket bắt đầu ván, RPC submit, kiểm tra ngưỡng thời gian/vật phẩm/GPP/điểm, RLS và không cho anon ghi bảng trực tiếp.
+- Không nhúng service_role key hoặc khóa bí mật trong ZIP.
+- Cache PWA nâng lên doctor-rush-v25 và cache thêm leaderboard-config.js.
+
+VALIDATION
+- JavaScript syntax: node --check PASS.
+- Không còn quality='low' cũ trong index.html.
+- Build/version: v1.0.25 / 25.

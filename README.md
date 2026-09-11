@@ -1,74 +1,59 @@
-# Doctor Rush • Trường GPP — v1.0.23
+# Doctor Rush • Trường GPP — v1.0.25
 
-Bản phát hành PWA tĩnh dành cho GitHub Pages.
+Bản PWA tĩnh dành cho GitHub Pages. Bản này bổ sung **AUTO đồ họa thích ứng** và giao diện **xếp hạng online**.
 
-## Cài lên GitHub Pages
+## 1) Cài lên GitHub Pages
 - Đưa toàn bộ file trong ZIP vào thư mục gốc repository.
-- Settings → Pages → Deploy from a branch → `main` → `/(root)`.
+- GitHub → Settings → Pages → Deploy from a branch → `main` → `/(root)`.
 - Không cần GitHub Actions.
+- Service Worker tự đổi cache sang `doctor-rush-v25`, không ép tải lại giữa ván.
 
-## Mobile
-- Chơi landscape; khi cầm dọc game yêu cầu xoay ngang.
+## 2) Đồ họa thích ứng
+Trong menu có nút **Đồ họa** với 4 lựa chọn:
+- **AUTO**: mặc định. Nhận diện sơ bộ mobile/PC, RAM/CPU nếu trình duyệt cho phép; sau đó ưu tiên FPS thực tế để tự đổi chất lượng.
+- **Tiết kiệm**: DPR thấp, ít particle/hậu cảnh, tắt blur nặng, render 30 FPS.
+- **Cân bằng**: DPR trung bình, hiệu ứng vừa, ưu tiên render 60 FPS.
+- **Cao**: hiệu ứng đầy đủ, DPR cao hơn, ưu tiên render 60 FPS.
+
+Gameplay/va chạm vẫn mô phỏng cố định 60 bước/giây. Render hình ảnh được giới hạn riêng, nên màn hình 90/120 Hz không làm GPU vẽ dư 90/120 lần mỗi giây.
+
+Mở URL với `?debug=1` để xem RAF FPS, render FPS, render cap, mode, quality và DPR.
+
+## 3) Xếp hạng online — Supabase
+Bản game đã có đầy đủ UI và code gọi Supabase qua REST RPC, nhưng **mặc định tắt** để ZIP không chứa khóa dự án của bạn.
+
+### Thiết lập một lần
+1. Tạo/chọn project Supabase.
+2. Vào **SQL Editor** và chạy toàn bộ file `supabase-leaderboard.sql`.
+3. Trong Supabase → Project Settings/API, lấy:
+   - Project URL
+   - anon/public key
+4. Mở `leaderboard-config.js` và sửa:
+
+```js
+window.DOCTOR_RUSH_LEADERBOARD = {
+  enabled: true,
+  supabaseUrl: 'https://YOUR_PROJECT.supabase.co',
+  anonKey: 'YOUR_ANON_PUBLIC_KEY',
+  season: 1
+};
+```
+
+**Không dùng service_role key** trong file web/GitHub Pages.
+
+### Cách bảng xếp hạng hoạt động
+- Riêng từng cấp: Dễ / Trung bình / Khó.
+- Bộ lọc: Hôm nay / Tuần này / Mọi thời đại.
+- Mỗi người chỉ lấy thành tích tốt nhất trong bộ lọc.
+- Có Mùa (`season`) để tách điểm khi cân bằng gameplay thay đổi lớn.
+- Khi bắt đầu ván, server cấp `run_id`; khi kết thúc, server kiểm tra thời gian, vật phẩm, GPP và ngưỡng điểm trước khi nhận kết quả.
+- Browser không được đọc/ghi trực tiếp các bảng; chỉ được gọi RPC được cấp quyền.
+- Nếu chưa cấu hình Supabase hoặc mất mạng, game vẫn chơi bình thường và hiển thị kỷ lục lưu trên thiết bị.
+
+> Chống gian lận phía client không thể tuyệt đối. Cơ chế hiện tại nhằm chặn các điểm giả hiển nhiên và không cho ghi thẳng vào bảng chính. Nếu sau này bảng xếp hạng có giải thưởng thật, nên chuyển phần xác minh sang Edge Function/server riêng và ký telemetry chi tiết hơn.
+
+## 4) Mobile / PWA
+- Chơi landscape; cầm dọc sẽ yêu cầu xoay ngang.
 - Android: dùng nút `Cài ứng dụng`.
 - iPhone/iPad: Safari → Chia sẻ → Thêm vào Màn hình chính.
-- Khi mở từ icon đã cài, PWA chạy standalone/fullscreen và không có thanh địa chỉ trình duyệt.
-
-## Tự cập nhật
-`version.json` + `sw.js` kiểm tra bản mới, không ép reload giữa ván. Cache hiện tại: `doctor-rush-v23`.
-
-## Debug ẩn
-Mở URL với `?debug=1` để xem FPS, chất lượng, DPR, cấp độ, tốc độ, hitbox và số lượng đối tượng.
-
-
-## Thay đổi v1.0.21
-- Giảm mạnh tốc độ/mật độ vật cản cả 3 cấp để ưu tiên cảm giác thư giãn.
-- Dễ: vật cản bay cực hiếm, combo gần như không có.
-- Vật phẩm có hành lang an toàn: game trì hoãn vật cản nếu phần thưởng đang ở vùng sinh, và trì hoãn vật phẩm nếu phía trước đang nguy hiểm.
-- Giảm tốc vật cản bay ngược và làm chuyển động lên/xuống mượt hơn.
-
-
-## v1.0.21 – HUD ổn định
-- HUD Điểm/Vật phẩm/Kỷ lục dùng số tabular + kích thước cố định, không co giãn theo số.
-- Chỉ cập nhật DOM khi giá trị thực sự thay đổi.
-- Bỏ backdrop blur khỏi HUD/Health để tránh cảm giác rung khi nền game rung.
-- PC: thông tin liên hệ chuyển sang góc phải dưới, tách khỏi thanh Sinh tồn.
-- Mobile: hiển thị dải liên hệ trong lúc chơi và giữ thông tin liên hệ rõ ở menu.
-
-
-## v1.0.21 – Continuous Items
-- Vật phẩm thường xuất hiện trực tiếp trong khung hình, không còn phải chờ chạy từ ngoài màn hình vào.
-- Mỗi cụm ngẫu nhiên 2–6 vật phẩm.
-- Nếu số vật phẩm nhìn thấy giảm dưới 2, hệ thống tự bổ sung cụm mới.
-- Vẫn giữ hành lang an toàn và trì hoãn vật cản để vật phẩm không trở thành mồi bẫy.
-
-
-## v1.0.21 Smooth Pace
-- Tốc độ chạy tăng mượt liên tục theo thời gian, không giảm và không nhảy bậc.
-- Dễ/Trung bình/Khó bắt đầu lần lượt 3.40 / 3.90 / 4.40, tiến dần về 6.80 / 8.20 / 9.80.
-- Màn Dễ có vật cản đầu tiên trong vài giây đầu, luôn trong 10 giây đầu.
-- Tỷ lệ vật cản bay, combo và khoảng cách vật cản nội suy liên tục thay vì đổi đột ngột ở mốc 250/500/1000.
-- Chai thuốc xanh: Nam châm hút vật phẩm 8 giây, không làm chậm game.
-
-
-## v1.0.21 Mobile Menu
-- Thêm nút **← Về menu chính** chỉ hiện khi đang chơi trên điện thoại ngang.
-- Khi bấm, game tạm dừng ngay và hỏi xác nhận.
-- **Tiếp tục chơi** khôi phục đúng trạng thái trước đó; **Về menu chính** dừng ván và quay lại màn chọn cấp độ.
-- Nút Back Android trong lúc chơi dùng cùng cơ chế xác nhận để tránh thoát nhầm.
-
-
-## v1.0.21
-- Nút ← Về menu chính hoạt động trên cả PC và mobile; Esc trên PC mở hộp xác nhận để về màn chọn cấp độ.
-- Logo GPP là vật phẩm đặc biệt tổng hợp: +4 sinh tồn, +100 điểm, khiên 10 giây, nam châm 8 giây.
-- Tần suất GPP được tăng lên: vẫn ít hơn bonus item nhưng không còn quá hiếm.
-
-
-## v1.0.22
-- Thêm logo GPP kích thước lớn ở trung tâm hậu cảnh, nằm sau chữ BỆNH VIỆN.
-- Logo nền cố định, mờ/sương nhẹ và dùng blend multiply để nền trắng không tạo mảng trắng.
-
-
-## v1.0.23 – Logo nền tinh gọn
-- Thu nhỏ logo GPP nền còn khoảng 25% chiều ngang.
-- Căn giữa đúng cụm chữ BỆNH VIỆN.
-- Giảm opacity và blur để logo chìm nhẹ sau chữ, không rối nền.
+- Khi mở từ icon đã cài, PWA chạy standalone/fullscreen.
