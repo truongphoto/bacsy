@@ -1,6 +1,6 @@
 {
-  "version": "25",
-  "app_version": "v1.0.25",
+  "version": "26",
+  "app_version": "v1.0.26",
   "released": "2026-09-11",
-  "notes": "Adaptive Graphics: AUTO/Tiet kiem/Can bang/Cao, render cap 30/45/60 va theo doi FPS thuc te. Them giao dien leaderboard Dễ/Trung bình/Khó + Hom nay/Tuan nay/Moi thoi dai, fallback offline va bo SQL Supabase co RPC kiem tra run truoc khi ghi diem."
+  "notes": "Endless Speed Mua 2: toc do dau De 3.50, Trung binh 4.00, Kho 4.50; tang lien tuc rat muot theo 0.006/0.012/0.018 moi giay, khong maxSpeed. Giu nguyen toan bo co che vat pham/vat can. Bang xep hang chuyen Mua 2 va ky luc local tach rieng theo mua."
 }
